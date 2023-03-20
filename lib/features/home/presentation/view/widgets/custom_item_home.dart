@@ -22,11 +22,11 @@ class CustomItemHomeView extends StatelessWidget {
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         elevation: 3,
+        margin: const EdgeInsets.all(15),
         child: GridTile(
-          child: Image.asset(kLogo),
           footer: Container(
             color: Colors.yellow.withOpacity(0.5),
-            child: Text(
+            child: const Text(
               'Categories',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -34,8 +34,8 @@ class CustomItemHomeView extends StatelessWidget {
               ),
             ),
           ),
+          child: Image.asset(kLogo),
         ),
-        margin: const EdgeInsets.all(15),
       ),
     );
   }
