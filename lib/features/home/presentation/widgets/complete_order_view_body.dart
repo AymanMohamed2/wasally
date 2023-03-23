@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wasally/core/widgets/costum_text_field.dart';
 
-import '../../../../../core/widgets/custom_buttons.dart';
+import '../../../../core/widgets/custom_buttons.dart';
 
 class CompleteOrderViewBody extends StatelessWidget {
   const CompleteOrderViewBody({super.key});

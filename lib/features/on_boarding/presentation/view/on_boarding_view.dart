@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/on_boarding_body.dart';
+import '../widgets/on_boarding_body.dart';
 
 class OnBoardingView extends StatelessWidget {
   const OnBoardingView({super.key});

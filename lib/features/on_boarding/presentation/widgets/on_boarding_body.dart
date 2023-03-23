@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/features/auth/presentation/view/login_view.dart';
-import '../../../../../core/widgets/custom_buttons.dart';
+import '../../../../core/widgets/custom_buttons.dart';
 import 'custom_indicator.dart';
 import 'custom_page_view.dart';
 

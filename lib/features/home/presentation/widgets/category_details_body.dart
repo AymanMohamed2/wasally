@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wasally/core/constants.dart';
-import 'package:wasally/features/home/presentation/view/widgets/custom_app_bar.dart';
+import 'package:wasally/features/home/presentation/widgets/custom_app_bar.dart';
 
 import 'custom_list_view_details.dart';
 

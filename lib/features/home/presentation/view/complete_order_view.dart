@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wasally/features/home/presentation/view/widgets/complete_order_view_body.dart';
+import 'package:wasally/features/home/presentation/widgets/complete_order_view_body.dart';
 
 import '../../../../core/widgets/custom_buttons.dart';
 

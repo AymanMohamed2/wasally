@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../../../core/constants.dart';
-import '../../../../../core/constants.dart';
-import '../complete_order_view.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/constants.dart';
+import '../view/complete_order_view.dart';
 
 class CustomItemDetailsView extends StatelessWidget {
   const CustomItemDetailsView({

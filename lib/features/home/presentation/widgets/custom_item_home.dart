@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wasally/core/constants.dart';
 
-import '../category_details_view.dart';
+import '../view/category_details_view.dart';
 
 class CustomItemHomeView extends StatelessWidget {
   const CustomItemHomeView({

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wasally/core/widgets/custom_buttons.dart';
 
-import '../../../../../core/constants.dart';
-import '../../../../../core/utils/size_config.dart';
-import '../../../../../core/widgets/costum_text_field.dart';
-import '../../../../../core/widgets/space_widget.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/utils/size_config.dart';
+import '../../../../core/widgets/costum_text_field.dart';
+import '../../../../core/widgets/space_widget.dart';
 import 'custom_drop_down_button.dart';
 
 class SignUpViewBody extends StatefulWidget {

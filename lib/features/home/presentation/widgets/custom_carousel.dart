@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/size_config.dart';
+import '../../../../core/utils/size_config.dart';
 
 class CustomCarousel extends StatelessWidget {
   const CustomCarousel({super.key});
