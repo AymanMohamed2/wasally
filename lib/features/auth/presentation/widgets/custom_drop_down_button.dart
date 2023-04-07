@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 class CustomDropDownButton extends StatefulWidget {
   const CustomDropDownButton({
-    super.key,
+    super.key, required this.items, required this.hintText,
   });
+
+  final List items;
+  final String hintText;
 
   @override
   State<CustomDropDownButton> createState() => _CustomDropDownButtonState();
@@ -25,8 +28,8 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
         ),
         isExpanded: true,
         value: selected,
-        hint: const Text('Please Choose Account Type'),
-        items: ['Buiseness Account', 'User Account']
+        hint:  Text(widget.hintText),
+        items: widget.items
             .map(
               (e) => DropdownMenuItem(
                 child: Text('$e'),

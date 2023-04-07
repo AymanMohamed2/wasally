@@ -48,15 +48,15 @@ class CostumButtonSignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onTap,
-      child: Text(
-        text,
-        style: TextStyle(color: Colors.black),
-      ),
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(horizontal: padding),
 
         backgroundColor: Colors.orange,
         // primary: Colors.orange,
+      ),
+      child: Text(
+        text,
+        style: const TextStyle(color: Colors.black),
       ),
     );
   }

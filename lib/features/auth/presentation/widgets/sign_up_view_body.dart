@@ -26,7 +26,9 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
             kLogo,
             height: SizeConfig.defaultSize! * 18,
           ),
-          const CustomDropDownButton(),
+          const CustomDropDownButton(
+              items: ['Buiseness Account', 'User Account'],
+              hintText: 'Please Choose account Type'),
           const VirticalSpace(1),
           const CustomTextField(
             hintText: 'Name',

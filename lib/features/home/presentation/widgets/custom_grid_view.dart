@@ -8,15 +8,13 @@ class CustomGrideView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        child: GridView.builder(
-          physics: const BouncingScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3),
-          itemBuilder: (context, index) {
-            return const CustomItemHomeView();
-          },
-        ),
+      child: GridView.builder(
+        physics: const BouncingScrollPhysics(),
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        itemBuilder: (context, index) {
+          return const CustomItemHomeView();
+        },
       ),
     );
   }
