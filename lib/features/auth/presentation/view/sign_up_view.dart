@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wasally/core/utils/api_services.dart';
 
+import '../manager/signup_cubit/signup_cubit.dart';
 import '../widgets/sign_up_view_body.dart';
 
 class SignUp extends StatelessWidget {
@@ -7,8 +10,11 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SignUpViewBody(),
+    return BlocProvider(
+      create: (context) => SignupCubit(ApiService()),
+      child: Scaffold(
+        body: SignUpViewBody(),
+      ),
     );
   }
 }

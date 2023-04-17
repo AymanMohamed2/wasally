@@ -10,11 +10,14 @@ class Wasally extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: AppStrings.appName,
-      theme: appTheme(),
-      debugShowCheckedModeBanner: false,
-      home: const SplashView(),
+    return MediaQuery(
+      data: const MediaQueryData(),
+      child: GetMaterialApp(
+        title: AppStrings.appName,
+        theme: appTheme(),
+        debugShowCheckedModeBanner: false,
+        home: const SplashView(),
+      ),
     );
   }
 }
