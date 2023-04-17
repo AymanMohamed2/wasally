@@ -40,7 +40,6 @@ class CustomTextField extends StatelessWidget {
           prefixIcon: prefixIcon,
           prefixIconColor: Colors.orange,
           hintText: hintText,
-          filled: true,
           focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.orange),
           ),
