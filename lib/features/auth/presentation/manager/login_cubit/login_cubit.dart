@@ -8,7 +8,7 @@ part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.apiService) : super(LoginInitial());
-  ApiService apiService;
+  ApiServices apiService;
 
   Future<void> loginUser({
     required String? email,

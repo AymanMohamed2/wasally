@@ -8,6 +8,7 @@ import 'package:wasally/features/auth/presentation/widgets/user_section.dart';
 import '../../../../core/constants.dart';
 import '../../../../core/utils/size_config.dart';
 import '../../../../core/widgets/costum_text_field.dart';
+import '../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../../core/widgets/space_widget.dart';
 import '../manager/signup_cubit/signup_cubit.dart';
 import 'buiseness_section.dart';
@@ -78,13 +79,7 @@ class SignUpViewBody extends StatelessWidget {
               builder: (context, state) {
                 if (state is SignUpLoadingState) {
                   return const CustomElevatedButton(
-                    child: SizedBox(
-                      height: 15,
-                      width: 15,
-                      child: CircularProgressIndicator(
-                        color: Colors.black,
-                      ),
-                    ),
+                    child: CustomLoadingIndicator(),
                   );
                 } else {
                   return CustomElevatedButton(

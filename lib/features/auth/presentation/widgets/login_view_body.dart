@@ -7,6 +7,7 @@ import 'package:wasally/core/widgets/space_widget.dart';
 import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:wasally/features/auth/presentation/view/sign_up_view.dart';
 import '../../../../core/widgets/costum_text_field.dart';
+import '../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../home/presentation/view/curved_navigation_bar.dart';
 import 'custom_elevated_button.dart';
 
@@ -94,11 +95,7 @@ class LoginViewBody extends StatelessWidget {
               builder: (context, state) {
                 if (state is LoginLoadingState) {
                   return const CustomElevatedButton(
-                    child: SizedBox(
-                      height: 15,
-                      width: 15,
-                      child: CircularProgressIndicator(color: Colors.black),
-                    ),
+                    child: CustomLoadingIndicator(),
                   );
                 } else {
                   return CustomElevatedButton(

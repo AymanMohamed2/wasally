@@ -1,14 +1,18 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wasally/core/constants.dart';
 
 import '../view/category_details_view.dart';
 
 class CustomItemHomeView extends StatelessWidget {
   const CustomItemHomeView({
     Key? key,
+    required this.name,
+    required this.imageUrl,
   }) : super(key: key);
 
+  final String name;
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -26,15 +30,17 @@ class CustomItemHomeView extends StatelessWidget {
         child: GridTile(
           footer: Container(
             color: Colors.yellow.withOpacity(0.5),
-            child: const Text(
-              'Categories',
+            child: Text(
+              name,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          child: Image.asset(kLogo),
+          child: CachedNetworkImage(
+            imageUrl: imageUrl,
+          ),
         ),
       ),
     );

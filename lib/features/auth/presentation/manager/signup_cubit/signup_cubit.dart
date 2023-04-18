@@ -6,7 +6,7 @@ part 'signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
   SignupCubit(this.apiService) : super(SignupInitial());
-  ApiService apiService;
+  ApiServices apiService;
   String? phoneNumber;
   String? password;
   String? name;

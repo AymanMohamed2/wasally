@@ -11,7 +11,7 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignupCubit(ApiService()),
+      create: (context) => SignupCubit(ApiServices()),
       child: Scaffold(
         body: SignUpViewBody(),
       ),
