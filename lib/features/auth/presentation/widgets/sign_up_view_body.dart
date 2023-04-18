@@ -3,13 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:wasally/features/auth/presentation/view/login_view.dart';
 import 'package:wasally/features/auth/presentation/widgets/custom_elevated_button.dart';
+import 'package:wasally/features/auth/presentation/widgets/user_section.dart';
 
 import '../../../../core/constants.dart';
 import '../../../../core/utils/size_config.dart';
 import '../../../../core/widgets/costum_text_field.dart';
 import '../../../../core/widgets/space_widget.dart';
 import '../manager/signup_cubit/signup_cubit.dart';
-import 'custom_drop_down_button.dart';
+import 'buiseness_section.dart';
+import 'custom_drop_down_button1.dart';
 
 class SignUpViewBody extends StatelessWidget {
   SignUpViewBody({
@@ -19,10 +21,8 @@ class SignUpViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? phoneNumber;
-    String? password;
-    String? name;
-    String? email;
+    SignupCubit accessCubit = BlocProvider.of<SignupCubit>(context);
+
     return Form(
       key: _formKey,
       child: Padding(
@@ -33,143 +33,25 @@ class SignUpViewBody extends StatelessWidget {
               'assets/images/register_image.png',
               height: SizeConfig.defaultSize! * 30,
             ),
-            const CustomDropDownButton(
-                items: ['Buiseness Account', 'User Account'],
+            CustomDropDownButton1(
+                onChanged: (index) {
+                  BlocProvider.of<SignupCubit>(context)
+                      .selectAccount(selected: index);
+
+                  BlocProvider.of<SignupCubit>(context).accountType = index;
+                },
+                items: const [
+                  'Buiseness Account',
+                  'User Account',
+                ],
                 hintText: 'Please Choose account Type'),
             const VirticalSpace(1),
             BlocBuilder<SignupCubit, SignupState>(
               builder: (context, state) {
                 if (state is BuisenessUserState) {
-                  return Column(
-                    children: [
-                      const CustomDropDownButton(
-                          items: ['Buiseness Account', 'User Account'],
-                          hintText: 'Choose Category'),
-                      const VirticalSpace(1),
-                      CustomTextField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'this field is required';
-                          } else {
-                            return null;
-                          }
-                        },
-                        hintText: 'Name',
-                        prefixIcon: const Icon(Icons.person),
-                      ),
-                      const VirticalSpace(1),
-                      CustomTextField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'this field is required';
-                          } else {
-                            return null;
-                          }
-                        },
-                        hintText: 'Phone Number',
-                        prefixIcon: const Icon(Icons.phone_android),
-                        textInputType: TextInputType.number,
-                      ),
-                      const VirticalSpace(1),
-                      CustomTextField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'this field is required';
-                          } else {
-                            return null;
-                          }
-                        },
-                        onChanged: (value) {
-                          email = value;
-                        },
-                        hintText: 'Email',
-                        prefixIcon: const Icon(Icons.mail),
-                      ),
-                      const VirticalSpace(1),
-                      CustomTextField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'this field is required';
-                          } else if (value.length < 8) {
-                            return 'Password must be more than 8 character';
-                          } else {
-                            return null;
-                          }
-                        },
-                        hintText: 'Password',
-                        prefixIcon: const Icon(Icons.lock_open),
-                        obscureText: true,
-                      ),
-                    ],
-                  );
+                  return const BuisenessSection();
                 } else {
-                  return Column(
-                    children: [
-                      CustomTextField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'this field is required';
-                          } else {
-                            return null;
-                          }
-                        },
-                        onChanged: (value) {
-                          name = value;
-                        },
-                        hintText: 'Name',
-                        prefixIcon: const Icon(Icons.person),
-                      ),
-                      const VirticalSpace(1),
-                      CustomTextField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'this field is required';
-                          } else {
-                            return null;
-                          }
-                        },
-                        onChanged: (value) {
-                          phoneNumber = value;
-                        },
-                        hintText: 'Phone Number',
-                        prefixIcon: const Icon(Icons.phone_android),
-                        textInputType: TextInputType.number,
-                      ),
-                      const VirticalSpace(1),
-                      CustomTextField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'this field is required';
-                          } else {
-                            return null;
-                          }
-                        },
-                        onChanged: (value) {
-                          email = value;
-                        },
-                        hintText: 'Email',
-                        prefixIcon: const Icon(Icons.mail),
-                      ),
-                      const VirticalSpace(1),
-                      CustomTextField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'this field is required';
-                          } else if (value.length < 8) {
-                            return 'Password must be more than 8 character';
-                          } else {
-                            return null;
-                          }
-                        },
-                        onChanged: (value) {
-                          password = value;
-                        },
-                        hintText: 'Password',
-                        prefixIcon: const Icon(Icons.lock_open),
-                        obscureText: true,
-                      ),
-                    ],
-                  );
+                  return const UserSection();
                 }
               },
             ),
@@ -181,7 +63,7 @@ class SignUpViewBody extends StatelessWidget {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       duration: Duration(seconds: 2),
-                      content: Text('Nice Account Created '),
+                      content: Text('Account Created Successfully 🥳'),
                     ),
                   );
                 } else if (state is SignUpFailureState) {
@@ -209,10 +91,10 @@ class SignUpViewBody extends StatelessWidget {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         await BlocProvider.of<SignupCubit>(context).signupUser(
-                          name: name!,
-                          phoneNumber: phoneNumber!,
-                          password: password!,
-                          email: email!,
+                          name: accessCubit.name!,
+                          phoneNumber: accessCubit.phoneNumber!,
+                          password: accessCubit.password!,
+                          email: accessCubit.email!,
                         );
                       }
                     },

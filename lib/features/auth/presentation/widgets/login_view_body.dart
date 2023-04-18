@@ -79,7 +79,7 @@ class LoginViewBody extends StatelessWidget {
             BlocConsumer<LoginCubit, LoginState>(
               listener: (context, state) {
                 if (state is LoginSuccessState) {
-                  Get.to(
+                  Get.off(
                     () => const BottomNavigationBarHome(),
                   );
                 } else if (state is LoginFailureState) {

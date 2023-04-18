@@ -28,7 +28,12 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final FocusNode myFocusNode = FocusNode();
+
     return TextFormField(
+      autocorrect: true,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      focusNode: myFocusNode,
       validator: validator,
       onChanged: onChanged,
       minLines: minLines,
@@ -36,6 +41,10 @@ class CustomTextField extends StatelessWidget {
       obscureText: obscureText,
       cursorColor: Colors.orange,
       decoration: InputDecoration(
+          floatingLabelStyle: const TextStyle(color: Colors.black),
+          label: Text(hintText),
+          focusedErrorBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.red)),
           suffixIcon: suffixIcon,
           prefixIcon: prefixIcon,
           prefixIconColor: Colors.orange,

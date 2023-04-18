@@ -30,7 +30,7 @@ class OnBoardingViewBody extends StatelessWidget {
         introductionList: list,
         backgroudColor: Colors.white,
         onTapSkipButton: () {
-          Get.to(
+          Get.off(
             () => const LoginView(),
           );
         },

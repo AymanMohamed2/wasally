@@ -7,14 +7,18 @@ part 'signup_state.dart';
 class SignupCubit extends Cubit<SignupState> {
   SignupCubit(this.apiService) : super(SignupInitial());
   ApiService apiService;
+  String? phoneNumber;
+  String? password;
+  String? name;
+  String? email;
+  var accountType;
+  var category;
 
   void selectAccount({required var selected}) {
     if (selected == 'User Account') {
       emit(SignUpUserState());
     } else if (selected == 'Buiseness Account') {
       emit(BuisenessUserState());
-    } else {
-      emit(SignupInitial());
     }
   }
 

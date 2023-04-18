@@ -26,6 +26,5 @@ class SplashViewBody extends StatelessWidget {
       onAnimationEnd: () => debugPrint("On Fade In End"),
       defaultNextScreen: const OnBoardingView(),
     );
-    ;
   }
 }
