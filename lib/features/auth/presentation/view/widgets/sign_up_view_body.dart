@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:wasally/features/auth/presentation/view/login_view.dart';
-import 'package:wasally/features/auth/presentation/widgets/custom_elevated_button.dart';
-import 'package:wasally/features/auth/presentation/widgets/user_section.dart';
+import 'package:wasally/features/auth/presentation/view/widgets/custom_elevated_button.dart';
+import 'package:wasally/features/auth/presentation/view/widgets/user_section.dart';
 
-import '../../../../core/constants.dart';
-import '../../../../core/utils/size_config.dart';
-import '../../../../core/widgets/costum_text_field.dart';
-import '../../../../core/widgets/custom_loading_indicator.dart';
-import '../../../../core/widgets/space_widget.dart';
-import '../manager/signup_cubit/signup_cubit.dart';
+import '../../../../../core/constants.dart';
+import '../../../../../core/utils/size_config.dart';
+import '../../../../../core/widgets/costum_text_field.dart';
+import '../../../../../core/widgets/custom_loading_indicator.dart';
+import '../../../../../core/widgets/space_widget.dart';
+import '../../manager/signup_cubit/signup_cubit.dart';
 import 'buiseness_section.dart';
 import 'custom_drop_down_button1.dart';
 

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/features/home/presentation/manager/slider_cubit/slider_cubit.dart';
 
-import '../../../../core/utils/size_config.dart';
-import '../../../../core/widgets/custom_loading_indicator.dart';
+import '../../../../../core/utils/size_config.dart';
+import '../../../../../core/widgets/custom_loading_indicator.dart';
 
 class CustomCarousel extends StatelessWidget {
   const CustomCarousel({super.key});
@@ -15,8 +15,29 @@ class CustomCarousel extends StatelessWidget {
     return BlocBuilder<SliderCubit, SliderState>(
       builder: (context, state) {
         if (state is SliderStateLoading) {
-          return const Center(
-            child: CustomLoadingIndicator(),
+          return CarouselSlider(
+            options: CarouselOptions(
+              height: SizeConfig.defaultSize! * 20,
+              autoPlay: true,
+              enlargeCenterPage: true,
+            ),
+            items: [
+              const CustomLoadingIndicator(),
+            ].map((i) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: const Center(
+                        child: CustomLoadingIndicator(
+                          height: 20,
+                          width: 20,
+                          color: Colors.orange,
+                        ),
+                      ));
+                },
+              );
+            }).toList(),
           );
         } else if (state is SliderStateSuccess) {
           return CarouselSlider(

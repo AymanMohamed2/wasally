@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../manager/signup_cubit/signup_cubit.dart';
+import '../../manager/signup_cubit/signup_cubit.dart';
 
 class CustomDropDownButton1 extends StatefulWidget {
   const CustomDropDownButton1({

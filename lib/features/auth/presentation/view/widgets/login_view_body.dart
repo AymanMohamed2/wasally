@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/core/constants.dart';
 import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/core/widgets/space_widget.dart';
 import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:wasally/features/auth/presentation/view/sign_up_view.dart';
-import '../../../../core/widgets/costum_text_field.dart';
-import '../../../../core/widgets/custom_loading_indicator.dart';
-import '../../../home/presentation/view/curved_navigation_bar.dart';
+import '../../../../../core/widgets/costum_text_field.dart';
+import '../../../../../core/widgets/custom_loading_indicator.dart';
+import '../../../../home/presentation/view/curved_navigation_bar.dart';
 import 'custom_elevated_button.dart';
 
 class LoginViewBody extends StatelessWidget {
@@ -78,8 +79,13 @@ class LoginViewBody extends StatelessWidget {
               ),
             ),
             BlocConsumer<LoginCubit, LoginState>(
-              listener: (context, state) {
+              listener: (context, state) async {
                 if (state is LoginSuccessState) {
+                  SharedPreferences pref =
+                      await SharedPreferences.getInstance();
+                  pref.setString("email", email!);
+                  pref.setString("password", password!);
+
                   Get.off(
                     () => const BottomNavigationBarHome(),
                   );

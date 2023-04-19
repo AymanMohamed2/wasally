@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/utils/api_services.dart';
 
 import '../manager/login_cubit/login_cubit.dart';
-import '../widgets/login_view_body.dart';
+import 'widgets/login_view_body.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});

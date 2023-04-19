@@ -1,14 +1,18 @@
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/features/on_boarding/presentation/view/on_boarding_view.dart';
+import 'package:wasally/features/splash/presentation/manager/splash_cubit/splash_cubit.dart';
 
-import '../../../../core/utils/size_config.dart';
+import '../../../../../core/utils/size_config.dart';
+import '../../../../home/presentation/view/curved_navigation_bar.dart';
 
 class SplashViewBody extends StatelessWidget {
   const SplashViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var accessCubit = BlocProvider.of<SplashCubit>(context);
     SizeConfig().init(context);
     return FlutterSplashScreen.fadeIn(
       backgroundColor: Colors.white,
@@ -24,7 +28,10 @@ class SplashViewBody extends StatelessWidget {
         child: Image.asset("assets/images/splash.png"),
       ),
       onAnimationEnd: () => debugPrint("On Fade In End"),
-      defaultNextScreen: const OnBoardingView(),
+      defaultNextScreen:
+          accessCubit.email == null || accessCubit.password == null
+              ? const OnBoardingView()
+              : const BottomNavigationBarHome(),
     );
   }
 }

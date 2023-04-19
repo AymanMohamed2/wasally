@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/features/auth/data/models/login_model.dart';
 
 import '../../../../../core/utils/api_services.dart';
@@ -9,6 +9,8 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.apiService) : super(LoginInitial());
   ApiServices apiService;
+
+  LoginModel? loginModel;
 
   Future<void> loginUser({
     required String? email,
@@ -23,6 +25,7 @@ class LoginCubit extends Cubit<LoginState> {
         LoginFailureState(failure.errMessage),
       );
     }, (login) {
+      loginModel = login;
       emit(
         LoginSuccessState(login),
       );
