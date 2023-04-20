@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:wasally/core/constants.dart';
-import 'package:wasally/features/home/presentation/manager/category_details_cubit/category_details_cubit.dart';
 import 'package:wasally/features/home/presentation/view/category_details_view.dart';
 import 'package:wasally/features/home/presentation/view/complete_order_view.dart';
 
+import '../../../../../core/utils/size_config.dart';
 import 'custom_item_home.dart';
 
 class CustomGrideView extends StatelessWidget {
@@ -16,9 +15,12 @@ class CustomGrideView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: GridView(
+        padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultSize! * 1),
         physics: const BouncingScrollPhysics(),
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            mainAxisSpacing: SizeConfig.defaultSize! * 1,
+            crossAxisSpacing: SizeConfig.defaultSize! * 1),
         children: [
           CustomItemHomeView(
             onTap: () {

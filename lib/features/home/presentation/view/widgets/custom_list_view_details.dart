@@ -39,8 +39,13 @@ class CustomListViewDetails extends StatelessWidget {
             );
           }
         } else if (state is CategoryDetailsStateFailure) {
-          return Center(
-            child: Text(state.errMessage),
+          return Column(
+            children: [
+              SizedBox(
+                height: SizeConfig.defaultSize! * 30,
+              ),
+              Text(state.errMessage),
+            ],
           );
         } else {
           return Center(

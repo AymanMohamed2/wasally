@@ -73,10 +73,14 @@ class CustomButtonGetPosition extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: GestureDetector(
         onTap: onTap,
-        child: const Card(
+        child: Card(
+          elevation: 3,
           child: ListTile(
-            title: Text("Press here to get your Position"),
-            leading: Icon(Icons.location_pin),
+            title: Text(
+              "Press here to get your Position",
+              style: TextStyle(fontSize: SizeConfig.defaultSize! * 1.5),
+            ),
+            leading: const Icon(Icons.location_pin),
             iconColor: Colors.orange,
           ),
         ),
