@@ -14,9 +14,9 @@ class CategoryDetailsCubit extends Cubit<CategoryDetailsState> {
     var response =
         await apiServices.getCategoryDetails(collectionId: collectionId);
     response.fold(
-      (Failure) {
+      (failure) {
         emit(
-          CategoryDetailsStateFailure(Failure.errMessage),
+          CategoryDetailsStateFailure(failure.errMessage),
         );
       },
       (categoryDetailsModel) {

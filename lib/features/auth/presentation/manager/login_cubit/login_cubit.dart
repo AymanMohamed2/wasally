@@ -3,13 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/features/auth/data/models/login_model.dart';
 
 import '../../../../../core/utils/api_services.dart';
+import '../../../../curved_navigation_bar/data/models/person_model/person_model.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.apiService) : super(LoginInitial());
   ApiServices apiService;
-  String? email;
+  LoginModel? loginModel;
+  String? phone;
+  UserInfoModel? userInfo;
+
   Future<void> loginUser({
     required String? email,
     required String? password,
@@ -26,6 +30,7 @@ class LoginCubit extends Cubit<LoginState> {
       emit(
         LoginSuccessState(login),
       );
+      loginModel = login;
     });
   }
 }

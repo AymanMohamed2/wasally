@@ -7,15 +7,16 @@ import 'features/splash/presentation/manager/splash_cubit/splash_cubit.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? email = prefs.getString("email");
+  String? phone = prefs.getString("phone");
   String? password = prefs.getString("password");
+  String? userId = prefs.getString("userId");
 
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (context) => SplashCubit()),
     ],
     child: Wasally(
-      email: email,
+      phone: phone,
       password: password,
     ),
   ));

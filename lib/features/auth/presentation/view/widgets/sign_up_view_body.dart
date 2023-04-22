@@ -87,7 +87,7 @@ class SignUpViewBody extends StatelessWidget {
                           name: accessCubit.name!,
                           phoneNumber: accessCubit.phoneNumber!,
                           password: accessCubit.password!,
-                          email: accessCubit.email!,
+                          email: accessCubit.phoneNumber!,
                         );
                       }
                     },

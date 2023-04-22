@@ -8,7 +8,6 @@ class SliderCubit extends Cubit<SliderState> {
   SliderCubit(this.apiServices) : super(SliderInitial());
   ApiServices apiServices;
   List<dynamic>? items;
-  String? email;
 
   Future<void> getSliderList() async {
     emit(SliderStateLoading());

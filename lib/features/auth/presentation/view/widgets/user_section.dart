@@ -44,22 +44,22 @@ class UserSection extends StatelessWidget {
           textInputType: TextInputType.number,
         ),
         const VirticalSpace(1),
-        CustomTextField(
-          textInputType: TextInputType.emailAddress,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'this field is required';
-            } else {
-              return null;
-            }
-          },
-          onChanged: (value) {
-            accessCubit.email = value;
-          },
-          hintText: 'Email',
-          prefixIcon: const Icon(Icons.mail),
-        ),
-        const VirticalSpace(1),
+        // CustomTextField(
+        //   textInputType: TextInputType.emailAddress,
+        //   validator: (value) {
+        //     if (value == null || value.isEmpty) {
+        //       return 'this field is required';
+        //     } else {
+        //       return null;
+        //     }
+        //   },
+        //   onChanged: (value) {
+        //     accessCubit.email = value;
+        //   },
+        //   hintText: 'Email',
+        //   prefixIcon: const Icon(Icons.mail),
+        // ),
+        // const VirticalSpace(1),
         CustomTextField(
           validator: (value) {
             if (value == null || value.isEmpty) {

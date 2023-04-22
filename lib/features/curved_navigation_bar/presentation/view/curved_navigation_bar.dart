@@ -1,16 +1,14 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:wasally/features/curved_navigation_bar/presentation/manager/person_cubit/person_cubit.dart';
 import 'package:wasally/features/home/presentation/view/home_view.dart';
-import 'package:wasally/features/home/presentation/view/person_info_view.dart';
-import 'package:wasally/features/home/presentation/view/talbat_view.dart';
+import 'package:wasally/features/curved_navigation_bar/presentation/view/person_info_view.dart';
+import 'package:wasally/features/curved_navigation_bar/presentation/view/talbat_view.dart';
 
 import '../../../../core/utils/api_services.dart';
-import '../manager/categories_cubit/home_cubit.dart';
-import '../manager/category_details_cubit/category_details_cubit.dart';
-import '../manager/slider_cubit/slider_cubit.dart';
+import '../../../home/presentation/manager/category_details_cubit/category_details_cubit.dart';
+import '../../../home/presentation/manager/slider_cubit/slider_cubit.dart';
 
 class BottomNavigationBarHome extends StatefulWidget {
   const BottomNavigationBarHome({Key? key}) : super(key: key);
@@ -27,15 +25,11 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
     const Talbat(),
     const Person(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => CategoriesCubit(
-            ApiServices(),
-          ),
-        ),
         BlocProvider(
           create: (context) => SliderCubit(
             ApiServices(),
@@ -43,6 +37,11 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
         ),
         BlocProvider(
           create: (context) => CategoryDetailsCubit(
+            ApiServices(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => PersonCubit(
             ApiServices(),
           ),
         ),
@@ -73,13 +72,12 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
               ),
             ],
             onTap: (index) async {
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              BlocProvider.of<LoginCubit>(context).email =
-                  prefs.getString('email');
-              prefs.getString('email');
               setState(() {
                 selectedindex = index;
               });
+              if (index == 2) {
+                await BlocProvider.of<PersonCubit>(context).getUserInfo();
+              }
             },
           ),
           body: pages.elementAt(selectedindex)),

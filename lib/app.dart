@@ -10,13 +10,13 @@ import 'core/utils/app_strings.dart';
 import 'features/splash/presentation/view/splash_view.dart';
 
 class Wasally extends StatelessWidget {
-  Wasally({this.email, this.password, super.key});
-  var email;
+  Wasally({this.phone, this.password, super.key});
+  var phone;
   var password;
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<SplashCubit>(context).email = email;
+    BlocProvider.of<SplashCubit>(context).email = phone;
     BlocProvider.of<SplashCubit>(context).password = password;
     return BlocProvider(
       create: (context) => LoginCubit(ApiServices()),

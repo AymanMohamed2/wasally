@@ -9,7 +9,7 @@ import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cub
 import 'package:wasally/features/auth/presentation/view/sign_up_view.dart';
 import '../../../../../core/widgets/costum_text_field.dart';
 import '../../../../../core/widgets/custom_loading_indicator.dart';
-import '../../../../home/presentation/view/curved_navigation_bar.dart';
+import '../../../../curved_navigation_bar/presentation/view/curved_navigation_bar.dart';
 import 'custom_elevated_button.dart';
 
 class LoginViewBody extends StatelessWidget {
@@ -19,7 +19,7 @@ class LoginViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? email;
+    String? phone;
     String? password;
 
     return Form(
@@ -38,16 +38,20 @@ class LoginViewBody extends StatelessWidget {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'this field is required';
+                } else if (value.length < 11) {
+                  return 'phone number cannot be less than 11 digits';
+                } else if (value.length > 11) {
+                  return 'phone number cannot be more than 11 digits';
                 } else {
                   return null;
                 }
               },
               onChanged: (value) {
-                email = value;
+                phone = value;
               },
-              hintText: 'Email',
-              prefixIcon: const Icon(Icons.mail),
-              textInputType: TextInputType.emailAddress,
+              hintText: 'Phone Number',
+              prefixIcon: const Icon(Icons.phone_android),
+              textInputType: TextInputType.number,
             ),
             const VirticalSpace(1),
             CustomTextField(
@@ -83,7 +87,7 @@ class LoginViewBody extends StatelessWidget {
                 if (state is LoginSuccessState) {
                   SharedPreferences pref =
                       await SharedPreferences.getInstance();
-                  pref.setString("email", email!);
+                  pref.setString("phone", phone!);
                   pref.setString("password", password!);
                   pref.setString('userId', state.user.userId);
 
@@ -109,7 +113,7 @@ class LoginViewBody extends StatelessWidget {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         await BlocProvider.of<LoginCubit>(context)
-                            .loginUser(email: email, password: password);
+                            .loginUser(email: phone, password: password);
                       }
                     },
                     child: const Text(

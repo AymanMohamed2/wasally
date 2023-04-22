@@ -5,7 +5,7 @@ import 'package:wasally/features/on_boarding/presentation/view/on_boarding_view.
 import 'package:wasally/features/splash/presentation/manager/splash_cubit/splash_cubit.dart';
 
 import '../../../../../core/utils/size_config.dart';
-import '../../../../home/presentation/view/curved_navigation_bar.dart';
+import '../../../../curved_navigation_bar/presentation/view/curved_navigation_bar.dart';
 
 class SplashViewBody extends StatelessWidget {
   const SplashViewBody({super.key});
