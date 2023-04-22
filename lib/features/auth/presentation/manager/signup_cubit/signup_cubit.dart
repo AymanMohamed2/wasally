@@ -61,6 +61,7 @@ class SignupCubit extends Cubit<SignupState> {
       (signup) async {
         if (accountType == 'Shop Account') {
           await ApiServices().postCategory(
+            categoryName: category,
             collectionId: getCollectionId()!,
             address: address,
             name: name,

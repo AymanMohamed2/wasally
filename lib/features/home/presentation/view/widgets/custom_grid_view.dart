@@ -100,7 +100,7 @@ class CustomGrideView extends StatelessWidget {
           CustomItemHomeView(
             onTap: () {
               Get.to(
-                () => const CompleteOrderView(title: 'Other'),
+                () => CompleteOrderView(title: 'Other'),
               );
             },
             name: 'Other',

@@ -165,6 +165,7 @@ class ApiServices {
     required String collectionId,
     required String name,
     required String address,
+    required String categoryName,
   }) async {
     String url =
         "https://cloud.appwrite.io/v1/databases/643cc351878dafb57524/collections/$collectionId/documents";
@@ -180,6 +181,7 @@ class ApiServices {
       'data': {
         'name': name,
         'address': address,
+        'categoryName': categoryName,
       }
     };
 
@@ -225,6 +227,58 @@ class ApiServices {
         return left(ServerFailure.fromDioError(e));
       } else {
         return left(ServerFailure(e.toString()));
+      }
+    }
+  }
+
+  Future<Either<Failure, CategoryDetailsModel>> postOrderAdmin(
+      {required String name,
+      required String phone,
+      required String categoryName,
+      required String shopName,
+      required String order}) async {
+    String url =
+        "https://cloud.appwrite.io/v1/databases/64439ac773343115d92a/collections/64439af01110334cae23/documents";
+
+    var headers = {
+      "Content-Type": "application/json",
+      "X-Appwrite-Project": "6435d5e1a13eff6332c2",
+      "X-Appwrite-Key":
+          "0de0fe8c91c9c980d16bb39a2e1a579c29048e74ef33b879b4d2e11dbbeec648e6ceb198a7dc7b26898d2c990f33225d045ae64a70381449d33984abcb18714d8ad96f49e30cb4dd9e07b0402743bb52214bb3a0f8f18c780ce186f9ee9e7d84b33ea63a24844a2271e780046c3593fd02c8d1c6202c267c9d92439beb815940"
+    };
+    var data = {
+      'documentId': ID.unique(),
+      'data': {
+        'name': name,
+        'phone': phone,
+        'categoryName': categoryName,
+        'shopName': shopName,
+        'order': order,
+      }
+    };
+
+    try {
+      var response = await Dio().post(
+        url,
+        options: Options(
+          headers: headers,
+        ),
+        data: data,
+      );
+      print(response.data);
+
+      return right(
+        CategoryDetailsModel.fromJson(response.data),
+      );
+    } catch (e) {
+      if (e is DioError) {
+        return left(ServerFailure.fromDioError(e));
+      } else {
+        return left(
+          ServerFailure(
+            e.toString(),
+          ),
+        );
       }
     }
   }

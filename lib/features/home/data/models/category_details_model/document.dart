@@ -4,6 +4,7 @@ class Document extends Equatable {
   final String? name;
   final String? address;
   final String? image;
+  final String? categoryName;
   final String? id;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -15,6 +16,7 @@ class Document extends Equatable {
     this.name,
     this.address,
     this.image,
+    this.categoryName,
     this.id,
     this.createdAt,
     this.updatedAt,
@@ -27,6 +29,7 @@ class Document extends Equatable {
         name: json['name'] as String?,
         address: json['address'] as String?,
         image: json['image'] as String?,
+        categoryName: json['categoryName'] as String,
         id: json['\$id'] as String?,
         createdAt: json['\$createdAt'] == null
             ? null

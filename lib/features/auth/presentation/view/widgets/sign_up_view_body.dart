@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:wasally/features/auth/presentation/view/login_view.dart';
-import 'package:wasally/features/auth/presentation/view/widgets/custom_elevated_button.dart';
+import 'package:wasally/core/widgets/custom_elevated_button.dart';
 import 'package:wasally/features/auth/presentation/view/widgets/user_section.dart';
 
 import '../../../../../core/utils/size_config.dart';

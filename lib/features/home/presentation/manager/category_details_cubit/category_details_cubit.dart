@@ -9,6 +9,7 @@ class CategoryDetailsCubit extends Cubit<CategoryDetailsState> {
   CategoryDetailsCubit(this.apiServices) : super(CategoryDetailsInitial());
 
   ApiServices apiServices;
+  CategoryDetailsModel? categoryDetailsModel;
 
   Future<void> getCategoryDetails({required String collectionId}) async {
     var response =
@@ -23,6 +24,7 @@ class CategoryDetailsCubit extends Cubit<CategoryDetailsState> {
         emit(
           CategoryDetailsStateSuccess(categoryDetailsModel),
         );
+        this.categoryDetailsModel = categoryDetailsModel;
       },
     );
   }

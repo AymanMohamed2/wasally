@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/manager/person_cubit/person_cubit.dart';
 import 'package:wasally/features/home/presentation/view/home_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/person_info_view.dart';
@@ -40,17 +41,12 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
             ApiServices(),
           ),
         ),
-        BlocProvider(
-          create: (context) => PersonCubit(
-            ApiServices(),
-          ),
-        ),
       ],
       child: Scaffold(
           bottomNavigationBar: CurvedNavigationBar(
             index: selectedindex,
             animationDuration: const Duration(milliseconds: 400),
-            height: 50,
+            height: SizeConfig.defaultSize! * 5.5,
             color: Colors.white,
             backgroundColor: Colors.orangeAccent,
             buttonBackgroundColor: Colors.black,

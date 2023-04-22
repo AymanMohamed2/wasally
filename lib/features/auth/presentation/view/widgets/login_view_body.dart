@@ -10,7 +10,7 @@ import 'package:wasally/features/auth/presentation/view/sign_up_view.dart';
 import '../../../../../core/widgets/costum_text_field.dart';
 import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../../curved_navigation_bar/presentation/view/curved_navigation_bar.dart';
-import 'custom_elevated_button.dart';
+import '../../../../../core/widgets/custom_elevated_button.dart';
 
 class LoginViewBody extends StatelessWidget {
   LoginViewBody({super.key});

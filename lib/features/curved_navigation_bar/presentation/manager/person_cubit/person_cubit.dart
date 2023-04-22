@@ -10,6 +10,7 @@ part 'person_state.dart';
 class PersonCubit extends Cubit<PersonState> {
   PersonCubit(this.apiServices) : super(PersonInitial());
   ApiServices apiServices;
+  UserInfoModel? userInfo;
 
   Future<void> getUserInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -21,6 +22,7 @@ class PersonCubit extends Cubit<PersonState> {
       emit(PersonFailure(failure.errMessage));
     }, (userInfo) {
       emit(PersonSuccess(userInfo));
+      this.userInfo = userInfo;
     });
   }
 }
