@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/core/widgets/custom_loading_indicator.dart';
-import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 
 import 'package:wasally/features/auth/presentation/view/login_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/manager/person_cubit/person_cubit.dart';

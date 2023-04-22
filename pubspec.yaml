@@ -37,6 +37,7 @@ dependencies:
   cool_alert: ^2.0.1
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3
+  custom_refresh_indicator: ^2.0.1
   dartz: ^0.10.1
   dio: ^5.1.1
   dots_indicator: ^2.1.0
@@ -48,6 +49,7 @@ dependencies:
   http: ^0.13.5
   intro_screen_onboarding_flutter: ^1.0.0
   loading_animation_widget: ^1.2.0+4
+  pull_to_refresh: ^2.0.0
   shared_preferences: ^2.1.0
 
 dev_dependencies:

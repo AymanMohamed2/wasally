@@ -102,13 +102,16 @@ class CompleteOrderView extends StatelessWidget {
           if (state is CompleteOrderSuccess) {
             customAlertDialog(
               context,
+              showCancelBtn: false,
               title: 'Order Sent Successfuly',
               text: 'The delivery will arrive as soon as possible',
               type: CoolAlertType.success,
             );
+            _controller.clear();
           } else if (state is CompleteOrderFailure) {
             customAlertDialog(
               context,
+              showCancelBtn: false,
               title: 'Oops...',
               text: state.errMessage,
               type: CoolAlertType.error,

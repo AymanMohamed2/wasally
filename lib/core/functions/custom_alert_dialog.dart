@@ -11,10 +11,11 @@ void customAlertDialog(
   void Function()? onConfirmBtnTap,
   void Function()? onCancelBtnTap,
   Color? cancelBtnColor,
+  bool showCancelBtn = true,
 }) {
   CoolAlert.show(
     cancelBtnTextStyle: TextStyle(color: cancelBtnColor),
-    showCancelBtn: true,
+    showCancelBtn: showCancelBtn,
     onCancelBtnTap: onCancelBtnTap,
     onConfirmBtnTap: onConfirmBtnTap,
     title: title,
