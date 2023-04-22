@@ -6,17 +6,24 @@ import 'package:wasally/features/home/presentation/view/widgets/category_details
 import '../../../../core/utils/api_services.dart';
 
 class CategoryDetailsView extends StatelessWidget {
-  const CategoryDetailsView(
-      {super.key, required this.title, required this.collectionId});
+  const CategoryDetailsView({
+    super.key,
+    required this.title,
+    required this.collectionId,
+  });
   final String title;
   final String collectionId;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => CategoryDetailsCubit(ApiServices())
-          ..getDetailsPharmacy(collectionId: collectionId),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => CategoryDetailsCubit(ApiServices())
+              ..getCategoryDetails(collectionId: collectionId),
+          ),
+        ],
         child: const CategoryDetailsBody(),
       ),
     );

@@ -9,9 +9,7 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.apiService) : super(LoginInitial());
   ApiServices apiService;
-
-  LoginModel? loginModel;
-
+  String? email;
   Future<void> loginUser({
     required String? email,
     required String? password,
@@ -25,7 +23,6 @@ class LoginCubit extends Cubit<LoginState> {
         LoginFailureState(failure.errMessage),
       );
     }, (login) {
-      loginModel = login;
       emit(
         LoginSuccessState(login),
       );

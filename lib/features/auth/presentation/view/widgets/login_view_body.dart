@@ -25,7 +25,7 @@ class LoginViewBody extends StatelessWidget {
     return Form(
       key: _formKey,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(SizeConfig.defaultSize! * 2.5),
         child: ListView(
           children: [
             const VirticalSpace(12),
@@ -85,6 +85,7 @@ class LoginViewBody extends StatelessWidget {
                       await SharedPreferences.getInstance();
                   pref.setString("email", email!);
                   pref.setString("password", password!);
+                  pref.setString('userId', state.user.userId);
 
                   Get.off(
                     () => const BottomNavigationBarHome(),

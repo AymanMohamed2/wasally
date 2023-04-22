@@ -12,23 +12,22 @@ class PersonInfoViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var accessCubit = BlocProvider.of<LoginCubit>(context);
     return Scaffold(
       body: SafeArea(
         child: Center(
           child: Column(
             children: [
-              const UserAccountsDrawerHeader(
-                accountName: Text(
+              UserAccountsDrawerHeader(
+                accountName: const Text(
                   'accessCubit.accountInfo!.name',
                   style: TextStyle(color: Colors.black),
                 ),
                 accountEmail: Text(
-                  'accessCubit.accountInfo!.email',
-                  style: TextStyle(color: Colors.black),
+                  BlocProvider.of<LoginCubit>(context).email!,
+                  style: const TextStyle(color: Colors.black),
                 ),
-                decoration: BoxDecoration(color: Colors.orange),
-                currentAccountPicture: CircleAvatar(
+                decoration: const BoxDecoration(color: Colors.orange),
+                currentAccountPicture: const CircleAvatar(
                   backgroundColor: Colors.black,
                   child: Icon(
                     Icons.person,

@@ -13,11 +13,30 @@ class SignupCubit extends Cubit<SignupState> {
   String? email;
   var accountType;
   var category;
+  var address;
+
+  String? getCollectionId() {
+    if (category == 'Restaurant') {
+      return '643fff738de6a968c5ba';
+    } else if (category == 'Super Market') {
+      return '64405ac2df4dd40f4524';
+    } else if (category == 'Pharmacy') {
+      return '643cc36ba7aa0f87942e';
+    } else if (category == 'Bakery and sweets') {
+      return '64405c5d508f5a87af04';
+    } else if (category == 'Vegetables and Fruits') {
+      return '64405cdd6349581b8a59';
+    } else if (category == 'Library') {
+      return '64405d822764430f3f55';
+    } else {
+      return null;
+    }
+  }
 
   void selectAccount({required var selected}) {
     if (selected == 'User Account') {
       emit(SignUpUserState());
-    } else if (selected == 'Buiseness Account') {
+    } else if (selected == 'Shop Account') {
       emit(BuisenessUserState());
     }
   }
@@ -39,7 +58,16 @@ class SignupCubit extends Cubit<SignupState> {
           SignUpFailureState(failure.errMessage),
         );
       },
-      (signup) {
+      (signup) async {
+        if (accountType == 'Shop Account') {
+          await ApiServices().postCategory(
+            collectionId: getCollectionId()!,
+            address: address,
+            name: name,
+          );
+        } else {
+          null;
+        }
         emit(
           SignUpSuccessState(signup),
         );

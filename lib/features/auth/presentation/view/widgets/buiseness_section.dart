@@ -23,12 +23,12 @@ class BuisenessSection extends StatelessWidget {
               BlocProvider.of<SignupCubit>(context).category = index;
             },
             items: const [
-              'Restaurants',
+              'Restaurant',
               'Super Market',
-              'Pharmacies',
+              'Pharmacy',
               'Bakery and sweets',
-              'Vegetables and fruits',
-              'Libraries',
+              'Vegetables and Fruits',
+              'Library',
             ],
             hintText: 'Choose Category'),
         const VirticalSpace(1),
@@ -43,8 +43,23 @@ class BuisenessSection extends StatelessWidget {
               return null;
             }
           },
-          hintText: 'Name',
-          prefixIcon: const Icon(Icons.person),
+          hintText: 'Shop Name',
+          prefixIcon: const Icon(Icons.add_business),
+        ),
+        const VirticalSpace(1),
+        CustomTextField(
+          onChanged: (value) {
+            accessCubit.address = value;
+          },
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'this field is required';
+            } else {
+              return null;
+            }
+          },
+          hintText: 'Address',
+          prefixIcon: const Icon(Icons.location_on),
         ),
         const VirticalSpace(1),
         CustomTextField(

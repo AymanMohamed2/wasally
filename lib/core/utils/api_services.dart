@@ -158,7 +158,7 @@ class ApiServices {
     }
   }
 
-  Future<Either<Failure, CategoryDetailsModel>> getCategoryDetailsPharmacy(
+  Future<Either<Failure, CategoryDetailsModel>> getCategoryDetails(
       {required String collectionId}) async {
     String url =
         "https://cloud.appwrite.io/v1/databases/643cc351878dafb57524/collections/$collectionId/documents";
@@ -195,10 +195,13 @@ class ApiServices {
     }
   }
 
-  Future<Either<Failure, CategoryDetailsModel>>
-      getCategoryDetailsRestaurant() async {
+  Future<Either<Failure, CategoryDetailsModel>> postCategory({
+    required String collectionId,
+    required String name,
+    required String address,
+  }) async {
     String url =
-        "https://cloud.appwrite.io/v1/databases/643cc351878dafb57524/collections/643fff738de6a968c5ba/documents";
+        "https://cloud.appwrite.io/v1/databases/643cc351878dafb57524/collections/$collectionId/documents";
 
     var headers = {
       "Content-Type": "application/json",
@@ -206,20 +209,27 @@ class ApiServices {
       "X-Appwrite-Key":
           "0de0fe8c91c9c980d16bb39a2e1a579c29048e74ef33b879b4d2e11dbbeec648e6ceb198a7dc7b26898d2c990f33225d045ae64a70381449d33984abcb18714d8ad96f49e30cb4dd9e07b0402743bb52214bb3a0f8f18c780ce186f9ee9e7d84b33ea63a24844a2271e780046c3593fd02c8d1c6202c267c9d92439beb815940"
     };
+    var data = {
+      'documentId': ID.unique(),
+      'data': {
+        'name': name,
+        'address': address,
+      }
+    };
 
     try {
-      var response = await Dio().get(
+      var response = await Dio().post(
         url,
         options: Options(
           headers: headers,
         ),
+        data: data,
       );
 
       return right(
         CategoryDetailsModel.fromJson(response.data),
       );
     } catch (e) {
-      print(e);
       if (e is DioError) {
         return left(ServerFailure.fromDioError(e));
       } else {

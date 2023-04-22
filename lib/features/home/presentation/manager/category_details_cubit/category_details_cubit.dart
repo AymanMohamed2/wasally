@@ -10,9 +10,9 @@ class CategoryDetailsCubit extends Cubit<CategoryDetailsState> {
 
   ApiServices apiServices;
 
-  Future<void> getDetailsPharmacy({required String collectionId}) async {
-    var response = await apiServices.getCategoryDetailsPharmacy(
-        collectionId: collectionId);
+  Future<void> getCategoryDetails({required String collectionId}) async {
+    var response =
+        await apiServices.getCategoryDetails(collectionId: collectionId);
     response.fold(
       (Failure) {
         emit(

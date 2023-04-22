@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:wasally/core/utils/api_services.dart';
+import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:wasally/features/splash/presentation/manager/splash_cubit/splash_cubit.dart';
 
 import 'config/themes/app_theme.dart';
@@ -16,13 +18,16 @@ class Wasally extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<SplashCubit>(context).email = email;
     BlocProvider.of<SplashCubit>(context).password = password;
-    return MediaQuery(
-      data: const MediaQueryData(),
-      child: GetMaterialApp(
-        title: AppStrings.appName,
-        theme: appTheme(),
-        debugShowCheckedModeBanner: false,
-        home: const SplashView(),
+    return BlocProvider(
+      create: (context) => LoginCubit(ApiServices()),
+      child: MediaQuery(
+        data: const MediaQueryData(),
+        child: GetMaterialApp(
+          title: AppStrings.appName,
+          theme: appTheme(),
+          debugShowCheckedModeBanner: false,
+          home: const SplashView(),
+        ),
       ),
     );
   }

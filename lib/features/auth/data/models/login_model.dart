@@ -53,7 +53,7 @@ class LoginModel {
     required this.clientCode,
   });
 
-  factory LoginModel.fromJson(dynamic data) {
+  factory LoginModel.fromJson(Map<String, dynamic> data) {
     return LoginModel(
       id: data['\$id'],
       createdAt: data['\$createdAt'],

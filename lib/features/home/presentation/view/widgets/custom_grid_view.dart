@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/core/constants.dart';
 import 'package:wasally/features/home/presentation/view/category_details_view.dart';
 import 'package:wasally/features/home/presentation/view/complete_order_view.dart';
@@ -23,7 +24,7 @@ class CustomGrideView extends StatelessWidget {
             crossAxisSpacing: SizeConfig.defaultSize! * 1),
         children: [
           CustomItemHomeView(
-            onTap: () {
+            onTap: () async {
               Get.to(
                 () => const CategoryDetailsView(
                   title: 'Restaurant',

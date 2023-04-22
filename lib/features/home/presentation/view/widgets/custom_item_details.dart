@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../core/constants.dart';
 import '../../../data/models/category_details_model/document.dart';
 import '../complete_order_view.dart';
 
@@ -26,8 +25,8 @@ class CustomItemDetailsView extends StatelessWidget {
             width: 40,
             child: CachedNetworkImage(imageUrl: document!.image!)),
         trailing: const Icon(
-          Icons.shopping_basket,
-          color: kPrimaryColor,
+          Icons.shopping_cart_outlined,
+          color: Colors.black,
         ),
         onTap: () {
           Get.to(

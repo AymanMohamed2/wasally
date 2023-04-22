@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:wasally/core/utils/api_services.dart';
 import 'package:wasally/features/auth/presentation/view/login_view.dart';
 import 'package:wasally/features/auth/presentation/view/widgets/custom_elevated_button.dart';
 import 'package:wasally/features/auth/presentation/view/widgets/user_section.dart';
 
-import '../../../../../core/constants.dart';
 import '../../../../../core/utils/size_config.dart';
-import '../../../../../core/widgets/costum_text_field.dart';
 import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../../../core/widgets/space_widget.dart';
 import '../../manager/signup_cubit/signup_cubit.dart';
@@ -28,7 +25,7 @@ class SignUpViewBody extends StatelessWidget {
     return Form(
       key: _formKey,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(SizeConfig.defaultSize! * 2.5),
         child: ListView(
           children: [
             Image.asset(
@@ -43,7 +40,7 @@ class SignUpViewBody extends StatelessWidget {
                   BlocProvider.of<SignupCubit>(context).accountType = index;
                 },
                 items: const [
-                  'Buiseness Account',
+                  'Shop Account',
                   'User Account',
                 ],
                 hintText: 'Please Choose account Type'),
@@ -61,7 +58,7 @@ class SignUpViewBody extends StatelessWidget {
             BlocConsumer<SignupCubit, SignupState>(
               listener: (context, state) {
                 if (state is SignUpSuccessState) {
-                  Get.to(() => const LoginView());
+                  Get.off(() => const LoginView());
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       duration: Duration(seconds: 2),
@@ -86,7 +83,7 @@ class SignUpViewBody extends StatelessWidget {
                   return CustomElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        await BlocProvider.of<SignupCubit>(context).signupUser(
+                        accessCubit.signupUser(
                           name: accessCubit.name!,
                           phoneNumber: accessCubit.phoneNumber!,
                           password: accessCubit.password!,
@@ -96,7 +93,7 @@ class SignUpViewBody extends StatelessWidget {
                     },
                     child: const Text(
                       'Register',
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Color.fromARGB(255, 44, 31, 31)),
                     ),
                   );
                 }
