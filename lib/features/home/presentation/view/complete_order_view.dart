@@ -1,10 +1,7 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wasally/core/constants.dart';
 import 'package:wasally/core/functions/custom_alert_dialog.dart';
-import 'package:wasally/core/utils/api_services.dart';
 import 'package:wasally/core/widgets/custom_loading_indicator.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/manager/person_cubit/person_cubit.dart';
 import 'package:wasally/features/home/data/models/category_details_model/document.dart';

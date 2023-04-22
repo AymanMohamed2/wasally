@@ -1,3 +1,4 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import 'package:wasally/features/auth/presentation/view/login_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/manager/person_cubit/person_cubit.dart';
 
 import '../../../../../core/constants.dart';
+import '../../../../../core/functions/custom_alert_dialog.dart';
 import 'custom_list_tile_person.dart';
 
 class PersonInfoViewBody extends StatelessWidget {
@@ -61,12 +63,19 @@ class PersonInfoViewBody extends StatelessWidget {
                       title: 'Logout',
                       icon: Icons.logout,
                       onTap: () async {
-                        SharedPreferences pref =
-                            await SharedPreferences.getInstance();
-                        pref.remove("email");
-                        pref.remove("password");
-                        pref.remove('userId');
-                        Get.off(() => const LoginView());
+                        customAlertDialog(context,
+                            cancelBtnColor: Colors.black,
+                            text: 'to log out ?',
+                            title: 'are you sure?',
+                            type: CoolAlertType.confirm,
+                            onConfirmBtnTap: () async {
+                          SharedPreferences pref =
+                              await SharedPreferences.getInstance();
+                          pref.remove("email");
+                          pref.remove("password");
+                          pref.remove('userId');
+                          Get.off(() => const LoginView());
+                        }, onCancelBtnTap: () {});
                       },
                     ),
                   ],
