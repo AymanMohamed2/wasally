@@ -1,9 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/features/home/presentation/manager/category_details_cubit/category_details_cubit.dart';
 import 'package:wasally/features/home/presentation/view/widgets/category_details_body.dart';
 
 import '../../../../core/utils/api_services.dart';
+import '../../data/repositories/home_repo_impl.dart';
 
 class CategoryDetailsView extends StatelessWidget {
   const CategoryDetailsView({
@@ -20,8 +22,9 @@ class CategoryDetailsView extends StatelessWidget {
       body: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => CategoryDetailsCubit(ApiServices())
-              ..getCategoryDetails(collectionId: collectionId),
+            create: (context) =>
+                CategoryDetailsCubit(HomeRepoImpl(ApiServices(Dio())))
+                  ..getCategoryDetails(collectionId: collectionId),
           ),
         ],
         child: const CategoryDetailsBody(),

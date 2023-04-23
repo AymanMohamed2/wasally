@@ -1,12 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:wasally/core/utils/api_services.dart';
 import 'package:wasally/features/auth/data/models/signup_model.dart';
+import 'package:wasally/features/auth/data/repositories/signup_repo/sign_up_repo.dart';
 
 part 'signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
-  SignupCubit(this.apiService) : super(SignupInitial());
-  ApiServices apiService;
+  SignupCubit(this.signupRepo) : super(SignupInitial());
+  final SignupRepo signupRepo;
   String? phoneNumber;
   String? password;
   String? name;
@@ -49,7 +50,7 @@ class SignupCubit extends Cubit<SignupState> {
   }) async {
     emit(SignUpLoadingState());
 
-    var response = await apiService.creatAccount(
+    var response = await signupRepo.createAccount(
         name: name, phoneNumber: phoneNumber, password: password, email: email);
 
     response.fold(
@@ -60,12 +61,11 @@ class SignupCubit extends Cubit<SignupState> {
       },
       (signup) async {
         if (accountType == 'Shop Account') {
-          await ApiServices().postCategory(
-            categoryName: category,
-            collectionId: getCollectionId()!,
-            address: address,
-            name: name,
-          );
+          await signupRepo.postCategory(
+              collectionId: getCollectionId()!,
+              name: name,
+              address: address,
+              categoryName: category);
         } else {
           null;
         }

@@ -9,6 +9,32 @@ import '../../features/curved_navigation_bar/data/models/person_model/person_mod
 import '../../features/home/data/models/category_details_model/category_details_model.dart';
 
 class ApiServices {
+  final _baseUrl = 'https://cloud.appwrite.io/v1/';
+  final Dio dio;
+  ApiServices(this.dio);
+  // var headers = {
+  //   "Content-Type": "application/json",
+  //   "X-Appwrite-Response-Format": "1.0.0",
+  //   "X-Appwrite-Project": "6435d5e1a13eff6332c2",
+  // };
+
+  Future<Map<String, dynamic>> get(
+      {required String endPoint, required var headers}) async {
+    var response =
+        await dio.get('$_baseUrl$endPoint', options: Options(headers: headers));
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>> post({
+    required String endPoint,
+    required var data,
+    required var headers,
+  }) async {
+    var response = await dio.post('$_baseUrl$endPoint',
+        options: Options(headers: headers), data: data);
+    return response.data;
+  }
+
   Future<Either<Failure, SignUpModel>> creatAccount({
     required String? name,
     required String? phoneNumber,
@@ -21,8 +47,6 @@ class ApiServices {
       "Content-Type": "application/json",
       "X-Appwrite-Response-Format": "1.0.0",
       "X-Appwrite-Project": "6435d5e1a13eff6332c2",
-      "X-Appwrite-Key":
-          "0de0fe8c91c9c980d16bb39a2e1a579c29048e74ef33b879b4d2e11dbbeec648e6ceb198a7dc7b26898d2c990f33225d045ae64a70381449d33984abcb18714d8ad96f49e30cb4dd9e07b0402743bb52214bb3a0f8f18c780ce186f9ee9e7d84b33ea63a24844a2271e780046c3593fd02c8d1c6202c267c9d92439beb815940"
     };
 
     Map<String, dynamic> body = {
@@ -37,7 +61,6 @@ class ApiServices {
       var response =
           await Dio().post(url, options: Options(headers: headers), data: body);
 
-      print(response);
       return right(
         SignUpModel.fromJson(response.data),
       );

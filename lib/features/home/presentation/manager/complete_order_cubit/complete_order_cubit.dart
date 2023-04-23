@@ -1,12 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:wasally/core/utils/api_services.dart';
+
+import '../../../data/repositories/home_repo.dart';
 
 part 'complete_order_state.dart';
 
 class CompleteOrderCubit extends Cubit<CompleteOrderState> {
-  CompleteOrderCubit(this.apiServices) : super(CompleteOrderInitial());
-  ApiServices apiServices;
+  CompleteOrderCubit(this.homeRepo) : super(CompleteOrderInitial());
+  final HomeRepo homeRepo;
   String? order;
 
   Future<void> postOrderAdmin(
@@ -16,7 +17,7 @@ class CompleteOrderCubit extends Cubit<CompleteOrderState> {
       required String shopName,
       required String order}) async {
     emit(CompleteOrderLoading());
-    var response = await apiServices.postOrderAdmin(
+    var response = await homeRepo.postOrderAdmin(
         name: name,
         phone: phone,
         categoryName: categoryName,
