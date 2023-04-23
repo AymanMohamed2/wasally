@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/core/constants.dart';
+import 'package:wasally/core/utils/app_strings.dart';
 import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/core/widgets/space_widget.dart';
 import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
@@ -49,7 +51,7 @@ class LoginViewBody extends StatelessWidget {
               onChanged: (value) {
                 phone = value;
               },
-              hintText: 'Phone Number',
+              hintText: AppStrings.phoneNumber.tr(),
               prefixIcon: const Icon(Icons.phone_android),
               textInputType: TextInputType.number,
             ),
