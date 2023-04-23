@@ -1,19 +1,20 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:wasally/core/utils/api_services.dart';
 import 'package:wasally/features/home/data/models/category_details_model/category_details_model.dart';
+
+import '../../../data/repositories/home_repo.dart';
 
 part 'category_details_state.dart';
 
 class CategoryDetailsCubit extends Cubit<CategoryDetailsState> {
-  CategoryDetailsCubit(this.apiServices) : super(CategoryDetailsInitial());
+  CategoryDetailsCubit(this.homeRepo) : super(CategoryDetailsInitial());
 
-  ApiServices apiServices;
+  final HomeRepo homeRepo;
   CategoryDetailsModel? categoryDetailsModel;
 
   Future<void> getCategoryDetails({required String collectionId}) async {
     var response =
-        await apiServices.getCategoryDetails(collectionId: collectionId);
+        await homeRepo.getCategoryDetails(collectionId: collectionId);
     response.fold(
       (failure) {
         emit(

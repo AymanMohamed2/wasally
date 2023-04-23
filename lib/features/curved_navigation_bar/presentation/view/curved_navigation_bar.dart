@@ -1,4 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/utils/size_config.dart';
@@ -8,6 +9,7 @@ import 'package:wasally/features/curved_navigation_bar/presentation/view/person_
 import 'package:wasally/features/curved_navigation_bar/presentation/view/talbat_view.dart';
 
 import '../../../../core/utils/api_services.dart';
+import '../../../home/data/repositories/home_repo_impl.dart';
 import '../../../home/presentation/manager/category_details_cubit/category_details_cubit.dart';
 import '../../../home/presentation/manager/slider_cubit/slider_cubit.dart';
 
@@ -33,12 +35,12 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
       providers: [
         BlocProvider(
           create: (context) => SliderCubit(
-            ApiServices(),
+            HomeRepoImpl(ApiServices(Dio())),
           ),
         ),
         BlocProvider(
           create: (context) => CategoryDetailsCubit(
-            ApiServices(),
+            HomeRepoImpl(ApiServices(Dio())),
           ),
         ),
       ],
