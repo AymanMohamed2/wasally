@@ -1,0 +1,56 @@
+{
+  
+  "on_boarding_title1":"Shopping",
+  "on_boarding_body1":"You can order anything from your home and you will get it",
+  "on_boarding_title2":"Your order is on the way",
+  "on_boarding_body2":"You will get your order as soon as possible",
+  "on_boarding_title3":"Your order has arrived",
+  "on_boarding_body3":"Order is arrived at your place",
+  "on_boarding_skip":"Skip",
+  "phone_number": "Phone number",
+  "password": "Password",
+  "forgot_password":"Forgot Password?",
+  "login":"Login",
+  "dont_have_account":"Don't have an account?",
+  "register":"register",
+  "phone_less_than":"phone number cannot be less than 11 digits",
+  "phone_more_than":"phone number cannot be more than 11 digits",
+
+  "account_type":"Choose account type",
+  "shop_account":"Shop Account",
+  "user_account":"User Account",
+  "choose_category":"Choose Category",
+  "restaurant":"Restaurant",
+  "super_market":"Super Market",
+  "pharmacy":"Pharmacy",
+  "bakery":"Bakery and sweets",
+  "vegetables":"Vegetables and Fruits",
+  "library":"Library",
+  "field_required":"This field is required",
+  "password_must_be":"Password Must be more than 8 character",
+  "address":"Address",
+  "shop_name":"Shop Name",
+  "name":"Name",
+  "account_created":"Account Created Successfully 🥳",
+
+  "categories":"Categories",
+  "other":"Other",
+
+  "contact_us":"Contact Us",
+  "general_settings":"General Settings",
+  "share_app":"Share The App",
+  "logout":"Logout",
+  "are_you_sure":"Are you Sure ?",
+  "to_log_out":"to logout ?",
+
+  "wasally":"Wasally",
+  "order_send_successfuly":"Order Sent Successfully",
+  "order_will_arrive":"Order Will Arrived as soon as possible",
+  "write_your_order":"Write Your Order",
+  "get_possition":"Select where to deliver the order",
+  "pls_write_order":"Please Write your Order First"
+
+
+
+  
+}

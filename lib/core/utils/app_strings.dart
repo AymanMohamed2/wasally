@@ -1,3 +1,62 @@
 class AppStrings {
   static const appName = 'Wasally';
+  static const String onBoardingTitle1 = 'on_boarding_title1';
+  static const String onBoardingbody1 = 'on_boarding_body1';
+  static const String onBoardingTitle2 = 'on_boarding_title2';
+  static const String onBoardingbody2 = 'on_boarding_body2';
+  static const String onBoardingTitle3 = 'on_boarding_title3';
+  static const String onBoardingbody3 = 'on_boarding_body3';
+  static const String onBoardingSkip = 'on_boarding_skip';
+
+  static const String phoneNumber = 'phone_number';
+  static const String password = 'password';
+  static const String forgotPassword = 'forgot_password';
+  static const String login = 'login';
+  static const String dontHaveAccount = 'dont_have_account';
+  static const String register = 'register';
+  static const String phoneLessThan = 'phone_less_than';
+  static const String phoneMoreThan = 'phone_more_than';
+
+  static const String accountType = 'account_type';
+  static const String shopAccount = 'shop_account';
+  static const String userAccount = 'user_account';
+  static const String chooseCategory = 'choose_category';
+  static const String restaurant = 'restaurant';
+  static const String superMarket = 'super_market';
+  static const String pharmacy = 'pharmacy';
+  static const String bakery = 'bakery';
+  static const String vegetables = 'vegetables';
+  static const String library = 'library';
+  static const String fieldRequired = 'field_required';
+  static const String passwordMustBe = 'password_must_be';
+  static const String address = 'address';
+  static const String shopName = 'shop_name';
+  static const String name = 'name';
+  static const String accountCreated = 'account_created';
+
+  static const String categories = 'categories';
+  static const String other = 'other';
+
+  static const String contactUs = 'contact_us';
+  static const String generalSettings = 'general_settings';
+  static const String shareApp = 'share_app';
+  static const String logout = 'logout';
+  static const String areYouSure = 'are_you_sure';
+  static const String toLogOut = 'to_log_out';
+
+  static const String wasally = 'wasally';
+  static const String orderSendSuccessfuly = 'order_send_successfuly';
+  static const String orderWillArrive = 'order_will_arrive';
+  static const String writeYourOrder = 'write_your_order';
+  static const String getpossition = 'get_possition';
+  static const String plsWriteOrder = 'pls_write_order';
+
+
+
+  
+
+
+
+
+
 }

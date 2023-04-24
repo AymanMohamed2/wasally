@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/constants.dart';
+import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/core/widgets/space_widget.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/manager/person_cubit/person_cubit.dart';
 import 'package:wasally/features/home/presentation/manager/slider_cubit/slider_cubit.dart';
+import '../../../../../core/utils/app_strings.dart';
 import 'custom_app_bar.dart';
 import 'custom_carousel.dart';
 import 'custom_grid_view.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:get/get.dart' hide Trans;
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -26,24 +30,27 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     return SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          CustomAppBar(
+        children: [
+          const CustomAppBar(
             icon: Icons.notifications,
             image: kLogo,
           ),
-          VirticalSpace(3),
-          CustomCarousel(),
+          const VirticalSpace(3),
+          const CustomCarousel(),
           Padding(
-            padding: EdgeInsets.only(left: 8, top: 10),
+            padding: EdgeInsets.only(
+                left: SizeConfig.defaultSize! * 2,
+                top: SizeConfig.defaultSize! * 1,
+                right: SizeConfig.defaultSize! * 2),
             child: Text(
-              'Categories',
-              style: TextStyle(
+              AppStrings.categories.tr(),
+              style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Gulzar'),
             ),
           ),
-          CustomGrideView(),
+          const CustomGrideView(),
         ],
       ),
     );

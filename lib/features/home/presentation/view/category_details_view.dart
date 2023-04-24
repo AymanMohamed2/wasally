@@ -27,7 +27,9 @@ class CategoryDetailsView extends StatelessWidget {
                   ..getCategoryDetails(collectionId: collectionId),
           ),
         ],
-        child: const CategoryDetailsBody(),
+        child: CategoryDetailsBody(
+          title: title,
+        ),
       ),
     );
   }

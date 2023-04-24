@@ -1,16 +1,17 @@
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/core/widgets/custom_loading_indicator.dart';
 
 import 'package:wasally/features/auth/presentation/view/login_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/manager/person_cubit/person_cubit.dart';
-
+import 'package:easy_localization/easy_localization.dart' ;
 import '../../../../../core/constants.dart';
 import '../../../../../core/functions/custom_alert_dialog.dart';
+import '../../../../../core/utils/app_strings.dart';
 import 'custom_list_tile_person.dart';
+import 'package:get/get.dart' hide Trans;
 
 class PersonInfoViewBody extends StatelessWidget {
   const PersonInfoViewBody({
@@ -46,26 +47,27 @@ class PersonInfoViewBody extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const CustomListTile(
-                      title: 'Contact us',
+                    CustomListTile(
+                      title:AppStrings.contactUs.tr(),
                       icon: Icons.chat,
                     ),
-                    const CustomListTile(
-                      title: 'General settings',
+                     CustomListTile(
+                      title: AppStrings.generalSettings.tr(),
                       icon: Icons.settings,
                     ),
-                    const CustomListTile(
-                      title: 'Share the app',
+                     CustomListTile(
+                      title: AppStrings.shareApp.tr(),
                       icon: Icons.share,
                     ),
                     CustomListTile(
-                      title: 'Logout',
+                      title: AppStrings.logout.tr(),
                       icon: Icons.logout,
                       onTap: () async {
                         customAlertDialog(context,
                             cancelBtnColor: Colors.black,
-                            text: 'to log out ?',
-                            title: 'are you sure?',
+                            title: AppStrings.areYouSure.tr(),
+                            text:AppStrings.toLogOut.tr(),
+                            
                             type: CoolAlertType.confirm,
                             onConfirmBtnTap: () async {
                           SharedPreferences pref =

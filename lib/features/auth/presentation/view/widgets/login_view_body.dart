@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/core/constants.dart';
+import 'package:wasally/core/utils/app_strings.dart';
 import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/core/widgets/space_widget.dart';
 import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
@@ -37,11 +39,11 @@ class LoginViewBody extends StatelessWidget {
             CustomTextField(
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'this field is required';
+                  return AppStrings.fieldRequired.tr();
                 } else if (value.length < 11) {
-                  return 'phone number cannot be less than 11 digits';
+                  return AppStrings.phoneLessThan.tr();
                 } else if (value.length > 11) {
-                  return 'phone number cannot be more than 11 digits';
+                  return AppStrings.phoneMoreThan.tr();
                 } else {
                   return null;
                 }
@@ -49,7 +51,7 @@ class LoginViewBody extends StatelessWidget {
               onChanged: (value) {
                 phone = value;
               },
-              hintText: 'Phone Number',
+              hintText: AppStrings.phoneNumber.tr(),
               prefixIcon: const Icon(Icons.phone_android),
               textInputType: TextInputType.number,
             ),
@@ -58,9 +60,9 @@ class LoginViewBody extends StatelessWidget {
               errorMaxLines: 8,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'this field is required';
+                  return AppStrings.fieldRequired.tr();
                 } else if (value.length < 8) {
-                  return 'password must be more than 8 character';
+                  return AppStrings.passwordMustBe.tr();
                 } else {
                   return null;
                 }
@@ -68,18 +70,18 @@ class LoginViewBody extends StatelessWidget {
               onChanged: (value) {
                 password = value;
               },
-              hintText: 'Password',
+              hintText: AppStrings.password.tr(),
               prefixIcon: const Icon(Icons.lock_open),
               textInputType: TextInputType.text,
               obscureText: true,
             ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Forgot Password?',
+                AppStrings.forgotPassword.tr(),
                 textAlign: TextAlign.end,
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ),
             BlocConsumer<LoginCubit, LoginState>(
@@ -116,9 +118,9 @@ class LoginViewBody extends StatelessWidget {
                             .loginUser(email: phone, password: password);
                       }
                     },
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(color: Colors.black),
+                    child: Text(
+                      AppStrings.login.tr(),
+                      style: const TextStyle(color: Colors.black),
                     ),
                   );
                 }
@@ -128,9 +130,9 @@ class LoginViewBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Don\'t have an account? ',
-                  style: TextStyle(
+                Text(
+                  AppStrings.dontHaveAccount.tr(),
+                  style: const TextStyle(
                     color: Colors.black,
                   ),
                 ),
@@ -140,9 +142,9 @@ class LoginViewBody extends StatelessWidget {
                       () => const SignUp(),
                     );
                   },
-                  child: const Text(
-                    'register',
-                    style: TextStyle(color: Colors.orange),
+                  child: Text(
+                    AppStrings.register.tr(),
+                    style: const TextStyle(color: Colors.orange),
                   ),
                 ),
               ],

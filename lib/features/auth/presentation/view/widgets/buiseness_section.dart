@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:wasally/core/utils/app_strings.dart';
+import 'package:get/get.dart' hide Trans;
 import '../../../../../core/widgets/costum_text_field.dart';
 import '../../../../../core/widgets/space_widget.dart';
 import '../../manager/signup_cubit/signup_cubit.dart';
 import 'custom_drop_down_button1.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class BuisenessSection extends StatelessWidget {
   const BuisenessSection({super.key});
@@ -22,15 +24,15 @@ class BuisenessSection extends StatelessWidget {
 
               BlocProvider.of<SignupCubit>(context).category = index;
             },
-            items: const [
-              'Restaurant',
-              'Super Market',
-              'Pharmacy',
-              'Bakery and sweets',
-              'Vegetables and Fruits',
-              'Library',
+            items: [
+              AppStrings.restaurant.tr(),
+              AppStrings.superMarket.tr(),
+              AppStrings.pharmacy.tr(),
+              AppStrings.bakery.tr(),
+              AppStrings.vegetables.tr(),
+              AppStrings.library.tr(),
             ],
-            hintText: 'Choose Category'),
+            hintText: AppStrings.chooseCategory.tr()),
         const VirticalSpace(1),
         CustomTextField(
           onChanged: (value) {
@@ -38,12 +40,12 @@ class BuisenessSection extends StatelessWidget {
           },
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'this field is required';
+              return AppStrings.fieldRequired.tr();
             } else {
               return null;
             }
           },
-          hintText: 'Shop Name',
+          hintText: AppStrings.shopName.tr(),
           prefixIcon: const Icon(Icons.add_business),
         ),
         const VirticalSpace(1),
@@ -53,12 +55,12 @@ class BuisenessSection extends StatelessWidget {
           },
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'this field is required';
+              return AppStrings.fieldRequired.tr();
             } else {
               return null;
             }
           },
-          hintText: 'Address',
+          hintText: AppStrings.address.tr(),
           prefixIcon: const Icon(Icons.location_on),
         ),
         const VirticalSpace(1),
@@ -68,46 +70,30 @@ class BuisenessSection extends StatelessWidget {
           },
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'this field is required';
+              return AppStrings.fieldRequired.tr();
             } else {
               return null;
             }
           },
-          hintText: 'Phone Number',
+          hintText: AppStrings.phoneNumber.tr(),
           prefixIcon: const Icon(Icons.phone_android),
           textInputType: TextInputType.number,
         ),
         const VirticalSpace(1),
-        // CustomTextField(
-        //   textInputType: TextInputType.emailAddress,
-        //   validator: (value) {
-        //     if (value == null || value.isEmpty) {
-        //       return 'this field is required';
-        //     } else {
-        //       return null;
-        //     }
-        //   },
-        //   onChanged: (value) {
-        //     accessCubit.email = value;
-        //   },
-        //   hintText: 'Email',
-        //   prefixIcon: const Icon(Icons.mail),
-        // ),
-        // const VirticalSpace(1),
         CustomTextField(
           onChanged: (value) {
             accessCubit.password = value;
           },
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'this field is required';
+              return AppStrings.fieldRequired.tr();
             } else if (value.length < 8) {
-              return 'Password must be more than 8 character';
+              return AppStrings.passwordMustBe.tr();
             } else {
               return null;
             }
           },
-          hintText: 'Password',
+          hintText: AppStrings.password.tr(),
           prefixIcon: const Icon(Icons.lock_open),
           obscureText: true,
         ),

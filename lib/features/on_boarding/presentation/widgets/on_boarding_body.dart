@@ -1,8 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 import 'package:intro_screen_onboarding_flutter/introduction.dart';
-import 'package:intro_screen_onboarding_flutter/introscreenonboarding.dart';
+import 'package:wasally/core/utils/app_strings.dart';
 import 'package:wasally/features/auth/presentation/view/login_view.dart';
+
+import 'custom_on_boarding.dart';
 
 class OnBoardingViewBody extends StatelessWidget {
   const OnBoardingViewBody({super.key});
@@ -12,20 +15,21 @@ class OnBoardingViewBody extends StatelessWidget {
     final List<Introduction> list = [
       Introduction(
           imageUrl: 'assets/images/onboarding1.png',
-          title: 'Shopping',
-          subTitle: 'Explore top organic Fruits & grab them'),
+          title: AppStrings.onBoardingTitle1.tr(),
+          subTitle: AppStrings.onBoardingbody1.tr()),
       Introduction(
           imageUrl: 'assets/images/onboarding2.png',
-          title: 'Delivery on the way',
-          subTitle: 'Get your order by speed delivery'),
+          title: AppStrings.onBoardingTitle2.tr(),
+          subTitle: AppStrings.onBoardingbody2.tr()),
       Introduction(
           imageUrl: 'assets/images/onboarding3.png',
-          title: 'Delivery Arrived',
-          subTitle: 'Order is arrived at your Place'),
+          title: AppStrings.onBoardingTitle3.tr(),
+          subTitle: AppStrings.onBoardingbody3.tr()),
     ];
     return Padding(
       padding: const EdgeInsets.only(top: 10),
-      child: IntroScreenOnboarding(
+      child: CustomOnBoarding(
+        text: AppStrings.onBoardingSkip.tr(),
         skipTextStyle: const TextStyle(color: Colors.black),
         introductionList: list,
         backgroudColor: Colors.white,

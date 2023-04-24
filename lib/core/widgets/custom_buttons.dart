@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
+import '../utils/app_strings.dart';
 import '../utils/size_config.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:get/get.dart' hide Trans;
 
 class CustomGeneralButton extends StatelessWidget {
   const CustomGeneralButton({super.key, required this.text, this.onTap});
@@ -77,7 +80,7 @@ class CustomButtonGetPosition extends StatelessWidget {
           elevation: 3,
           child: ListTile(
             title: Text(
-              "Press here to get your Position",
+             AppStrings.getpossition.tr(),
               style: TextStyle(fontSize: SizeConfig.defaultSize! * 1.5),
             ),
             leading: const Icon(Icons.location_pin),
