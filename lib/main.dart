@@ -16,7 +16,7 @@ void main() async {
   String? phone = prefs.getString("phone");
   String? password = prefs.getString("password");
   String? userId = prefs.getString("userId");
-
+  //test commit
   runApp(EasyLocalization(
     supportedLocales: const [arabicLocal, englishLocal],
     path: assetPathLocalization,
