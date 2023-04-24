@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:wasally/core/utils/api_services.dart';
 import 'package:wasally/features/auth/data/models/signup_model.dart';
 import 'package:wasally/features/auth/data/repositories/signup_repo/sign_up_repo.dart';
 
@@ -17,17 +16,19 @@ class SignupCubit extends Cubit<SignupState> {
   var address;
 
   String? getCollectionId() {
-    if (category == 'Restaurant') {
+    if (category == 'Restaurant' || category == 'مطعم') {
       return '643fff738de6a968c5ba';
-    } else if (category == 'Super Market') {
+    } else if (category == 'Super Market' || category == 'سوبر ماركت') {
       return '64405ac2df4dd40f4524';
-    } else if (category == 'Pharmacy') {
+    } else if (category == 'Pharmacy' || category == 'صيدليه') {
       return '643cc36ba7aa0f87942e';
-    } else if (category == 'Bakery and sweets') {
+    } else if (category == 'Bakery and sweets' ||
+        category == 'مخبوزات و حلويات') {
       return '64405c5d508f5a87af04';
-    } else if (category == 'Vegetables and Fruits') {
+    } else if (category == 'Vegetables and Fruits' ||
+        category == 'خضار و قاكهه') {
       return '64405cdd6349581b8a59';
-    } else if (category == 'Library') {
+    } else if (category == 'Library' || category == 'مكتبه') {
       return '64405d822764430f3f55';
     } else {
       return null;
@@ -35,9 +36,9 @@ class SignupCubit extends Cubit<SignupState> {
   }
 
   void selectAccount({required var selected}) {
-    if (selected == 'User Account') {
+    if (selected == 'User Account' || selected == 'حساب مستخدم') {
       emit(SignUpUserState());
-    } else if (selected == 'Shop Account') {
+    } else if (selected == 'Shop Account' || selected == 'حساب  متجر') {
       emit(BuisenessUserState());
     }
   }

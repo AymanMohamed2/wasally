@@ -39,11 +39,11 @@ class LoginViewBody extends StatelessWidget {
             CustomTextField(
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'this field is required';
+                  return AppStrings.fieldRequired.tr();
                 } else if (value.length < 11) {
-                  return 'phone number cannot be less than 11 digits';
+                  return AppStrings.phoneLessThan.tr();
                 } else if (value.length > 11) {
-                  return 'phone number cannot be more than 11 digits';
+                  return AppStrings.phoneMoreThan.tr();
                 } else {
                   return null;
                 }
@@ -60,9 +60,9 @@ class LoginViewBody extends StatelessWidget {
               errorMaxLines: 8,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'this field is required';
+                  return AppStrings.fieldRequired.tr();
                 } else if (value.length < 8) {
-                  return 'password must be more than 8 character';
+                  return AppStrings.passwordMustBe.tr();
                 } else {
                   return null;
                 }
@@ -70,18 +70,18 @@ class LoginViewBody extends StatelessWidget {
               onChanged: (value) {
                 password = value;
               },
-              hintText: 'Password',
+              hintText: AppStrings.password.tr(),
               prefixIcon: const Icon(Icons.lock_open),
               textInputType: TextInputType.text,
               obscureText: true,
             ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Forgot Password?',
+                AppStrings.forgotPassword.tr(),
                 textAlign: TextAlign.end,
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ),
             BlocConsumer<LoginCubit, LoginState>(
@@ -118,9 +118,9 @@ class LoginViewBody extends StatelessWidget {
                             .loginUser(email: phone, password: password);
                       }
                     },
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(color: Colors.black),
+                    child: Text(
+                      AppStrings.login.tr(),
+                      style: const TextStyle(color: Colors.black),
                     ),
                   );
                 }
@@ -130,9 +130,9 @@ class LoginViewBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Don\'t have an account? ',
-                  style: TextStyle(
+                Text(
+                  AppStrings.dontHaveAccount.tr(),
+                  style: const TextStyle(
                     color: Colors.black,
                   ),
                 ),
@@ -142,9 +142,9 @@ class LoginViewBody extends StatelessWidget {
                       () => const SignUp(),
                     );
                   },
-                  child: const Text(
-                    'register',
-                    style: TextStyle(color: Colors.orange),
+                  child: Text(
+                    AppStrings.register.tr(),
+                    style: const TextStyle(color: Colors.orange),
                   ),
                 ),
               ],

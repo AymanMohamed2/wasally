@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:get/get.dart' hide Trans;
+import 'package:wasally/core/utils/app_strings.dart';
 
 import '../../../../../core/widgets/costum_text_field.dart';
 import '../../../../../core/widgets/space_widget.dart';
@@ -16,7 +19,7 @@ class UserSection extends StatelessWidget {
         CustomTextField(
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'this field is required';
+              return AppStrings.fieldRequired.tr();
             } else {
               return null;
             }
@@ -24,14 +27,14 @@ class UserSection extends StatelessWidget {
           onChanged: (value) {
             accessCubit.name = value;
           },
-          hintText: 'Name',
+          hintText: AppStrings.name.tr(),
           prefixIcon: const Icon(Icons.person),
         ),
         const VirticalSpace(1),
         CustomTextField(
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'this field is required';
+              return AppStrings.fieldRequired.tr();
             } else {
               return null;
             }
@@ -39,33 +42,17 @@ class UserSection extends StatelessWidget {
           onChanged: (value) {
             accessCubit.phoneNumber = value;
           },
-          hintText: 'Phone Number',
+          hintText: AppStrings.phoneNumber.tr(),
           prefixIcon: const Icon(Icons.phone_android),
           textInputType: TextInputType.number,
         ),
         const VirticalSpace(1),
-        // CustomTextField(
-        //   textInputType: TextInputType.emailAddress,
-        //   validator: (value) {
-        //     if (value == null || value.isEmpty) {
-        //       return 'this field is required';
-        //     } else {
-        //       return null;
-        //     }
-        //   },
-        //   onChanged: (value) {
-        //     accessCubit.email = value;
-        //   },
-        //   hintText: 'Email',
-        //   prefixIcon: const Icon(Icons.mail),
-        // ),
-        // const VirticalSpace(1),
         CustomTextField(
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'this field is required';
+              return AppStrings.fieldRequired.tr();
             } else if (value.length < 8) {
-              return 'Password must be more than 8 character';
+              return AppStrings.passwordMustBe.tr();
             } else {
               return null;
             }
@@ -73,7 +60,7 @@ class UserSection extends StatelessWidget {
           onChanged: (value) {
             accessCubit.password = value;
           },
-          hintText: 'Password',
+          hintText: AppStrings.password.tr(),
           prefixIcon: const Icon(Icons.lock_open),
           obscureText: true,
         ),

@@ -2,6 +2,7 @@ import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/functions/custom_alert_dialog.dart';
+import 'package:wasally/core/utils/app_strings.dart';
 import 'package:wasally/core/widgets/custom_loading_indicator.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/manager/person_cubit/person_cubit.dart';
 import 'package:wasally/features/home/data/models/category_details_model/document.dart';
@@ -11,6 +12,8 @@ import 'package:wasally/features/home/presentation/view/widgets/complete_order_v
 import '../../../../core/widgets/custom_buttons.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../../curved_navigation_bar/data/models/person_model/person_model.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:get/get.dart' hide Trans;
 
 class CompleteOrderView extends StatelessWidget {
   CompleteOrderView({super.key, required this.title, this.document});
@@ -58,7 +61,7 @@ class CompleteOrderView extends StatelessWidget {
                         order: accessCubit.order!);
                   }
                 },
-                text: 'Wasally',
+                text: AppStrings.wasally.tr(),
                 padding: 25);
           } else if (state is CompleteOrderSuccess) {
             return CostumButtonSignUp(
@@ -75,7 +78,7 @@ class CompleteOrderView extends StatelessWidget {
                     _controller.clear();
                   }
                 },
-                text: 'Wasally',
+                text: AppStrings.wasally.tr(),
                 padding: 25);
           } else if (state is CompleteOrderFailure) {
             return CostumButtonSignUp(
@@ -90,7 +93,7 @@ class CompleteOrderView extends StatelessWidget {
                             order: accessCubit.order!);
                   }
                 },
-                text: 'Wasally',
+                text: AppStrings.wasally.tr(),
                 padding: 25);
           } else {
             return const CustomElevatedButton(
@@ -103,8 +106,8 @@ class CompleteOrderView extends StatelessWidget {
             customAlertDialog(
               context,
               showCancelBtn: false,
-              title: 'Order Sent Successfuly',
-              text: 'The delivery will arrive as soon as possible',
+              title: AppStrings.orderSendSuccessfuly.tr(),
+              text: AppStrings.orderWillArrive.tr(),
               type: CoolAlertType.success,
             );
             _controller.clear();

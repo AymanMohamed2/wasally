@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-import 'package:easy_localization/easy_localization.dart';
-=======
 import 'package:dio/dio.dart';
->>>>>>> 002218a8b1526e42ae69ff1f6d723927d02c64df
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -33,7 +30,7 @@ class Wasally extends StatefulWidget {
 class _WasallyState extends State<Wasally> {
   @override
   void didChangeDependencies() {
-    context.setLocale(arabicLocal);
+    context.setLocale(englishLocal);
     super.didChangeDependencies();
   }
 

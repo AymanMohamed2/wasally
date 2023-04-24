@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+import 'package:get/get.dart' hide Trans;
+import 'package:wasally/core/utils/app_strings.dart';
 import 'package:wasally/features/auth/presentation/view/login_view.dart';
 import 'package:wasally/core/widgets/custom_elevated_button.dart';
 import 'package:wasally/features/auth/presentation/view/widgets/user_section.dart';
@@ -39,11 +42,11 @@ class SignUpViewBody extends StatelessWidget {
 
                   BlocProvider.of<SignupCubit>(context).accountType = index;
                 },
-                items: const [
-                  'Shop Account',
-                  'User Account',
+                items: [
+                  AppStrings.shopAccount.tr(),
+                  AppStrings.userAccount.tr(),
                 ],
-                hintText: 'Please Choose account Type'),
+                hintText: AppStrings.accountType.tr()),
             const VirticalSpace(1),
             BlocBuilder<SignupCubit, SignupState>(
               builder: (context, state) {
@@ -60,9 +63,9 @@ class SignUpViewBody extends StatelessWidget {
                 if (state is SignUpSuccessState) {
                   Get.off(() => const LoginView());
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      duration: Duration(seconds: 2),
-                      content: Text('Account Created Successfully 🥳'),
+                    SnackBar(
+                      duration: const Duration(seconds: 2),
+                      content: Text(AppStrings.accountCreated.tr()),
                     ),
                   );
                 } else if (state is SignUpFailureState) {
@@ -91,9 +94,10 @@ class SignUpViewBody extends StatelessWidget {
                         );
                       }
                     },
-                    child: const Text(
-                      'Register',
-                      style: TextStyle(color: Color.fromARGB(255, 44, 31, 31)),
+                    child: Text(
+                      AppStrings.register.tr(),
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 44, 31, 31)),
                     ),
                   );
                 }

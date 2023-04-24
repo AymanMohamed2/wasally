@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart' hide Trans;
+import 'package:easy_localization/easy_localization.dart';
 import 'package:wasally/core/constants.dart';
-import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:wasally/features/home/presentation/view/category_details_view.dart';
 import 'package:wasally/features/home/presentation/view/complete_order_view.dart';
 
+import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/size_config.dart';
 import 'custom_item_home.dart';
 
@@ -28,82 +27,84 @@ class CustomGrideView extends StatelessWidget {
           CustomItemHomeView(
             onTap: () {
               Get.to(
-                () => const CategoryDetailsView(
-                  title: 'Restaurant',
+                () => CategoryDetailsView(
+                  title: AppStrings.restaurant.tr(),
                   collectionId: '643fff738de6a968c5ba',
                 ),
               );
             },
-            name: 'Restaurant',
+            name: AppStrings.restaurant.tr(),
             imageUrl: kServiceRestaurant,
           ),
           CustomItemHomeView(
             onTap: () {
               Get.to(
-                () => const CategoryDetailsView(
-                  title: 'Super Market',
+                () => CategoryDetailsView(
+                  title: AppStrings.superMarket.tr(),
                   collectionId: '64405ac2df4dd40f4524',
                 ),
               );
             },
-            name: 'Super Market',
+            name: AppStrings.superMarket.tr(),
             imageUrl: kServiceSuperMarket,
           ),
           CustomItemHomeView(
             onTap: () {
               Get.to(
-                () => const CategoryDetailsView(
-                  title: 'Pharmacy',
+                () => CategoryDetailsView(
+                  title: AppStrings.pharmacy.tr(),
                   collectionId: '643cc36ba7aa0f87942e',
                 ),
               );
             },
-            name: 'Pharmacy',
+            name: AppStrings.pharmacy.tr(),
             imageUrl: kServicePharmacy,
           ),
           CustomItemHomeView(
             onTap: () {
               Get.to(
-                () => const CategoryDetailsView(
-                  title: 'Bakery',
+                () => CategoryDetailsView(
+                  title: AppStrings.bakery.tr(),
                   collectionId: '64405c5d508f5a87af04',
                 ),
               );
             },
-            name: 'Bakery',
+            name: AppStrings.bakery.tr(),
             imageUrl: kServiceBakery,
           ),
           CustomItemHomeView(
             onTap: () {
               Get.to(
-                () => const CategoryDetailsView(
-                  title: 'Vegetables',
+                () => CategoryDetailsView(
+                  title: AppStrings.vegetables.tr(),
                   collectionId: '64405cdd6349581b8a59',
                 ),
               );
             },
-            name: 'Vegetables',
+            name: AppStrings.vegetables.tr(),
             imageUrl: kServiceVegetables,
           ),
           CustomItemHomeView(
             onTap: () {
               Get.to(
-                () => const CategoryDetailsView(
-                  title: 'Library',
+                () => CategoryDetailsView(
+                  title: AppStrings.library.tr(),
                   collectionId: '64405d822764430f3f55',
                 ),
               );
             },
-            name: 'Library',
+            name: AppStrings.library.tr(),
             imageUrl: kServiceLibrary,
           ),
           CustomItemHomeView(
             onTap: () {
               Get.to(
-                () => CompleteOrderView(title: 'Other'),
+                () => CompleteOrderView(
+                  title: AppStrings.other.tr(),
+                ),
               );
             },
-            name: 'Other',
+            name: AppStrings.other.tr(),
             imageUrl: kServiceOther,
           ),
         ],
