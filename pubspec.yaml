@@ -41,18 +41,21 @@ dependencies:
   dartz: ^0.10.1
   dio: ^5.1.1
   dots_indicator: ^2.1.0
+  easy_localization: ^3.0.1
   equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.2
+  flutter_phoenix: ^1.1.0
+  geocoding: ^2.0.4
+  geolocator: ^8.2.0
   get: ^4.6.5
   http: ^0.13.5
   intro_screen_onboarding_flutter: ^1.0.0
   loading_animation_widget: ^1.2.0+4
+  location: ^4.2.0
   pull_to_refresh: ^2.0.0
   shared_preferences: ^2.1.0
-  flutter_phoenix: ^1.1.0
-  easy_localization: ^3.0.1
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:

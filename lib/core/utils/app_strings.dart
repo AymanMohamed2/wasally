@@ -51,6 +51,9 @@ class AppStrings {
   static const String getpossition = 'get_possition';
   static const String plsWriteOrder = 'pls_write_order';
 
+  static const String youAreAlreadyGetLocation = 'you_are_already_get_location';
+
+
 
 
   

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wasally/features/home/presentation/manager/complete_order_get_location_cubit/complete_order_get_location_cubit.dart';
 
 import '../constants.dart';
 import '../utils/app_strings.dart';
@@ -66,26 +68,22 @@ class CostumButtonSignUp extends StatelessWidget {
 }
 
 class CustomButtonGetPosition extends StatelessWidget {
-  const CustomButtonGetPosition({super.key, required this.onTap});
+  const CustomButtonGetPosition({super.key, this.onTap, required this.child});
 
-  final Function() onTap;
+  final Function()? onTap;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
+    var accessCubit = BlocProvider.of<CompleteOrderGetLocationCubit>(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: GestureDetector(
         onTap: onTap,
         child: Card(
           elevation: 3,
-          child: ListTile(
-            title: Text(
-             AppStrings.getpossition.tr(),
-              style: TextStyle(fontSize: SizeConfig.defaultSize! * 1.5),
-            ),
-            leading: const Icon(Icons.location_pin),
-            iconColor: Colors.orange,
-          ),
+          child: child,
         ),
       ),
     );

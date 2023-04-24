@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../../data/repositories/home_repo.dart';
 
-part 'complete_order_state.dart';
+part 'complete_order_button_state.dart';
 
 class CompleteOrderCubit extends Cubit<CompleteOrderState> {
   CompleteOrderCubit(this.homeRepo) : super(CompleteOrderInitial());

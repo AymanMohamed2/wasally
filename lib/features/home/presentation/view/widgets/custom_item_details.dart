@@ -1,9 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:wasally/core/utils/api_services.dart';
-import 'package:wasally/features/home/presentation/manager/complete_order_cubit/complete_order_cubit.dart';
 
 import '../../../data/models/category_details_model/document.dart';
 import '../complete_order_view.dart';

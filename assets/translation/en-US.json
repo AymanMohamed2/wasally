@@ -48,7 +48,9 @@
   "order_will_arrive":"Order Will Arrived as soon as possible",
   "write_your_order":"Write Your Order",
   "get_possition":"Select where to deliver the order",
-  "pls_write_order":"Please Write your Order First"
+  "pls_write_order":"Please Write your Order First",
+
+  "you_are_already_get_location":"You are already Selected Where to deliver the irder before"
 
 
 

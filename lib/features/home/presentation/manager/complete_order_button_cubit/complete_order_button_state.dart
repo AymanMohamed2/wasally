@@ -1,4 +1,4 @@
-part of 'complete_order_cubit.dart';
+part of 'complete_order_button_cubit.dart';
 
 abstract class CompleteOrderState extends Equatable {
   const CompleteOrderState();
