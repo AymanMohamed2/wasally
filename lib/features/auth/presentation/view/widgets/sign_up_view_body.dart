@@ -84,7 +84,7 @@ class SignUpViewBody extends StatelessWidget {
                   );
                 } else {
                   return CustomElevatedButton(
-                    onPressed: () async {
+                    onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         accessCubit.signupUser(
                           name: accessCubit.name!,

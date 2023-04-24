@@ -71,8 +71,10 @@ class BuisenessSection extends StatelessWidget {
           validator: (value) {
             if (value == null || value.isEmpty) {
               return AppStrings.fieldRequired.tr();
-            } else {
-              return null;
+            } else if (value.length < 11) {
+              return AppStrings.phoneLessThan.tr();
+            } else if (value.length > 11) {
+              return AppStrings.phoneMoreThan.tr();
             }
           },
           hintText: AppStrings.phoneNumber.tr(),

@@ -38,7 +38,7 @@ class SignupCubit extends Cubit<SignupState> {
   void selectAccount({required var selected}) {
     if (selected == 'User Account' || selected == 'حساب مستخدم') {
       emit(SignUpUserState());
-    } else if (selected == 'Shop Account' || selected == 'حساب  متجر') {
+    } else if (selected == 'Shop Account' || selected == 'حساب متجر') {
       emit(BuisenessUserState());
     }
   }
@@ -61,12 +61,13 @@ class SignupCubit extends Cubit<SignupState> {
         );
       },
       (signup) async {
-        if (accountType == 'Shop Account') {
+        if (accountType == 'Shop Account' || accountType == 'حساب متجر') {
           await signupRepo.postCategory(
-              collectionId: getCollectionId()!,
-              name: name,
-              address: address,
-              categoryName: category);
+            collectionId: getCollectionId()!,
+            name: name,
+            address: address,
+            categoryName: category,
+          );
         } else {
           null;
         }

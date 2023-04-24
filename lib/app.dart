@@ -30,7 +30,7 @@ class Wasally extends StatefulWidget {
 class _WasallyState extends State<Wasally> {
   @override
   void didChangeDependencies() {
-    context.setLocale(arabicLocal);
+    context.setLocale(englishLocal);
     super.didChangeDependencies();
   }
 
