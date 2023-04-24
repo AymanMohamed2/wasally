@@ -25,7 +25,7 @@ class PersonInfoViewBody extends StatelessWidget {
           child: BlocBuilder<PersonCubit, PersonState>(
             builder: (context, state) {
               if (state is PersonSuccess) {
-                return Column(
+                return ListView(
                   children: [
                     UserAccountsDrawerHeader(
                       accountName: Text(
