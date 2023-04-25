@@ -44,6 +44,10 @@
   "are_you_sure":"هل انت متأكد ؟",
   "to_log_out":"من تسجيل الخروج",
 
+  
+  "no_shops":"لا توجد محلات في هذا القسم حاليا",
+  "pls_chooseLocation":"الرجاء تحديد مكان تسليم الطلب",
+
   "wasally":"وصل لي",
   "order_send_successfuly":"تم ارسال الطلب بنجاح",
   "order_will_arrive":"سوف يصل طلبك في اسرع وقت ممكن",
@@ -51,7 +55,10 @@
   "get_possition":"حدد مكان تسليم الطلب",
   "pls_write_order":"الرجاء ادخال الطلب اولا",
 
-  "you_are_already_get_location":"لقد حددت مكان التسليم بالفعل من قبل"
+  "you_are_already_get_location":"لقد حددت مكان التسليم بالفعل من قبل",
+  "location_successfuly":"لقد لم تحديد مكان تسليم الطلب بنجاح",
+  "determine_my_current":"التوصيل الي موقعي الحالي",
+  "get_location":"حدد موقعك"
 
 
 }

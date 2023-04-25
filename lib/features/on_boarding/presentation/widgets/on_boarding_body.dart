@@ -37,16 +37,20 @@ class OnBoardingViewBody extends StatelessWidget {
       padding: const EdgeInsets.only(
         top: 10,
       ),
-      child: CustomOnBoarding(
-        text: AppStrings.onBoardingSkip.tr(),
-        skipTextStyle: const TextStyle(color: Colors.black),
-        introductionList: list,
-        backgroudColor: Colors.white,
-        onTapSkipButton: () {
-          Get.off(
-            () => const LoginView(),
-          );
-        },
+      child: SizedBox(
+        height: SizeConfig.screenHeight,
+        width: SizeConfig.screenWidth,
+        child: CustomOnBoarding(
+          text: AppStrings.onBoardingSkip.tr(),
+          skipTextStyle: const TextStyle(color: Colors.black),
+          introductionList: list,
+          backgroudColor: Colors.white,
+          onTapSkipButton: () {
+            Get.off(
+              () => const LoginView(),
+            );
+          },
+        ),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intro_screen_onboarding_flutter/circle_progress_bar.dart';
 import 'package:intro_screen_onboarding_flutter/introduction.dart';
+import 'package:wasally/core/utils/size_config.dart';
 
 /// A IntroScreen Class.
 
@@ -35,130 +36,56 @@ class _CustomOnBoardingState extends State<CustomOnBoarding> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: Container(
-          color: widget.backgroudColor ?? Theme.of(context).backgroundColor,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      alignment: Alignment.topRight,
-                      child: TextButton(
-                        onPressed: widget.onTapSkipButton,
-                        child: Text(widget.text, style: widget.skipTextStyle),
+    return SizedBox(
+      height: SizeConfig.screenHeight,
+      width: SizeConfig.screenWidth,
+      child: Material(
+        child: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle.light,
+          child: Container(
+            color: widget.backgroudColor ?? Theme.of(context).backgroundColor,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 40.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        alignment: Alignment.topRight,
+                        child: TextButton(
+                          onPressed: widget.onTapSkipButton,
+                          child: Text(widget.text, style: widget.skipTextStyle),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: SizedBox(
+                      height: SizeConfig.screenHeight! * 0.5,
+                      width: SizeConfig.screenWidth! * 0.5,
+                      child: PageView(
+                        physics: const ClampingScrollPhysics(),
+                        controller: _pageController,
+                        onPageChanged: (int page) {
+                          setState(() {
+                            _currentPage = page;
+                          });
+                        },
+                        children: widget.introductionList!,
                       ),
                     ),
-                  ],
-                ),
-                Expanded(
-                  child: Container(
-                    height: 550.0,
-                    child: PageView(
-                      physics: ClampingScrollPhysics(),
-                      controller: _pageController,
-                      onPageChanged: (int page) {
-                        setState(() {
-                          _currentPage = page;
-                        });
-                      },
-                      children: widget.introductionList!,
-                    ),
                   ),
-                ),
-                //                Row(
-                //                  mainAxisAlignment: MainAxisAlignment.center,
-                //                  children: _buildPageIndicator(),
-                //                ),
-                _customProgress(),
-                //_buildNextButton(),
-              ],
+                  _customProgress(),
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
   }
-
-//  Widget _buildNextButton() {
-//    return (_currentPage != widget.introductionList.length - 1
-//        ? Expanded(
-//      child: Align(
-//        alignment: FractionalOffset.bottomRight,
-//        child: FlatButton(
-//          onPressed: () {
-//            _pageController.nextPage(
-//              duration: Duration(milliseconds: 500),
-//              curve: Curves.ease,
-//            );
-//          },
-//          child: Row(
-//            mainAxisAlignment: MainAxisAlignment.center,
-//            mainAxisSize: MainAxisSize.min,
-//            children: <Widget>[
-////                    Text(
-////                      'Next',
-////                      style: TextStyle(
-////                        color: Colors.black,
-////                        fontSize: 22.0,
-////                      ),
-////                    ),
-//            ],
-//          ),
-//        ),
-//      ),
-//    )
-//        : Expanded(
-//      child: Align(
-//        alignment: FractionalOffset.bottomRight,
-//        child: FlatButton(
-//          onPressed: () {
-//            print('Start');
-//          },
-//          child: Row(
-//            mainAxisAlignment: MainAxisAlignment.center,
-//            mainAxisSize: MainAxisSize.min,
-//            children: <Widget>[
-////                    Text(
-////                      'Start',
-////                      style: TextStyle(
-////                        color: Colors.black,
-////                        fontSize: 22.0,
-////                      ),
-////                    ),
-//            ],
-//          ),
-//        ),
-//      ),
-//    ));
-//  }
-
-//  Widget _indicator(bool isActive) {
-//    return AnimatedContainer(
-//      duration: Duration(milliseconds: 150),
-//      margin: EdgeInsets.symmetric(horizontal: 8.0),
-//      height: 8.0,
-//      width: isActive ? 24 : 16,
-//      decoration: BoxDecoration(
-//        color: isActive ? Color(0xFF7B51D3) : Colors.grey,
-//        borderRadius: BorderRadius.all(Radius.circular(10)),
-//      ),
-//    );
-//  }
-
-//  List<Widget> _buildPageIndicator() {
-//    List<Widget> list = [];
-//    for (int i = 0; i < widget.introductionList.length; i++) {
-//      list.add(i == _currentPage ? _indicator(true) : _indicator(false));
-//    }
-//    return list;
-//  }
 
   Widget _customProgress() {
     return Stack(
@@ -186,14 +113,14 @@ class _CustomOnBoardingState extends State<CustomOnBoarding> {
             onPressed: () {
               _currentPage != widget.introductionList!.length - 1
                   ? _pageController.nextPage(
-                      duration: Duration(milliseconds: 500),
+                      duration: const Duration(milliseconds: 500),
                       curve: Curves.ease,
                     )
                   : widget.onTapSkipButton!();
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_forward_ios,
-              color: Colors.white,
+              color: Colors.black,
             ),
             iconSize: 15,
           ),

@@ -29,7 +29,6 @@ class CustomItemDetailsView extends StatelessWidget {
           color: Colors.black,
         ),
         onTap: () {
-          print(document);
           Get.to(
             () => CompleteOrderView(
               title: document!.name!,

@@ -50,6 +50,7 @@ dependencies:
   geocoding: ^2.0.4
   geolocator: ^8.2.0
   get: ^4.6.5
+  google_maps_flutter: ^2.2.5
   http: ^0.13.5
   intro_screen_onboarding_flutter: ^1.0.0
   loading_animation_widget: ^1.2.0+4

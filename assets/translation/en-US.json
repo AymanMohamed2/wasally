@@ -43,6 +43,9 @@
   "are_you_sure":"Are you Sure ?",
   "to_log_out":"to logout ?",
 
+"pls_chooseLocation":"Please specify the place of delivery of the order",
+  "no_shops":"There are currently no stores in this Category",
+
   "wasally":"Wasally",
   "order_send_successfuly":"Order Sent Successfully",
   "order_will_arrive":"Order Will Arrived as soon as possible",
@@ -50,7 +53,10 @@
   "get_possition":"Select where to deliver the order",
   "pls_write_order":"Please Write your Order First",
 
-  "you_are_already_get_location":"You are already Selected Where to deliver the irder before"
+  "you_are_already_get_location":"You are already Selected Where to deliver the order before",
+  "location_successfuly":"The delivery location has been successfully determined",
+  "determine_my_current":"Delivery to my current location",
+  "get_location":"Select your location"
 
 
 

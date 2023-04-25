@@ -71,12 +71,14 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, CategoryDetailsModel>> postOrderAdmin(
-      {required String name,
-      required String phone,
-      required String categoryName,
-      required String shopName,
-      required String order}) async {
+  Future<Either<Failure, CategoryDetailsModel>> postOrderAdmin({
+    required String name,
+    required String phone,
+    required String categoryName,
+    required String shopName,
+    required String order,
+    required String address,
+  }) async {
     try {
       var response = await apiServices.post(
           headers: {
@@ -95,6 +97,7 @@ class HomeRepoImpl implements HomeRepo {
               'categoryName': categoryName,
               'shopName': shopName,
               'order': order,
+              'address': address,
             }
           });
 

@@ -45,6 +45,11 @@ class AppStrings {
   static const String toLogOut = 'to_log_out';
 
   static const String wasally = 'wasally';
+
+  static const String plsChooseLocation = 'pls_chooseLocation';
+  static const String noShops = 'no_shops';
+
+
   static const String orderSendSuccessfuly = 'order_send_successfuly';
   static const String orderWillArrive = 'order_will_arrive';
   static const String writeYourOrder = 'write_your_order';
@@ -52,14 +57,9 @@ class AppStrings {
   static const String plsWriteOrder = 'pls_write_order';
 
   static const String youAreAlreadyGetLocation = 'you_are_already_get_location';
-
-
-
+  static const String locationSuccessfuly = 'location_successfuly';
+  static const String determineMyCurrent = 'determine_my_current';
+  static const String getLocation = 'get_location';
 
   
-
-
-
-
-
 }

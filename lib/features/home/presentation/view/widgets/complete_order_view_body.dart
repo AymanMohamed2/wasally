@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:wasally/core/widgets/costum_text_field.dart';
-import 'package:wasally/core/widgets/custom_loading_indicator.dart';
 import 'package:wasally/features/home/presentation/manager/complete_order_get_location_cubit/complete_order_get_location_cubit.dart';
+import 'package:wasally/features/home/presentation/view/widgets/custom_googlemap.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/size_config.dart';
@@ -13,14 +14,19 @@ import 'package:get/get.dart' hide Trans;
 import '../../manager/complete_order_button_cubit/complete_order_button_cubit.dart';
 
 class CompleteOrderViewBody extends StatelessWidget {
-  const CompleteOrderViewBody({super.key, this.controller});
+  CompleteOrderViewBody({
+    super.key,
+    this.controller,
+  });
   final TextEditingController? controller;
+  Position? position;
 
   @override
   Widget build(BuildContext context) {
     var accessCubit = BlocProvider.of<CompleteOrderCubit>(context);
-    var accessCubitLocation =
+    var accessLocationCubit =
         BlocProvider.of<CompleteOrderGetLocationCubit>(context);
+
     return ListView(
       children: [
         Container(
@@ -45,24 +51,14 @@ class CompleteOrderViewBody extends StatelessWidget {
             ),
           ),
         ),
-        BlocConsumer<CompleteOrderGetLocationCubit,
+        BlocBuilder<CompleteOrderGetLocationCubit,
             CompleteOrderGetLocationState>(
-          listener: (context, state) {
-            if (state is CompleteOrderGetLocationFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  duration: const Duration(seconds: 2),
-                  content: Text(state.errMessage),
-                ),
-              );
-            }
-          },
           builder: (context, state) {
             if (state is CompleteOrderGetLocationSuccess) {
               return CustomButtonGetPosition(
                 child: ListTile(
                   title: Text(
-                    state.currentAddress,
+                    AppStrings.locationSuccessfuly.tr(),
                     style: TextStyle(fontSize: SizeConfig.defaultSize! * 1.5),
                   ),
                   leading: const Icon(Icons.location_pin),
@@ -77,28 +73,6 @@ class CompleteOrderViewBody extends StatelessWidget {
                   );
                 },
               );
-            } else if (state is CompleteOrderGetLocationFailure) {
-              return CustomButtonGetPosition(
-                child: ListTile(
-                  title: Text(
-                    AppStrings.getpossition.tr(),
-                    style: TextStyle(fontSize: SizeConfig.defaultSize! * 1.5),
-                  ),
-                  leading: const Icon(Icons.location_pin),
-                  iconColor: Colors.orange,
-                ),
-                onTap: () async {
-                  await accessCubitLocation.getCurrentPosition(context);
-                },
-              );
-            } else if (state is CompleteOrderGetLocationLoading) {
-              return const CustomButtonGetPosition(
-                child: ListTile(
-                  title: Center(
-                    child: CustomLoadingIndicator(),
-                  ),
-                ),
-              );
             } else {
               return CustomButtonGetPosition(
                 child: ListTile(
@@ -110,7 +84,8 @@ class CompleteOrderViewBody extends StatelessWidget {
                   iconColor: Colors.orange,
                 ),
                 onTap: () async {
-                  await accessCubitLocation.getCurrentPosition(context);
+                  accessLocationCubit.getUserCurrentLocation();
+                  Get.to(() => const TestGoogleMap());
                 },
               );
             }

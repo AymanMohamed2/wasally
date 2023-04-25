@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,10 +19,16 @@ import 'package:get/get.dart' hide Trans;
 import '../manager/complete_order_button_cubit/complete_order_button_cubit.dart';
 
 class CompleteOrderView extends StatelessWidget {
-  CompleteOrderView({super.key, required this.title, this.document});
+  CompleteOrderView({
+    super.key,
+    required this.title,
+    this.document,
+  });
   final String title;
   final Document? document;
+
   final _formKey = GlobalKey<FormState>();
+
   var _controller = TextEditingController();
 
   @override
@@ -38,12 +45,9 @@ class CompleteOrderView extends StatelessWidget {
           appBar: AppBar(
             centerTitle: true,
             actions: [
-              IconButton(
-                onPressed: () {
-                  print(userInfo.name);
-                },
-                icon: const Icon(Icons.shopping_cart),
-              ),
+              CachedNetworkImage(
+                imageUrl: document!.image!,
+              )
             ],
             title: Text(
               title,
@@ -57,13 +61,26 @@ class CompleteOrderView extends StatelessWidget {
               return CostumButtonSignUp(
                   onTap: () async {
                     if (_formKey.currentState!.validate()) {
-                      BlocProvider.of<CompleteOrderCubit>(context)
-                          .postOrderAdmin(
-                              name: userInfo.name!,
-                              phone: userInfo.phone!,
-                              categoryName: document!.categoryName!,
-                              shopName: title,
-                              order: accessCubit.order!);
+                      if (BlocProvider.of<CompleteOrderGetLocationCubit>(
+                                  context)
+                              .position !=
+                          null) {
+                        BlocProvider.of<CompleteOrderCubit>(context).postOrderAdmin(
+                            name: userInfo.name!,
+                            phone: userInfo.phone!,
+                            categoryName: document!.categoryName!,
+                            shopName: title,
+                            order: accessCubit.order!,
+                            address:
+                                '${BlocProvider.of<CompleteOrderGetLocationCubit>(context).position}');
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            duration: const Duration(seconds: 2),
+                            content: Text(AppStrings.plsChooseLocation.tr()),
+                          ),
+                        );
+                      }
                     }
                   },
                   text: AppStrings.wasally.tr(),
@@ -78,7 +95,9 @@ class CompleteOrderView extends StatelessWidget {
                               phone: userInfo.phone!,
                               categoryName: document!.categoryName!,
                               shopName: title,
-                              order: accessCubit.order!);
+                              order: accessCubit.order!,
+                              address:
+                                  '${BlocProvider.of<CompleteOrderGetLocationCubit>(context).position}');
 
                       _controller.clear();
                     }
@@ -95,7 +114,9 @@ class CompleteOrderView extends StatelessWidget {
                               phone: userInfo.phone!,
                               categoryName: document!.categoryName!,
                               shopName: title,
-                              order: accessCubit.order!);
+                              order: accessCubit.order!,
+                              address:
+                                  '${BlocProvider.of<CompleteOrderGetLocationCubit>(context).position}');
                     }
                   },
                   text: AppStrings.wasally.tr(),
