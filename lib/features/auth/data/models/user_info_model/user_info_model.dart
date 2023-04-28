@@ -12,12 +12,11 @@ class UserInfoModel extends Equatable {
   final HashOptions? hashOptions;
   final DateTime? registration;
   final bool? status;
-  final DateTime? passwordUpdate;
+  final String? passwordUpdate;
   final String? email;
   final String? phone;
   final bool? emailVerification;
   final bool? phoneVerification;
-
   const UserInfoModel({
     this.id,
     this.createdAt,
@@ -53,9 +52,7 @@ class UserInfoModel extends Equatable {
             ? null
             : DateTime.parse(json['registration'] as String),
         status: json['status'] as bool?,
-        passwordUpdate: json['passwordUpdate'] == null
-            ? null
-            : DateTime.parse(json['passwordUpdate'] as String),
+        passwordUpdate: json['passwordUpdate'] as String?,
         email: json['email'] as String?,
         phone: json['phone'] as String?,
         emailVerification: json['emailVerification'] as bool?,
@@ -72,7 +69,7 @@ class UserInfoModel extends Equatable {
         'hashOptions': hashOptions?.toJson(),
         'registration': registration?.toIso8601String(),
         'status': status,
-        'passwordUpdate': passwordUpdate?.toIso8601String(),
+        'passwordUpdate': passwordUpdate,
         'email': email,
         'phone': phone,
         'emailVerification': emailVerification,

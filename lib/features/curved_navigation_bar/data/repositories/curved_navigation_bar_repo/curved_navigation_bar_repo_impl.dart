@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:wasally/core/utils/api_services.dart';
-import 'package:wasally/features/curved_navigation_bar/data/models/person_model/person_model.dart';
+import 'package:wasally/features/auth/data/models/user_info_model/user_info_model.dart';
 
 import 'package:wasally/core/errors/failures.dart';
 

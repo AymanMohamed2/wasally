@@ -1,12 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:easy_localization/easy_localization.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wasally/core/constants.dart';
+import 'package:wasally/core/utils/api_services.dart';
 import 'package:wasally/features/home/presentation/view/category_details_view.dart';
 import 'package:wasally/features/home/presentation/view/complete_order_view.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/size_config.dart';
+import '../../../../curved_navigation_bar/data/repositories/curved_navigation_bar_repo/curved_navigation_bar_repo_impl.dart';
 import 'custom_item_home.dart';
 
 class CustomGrideView extends StatelessWidget {
@@ -85,7 +89,7 @@ class CustomGrideView extends StatelessWidget {
             imageUrl: kServiceVegetables,
           ),
           CustomItemHomeView(
-            onTap: () {
+            onTap: () async {
               Get.to(
                 () => CategoryDetailsView(
                   title: AppStrings.library.tr(),
@@ -111,4 +115,16 @@ class CustomGrideView extends StatelessWidget {
       ),
     );
   }
+
+  // Future<void> openGoogleMaps(double startLatitude, double startLongitude,
+  //     double endLatitude, double endLongitude) async {
+  //   final String googleMapsUrl =
+  //       "https://www.google.com/maps/dir/?api=1&origin=$startLatitude,$startLongitude&destination=$endLatitude,$endLongitude&travelmode=driving";
+
+  //   if (await canLaunch(googleMapsUrl)) {
+  //     await launch(googleMapsUrl);
+  //   } else {
+  //     throw 'Could not launch $googleMapsUrl';
+  //   }
+  // }
 }

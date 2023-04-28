@@ -9,6 +9,7 @@ class SliderCubit extends Cubit<SliderState> {
   SliderCubit(this.homeRepo) : super(SliderInitial());
   final HomeRepo homeRepo;
   List<dynamic>? items;
+  String? userId;
 
   Future<void> getSliderList() async {
     emit(SliderStateLoading());

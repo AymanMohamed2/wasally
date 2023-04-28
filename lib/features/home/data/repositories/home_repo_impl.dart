@@ -72,7 +72,6 @@ class HomeRepoImpl implements HomeRepo {
 
   @override
   Future<Either<Failure, CategoryDetailsModel>> postOrderAdmin({
-    required String name,
     required String phone,
     required String categoryName,
     required String shopName,
@@ -92,7 +91,6 @@ class HomeRepoImpl implements HomeRepo {
           data: {
             'documentId': ID.unique(),
             'data': {
-              'name': name,
               'phone': phone,
               'categoryName': categoryName,
               'shopName': shopName,

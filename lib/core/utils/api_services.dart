@@ -21,4 +21,14 @@ class ApiServices {
         options: Options(headers: headers), data: data);
     return response.data;
   }
+
+  Future<Map<String, dynamic>> put({
+    required String endPoint,
+    required var data,
+    required var headers,
+  }) async {
+    var response = await dio.put('$_baseUrl$endPoint',
+        options: Options(headers: headers), data: data);
+    return response.data;
+  }
 }

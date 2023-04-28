@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/core/constants.dart';
 import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/core/widgets/space_widget.dart';
-import 'package:wasally/features/curved_navigation_bar/presentation/manager/person_cubit/person_cubit.dart';
 import 'package:wasally/features/home/presentation/manager/slider_cubit/slider_cubit.dart';
 import '../../../../../core/utils/app_strings.dart';
 import 'custom_app_bar.dart';
@@ -22,7 +22,6 @@ class HomeViewBody extends StatefulWidget {
 class _HomeViewBodyState extends State<HomeViewBody> {
   void initState() {
     BlocProvider.of<SliderCubit>(context).getSliderList();
-    BlocProvider.of<PersonCubit>(context).getUserInfo();
   }
 
   @override

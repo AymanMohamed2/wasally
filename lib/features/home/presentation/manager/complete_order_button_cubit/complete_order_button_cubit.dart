@@ -22,7 +22,6 @@ class CompleteOrderCubit extends Cubit<CompleteOrderState> {
   }
 
   Future<void> postOrderAdmin({
-    required String name,
     required String phone,
     required String categoryName,
     required String shopName,
@@ -31,7 +30,6 @@ class CompleteOrderCubit extends Cubit<CompleteOrderState> {
   }) async {
     emit(CompleteOrderLoading());
     var response = await homeRepo.postOrderAdmin(
-      name: name,
       phone: phone,
       categoryName: categoryName,
       shopName: shopName,

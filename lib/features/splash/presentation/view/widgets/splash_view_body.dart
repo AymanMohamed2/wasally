@@ -13,6 +13,7 @@ class SplashViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var accessCubit = BlocProvider.of<SplashCubit>(context);
+
     SizeConfig().init(context);
     return FlutterSplashScreen.fadeIn(
       backgroundColor: Colors.white,
@@ -28,10 +29,9 @@ class SplashViewBody extends StatelessWidget {
         child: Image.asset("assets/images/splash.png"),
       ),
       onAnimationEnd: () => debugPrint("On Fade In End"),
-      defaultNextScreen:
-          accessCubit.email == null || accessCubit.password == null
-              ? const OnBoardingView()
-              : const BottomNavigationBarHome(),
+      defaultNextScreen: accessCubit.userId == null
+          ? const OnBoardingView()
+          : const BottomNavigationBarHome(),
     );
   }
 }

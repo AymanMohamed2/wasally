@@ -13,8 +13,7 @@ void main() async {
   await EasyLocalization.ensureInitialized();
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? phone = prefs.getString("phone");
-  String? password = prefs.getString("password");
+
   String? userId = prefs.getString("userId");
   //test commit
   runApp(EasyLocalization(
@@ -26,8 +25,7 @@ void main() async {
           BlocProvider(create: (context) => SplashCubit()),
         ],
         child: Wasally(
-          phone: phone,
-          password: password,
+          userId: userId,
         ),
       ),
     ),

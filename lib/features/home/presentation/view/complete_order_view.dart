@@ -5,17 +5,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/functions/custom_alert_dialog.dart';
 import 'package:wasally/core/utils/app_strings.dart';
 import 'package:wasally/core/widgets/custom_loading_indicator.dart';
-import 'package:wasally/features/curved_navigation_bar/presentation/manager/person_cubit/person_cubit.dart';
 import 'package:wasally/features/home/data/models/category_details_model/document.dart';
 import 'package:wasally/features/home/presentation/manager/complete_order_get_location_cubit/complete_order_get_location_cubit.dart';
 import 'package:wasally/features/home/presentation/view/widgets/complete_order_view_body.dart';
 
 import '../../../../core/widgets/custom_buttons.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
-import '../../../curved_navigation_bar/data/models/person_model/person_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart' hide Trans;
 
+import '../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import '../manager/complete_order_button_cubit/complete_order_button_cubit.dart';
 
 class CompleteOrderView extends StatelessWidget {
@@ -34,8 +33,7 @@ class CompleteOrderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var accessCubit = BlocProvider.of<CompleteOrderCubit>(context);
-    final UserInfoModel userInfo =
-        BlocProvider.of<PersonCubit>(context).userInfo!;
+    var accessVerifyCubit = BlocProvider.of<VerifyCubit>(context);
 
     return BlocProvider(
       create: (context) => CompleteOrderGetLocationCubit(),
@@ -46,7 +44,8 @@ class CompleteOrderView extends StatelessWidget {
             centerTitle: true,
             actions: [
               CachedNetworkImage(
-                imageUrl: document!.image!,
+                imageUrl: document?.image ??
+                    'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cf5d2553db8e9ad/view?project=6435d5e1a13eff6332c2&mode=admin',
               )
             ],
             title: Text(
@@ -66,8 +65,7 @@ class CompleteOrderView extends StatelessWidget {
                               .position !=
                           null) {
                         BlocProvider.of<CompleteOrderCubit>(context).postOrderAdmin(
-                            name: userInfo.name!,
-                            phone: userInfo.phone!,
+                            phone: accessVerifyCubit.verifyModel!.userId!,
                             categoryName: document!.categoryName!,
                             shopName: title,
                             order: accessCubit.order!,
@@ -91,8 +89,7 @@ class CompleteOrderView extends StatelessWidget {
                     if (_formKey.currentState!.validate()) {
                       await BlocProvider.of<CompleteOrderCubit>(context)
                           .postOrderAdmin(
-                              name: userInfo.name!,
-                              phone: userInfo.phone!,
+                              phone: accessVerifyCubit.verifyModel!.userId!,
                               categoryName: document!.categoryName!,
                               shopName: title,
                               order: accessCubit.order!,
@@ -110,8 +107,7 @@ class CompleteOrderView extends StatelessWidget {
                     if (_formKey.currentState!.validate()) {
                       await BlocProvider.of<CompleteOrderCubit>(context)
                           .postOrderAdmin(
-                              name: userInfo.name!,
-                              phone: userInfo.phone!,
+                              phone: accessVerifyCubit.verifyModel!.userId!,
                               categoryName: document!.categoryName!,
                               shopName: title,
                               order: accessCubit.order!,

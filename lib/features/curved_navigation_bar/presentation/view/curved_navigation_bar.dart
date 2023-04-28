@@ -3,15 +3,17 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/utils/size_config.dart';
-import 'package:wasally/features/curved_navigation_bar/presentation/manager/person_cubit/person_cubit.dart';
+import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:wasally/features/home/presentation/view/home_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/person_info_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/talbat_view.dart';
 
 import '../../../../core/utils/api_services.dart';
+import '../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import '../../../home/data/repositories/home_repo_impl.dart';
 import '../../../home/presentation/manager/category_details_cubit/category_details_cubit.dart';
 import '../../../home/presentation/manager/slider_cubit/slider_cubit.dart';
+import '../../../splash/presentation/manager/splash_cubit/splash_cubit.dart';
 
 class BottomNavigationBarHome extends StatefulWidget {
   const BottomNavigationBarHome({Key? key}) : super(key: key);
@@ -22,6 +24,13 @@ class BottomNavigationBarHome extends StatefulWidget {
 }
 
 class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
+  @override
+  void initState() {
+    BlocProvider.of<VerifyCubit>(context)
+        .getUserInfo(userId: BlocProvider.of<SplashCubit>(context).userId);
+    super.initState();
+  }
+
   int selectedindex = 0;
   List<Widget> pages = [
     const HomeView(),
@@ -69,13 +78,10 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
                 color: Colors.orange,
               ),
             ],
-            onTap: (index) async {
+            onTap: (index) {
               setState(() {
                 selectedindex = index;
               });
-              if (index == 2) {
-                await BlocProvider.of<PersonCubit>(context).getUserInfo();
-              }
             },
           ),
           body: pages.elementAt(selectedindex)),

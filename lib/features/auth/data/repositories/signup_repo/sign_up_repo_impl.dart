@@ -1,6 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:dio/dio.dart';
 import 'package:wasally/core/utils/api_services.dart';
+import 'package:wasally/features/auth/data/models/login_model.dart';
 import 'package:wasally/features/auth/data/models/signup_model.dart';
 import 'package:wasally/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
@@ -84,4 +85,33 @@ class SignupRepoImpl implements SignupRepo {
       }
     }
   }
+
+  // @override
+  // Future<Either<Failure, LoginModel>> createPhoneSession(
+  //     {required String phoneNumber}) async {
+  //   try {
+  //     var response = await apiServices.put(
+  //       endPoint: 'users',
+  //       data: {
+  //         "userId": ID.unique(),
+  //         "phone": '+2$phoneNumber',
+  //       },
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "X-Appwrite-Response-Format": "1.0.0",
+  //         "X-Appwrite-Project": "6435d5e1a13eff6332c2",
+  //       },
+  //     );
+
+  //     return right(
+  //       LoginModel.fromJson(response),
+  //     );
+  //   } on Exception catch (e) {
+  //     if (e is DioError) {
+  //       return left(ServerFailure.fromDioError(e));
+  //     } else {
+  //       return left(ServerFailure(e.toString()));
+  //     }
+  //   }
+  // }
 }
