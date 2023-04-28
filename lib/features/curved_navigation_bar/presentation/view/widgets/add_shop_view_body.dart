@@ -3,17 +3,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:get/get.dart' hide Trans;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wasally/core/constants.dart';
 import 'package:wasally/core/utils/app_strings.dart';
+import 'package:wasally/features/auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import 'package:wasally/features/auth/presentation/view/login_view.dart';
 import 'package:wasally/core/widgets/custom_elevated_button.dart';
-import 'package:wasally/features/auth/presentation/view/widgets/user_section.dart';
 
 import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../../../core/widgets/space_widget.dart';
-import '../../manager/signup_cubit/signup_cubit.dart';
 import 'buiseness_section.dart';
-import 'custom_drop_down_button1.dart';
+import '../../manager/add_shop_cubit/add_shop_cubit.dart';
+import 'buiseness_section.dart';
 
 class SignUpViewBody extends StatelessWidget {
   SignUpViewBody({
@@ -23,7 +25,8 @@ class SignUpViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SignupCubit accessCubit = BlocProvider.of<SignupCubit>(context);
+    AddShopCubit accessCubit = BlocProvider.of<AddShopCubit>(context);
+    VerifyCubit accessVerifyCubit = BlocProvider.of<VerifyCubit>(context);
 
     return Form(
       key: _formKey,
@@ -32,35 +35,15 @@ class SignUpViewBody extends StatelessWidget {
         child: ListView(
           children: [
             Image.asset(
-              'assets/images/register_image.png',
-              height: SizeConfig.defaultSize! * 30,
+              kLogo,
+              height: SizeConfig.defaultSize! * 10,
             ),
-            CustomDropDownButton1(
-                onChanged: (index) {
-                  BlocProvider.of<SignupCubit>(context)
-                      .selectAccount(selected: index);
-
-                  BlocProvider.of<SignupCubit>(context).accountType = index;
-                },
-                items: [
-                  AppStrings.shopAccount.tr(),
-                  AppStrings.userAccount.tr(),
-                ],
-                hintText: AppStrings.accountType.tr()),
             const VirticalSpace(1),
-            BlocBuilder<SignupCubit, SignupState>(
-              builder: (context, state) {
-                if (state is BuisenessUserState) {
-                  return const BuisenessSection();
-                } else {
-                  return const UserSection();
-                }
-              },
-            ),
+            const BuisenessSection(),
             const VirticalSpace(3),
-            BlocConsumer<SignupCubit, SignupState>(
+            BlocConsumer<AddShopCubit, AddShopState>(
               listener: (context, state) {
-                if (state is SignUpSuccessState) {
+                if (state is AddShopSuccess) {
                   Get.off(() => const LoginView());
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -68,7 +51,7 @@ class SignUpViewBody extends StatelessWidget {
                       content: Text(AppStrings.accountCreated.tr()),
                     ),
                   );
-                } else if (state is SignUpFailureState) {
+                } else if (state is AddShopFailure) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       duration: const Duration(seconds: 2),
@@ -78,24 +61,24 @@ class SignUpViewBody extends StatelessWidget {
                 }
               },
               builder: (context, state) {
-                if (state is SignUpLoadingState) {
+                if (state is AddShopLoading) {
                   return const CustomElevatedButton(
                     child: CustomLoadingIndicator(),
                   );
                 } else {
                   return CustomElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        accessCubit.signupUser(
-                          name: accessCubit.name!,
-                          phoneNumber: accessCubit.phoneNumber!,
-                          password: accessCubit.password!,
-                          email: accessCubit.phoneNumber!,
-                        );
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+
+                        await accessCubit.postCategory(
+                            name: accessCubit.name!,
+                            shopId: prefs.getString('userId')!);
                       }
                     },
                     child: Text(
-                      AppStrings.register.tr(),
+                      AppStrings.addShop.tr(),
                       style: const TextStyle(
                           color: Color.fromARGB(255, 44, 31, 31)),
                     ),

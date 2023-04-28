@@ -13,7 +13,7 @@ class AppStrings {
   static const String forgotPassword = 'forgot_password';
   static const String login = 'login';
   static const String dontHaveAccount = 'dont_have_account';
-  static const String register = 'register';
+  static const String addShop = 'addShop';
   static const String phoneLessThan = 'phone_less_than';
   static const String phoneMoreThan = 'phone_more_than';
 
@@ -49,7 +49,6 @@ class AppStrings {
   static const String plsChooseLocation = 'pls_chooseLocation';
   static const String noShops = 'no_shops';
 
-
   static const String orderSendSuccessfuly = 'order_send_successfuly';
   static const String orderWillArrive = 'order_will_arrive';
   static const String writeYourOrder = 'write_your_order';
@@ -60,6 +59,4 @@ class AppStrings {
   static const String locationSuccessfuly = 'location_successfuly';
   static const String determineMyCurrent = 'determine_my_current';
   static const String getLocation = 'get_location';
-
-  
 }

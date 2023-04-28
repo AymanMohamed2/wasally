@@ -177,108 +177,105 @@ class LoginViewBody extends StatelessWidget {
     TextEditingController controller = TextEditingController();
     String? phoneNumber;
 
-    return Scaffold(
-      body: Container(
-        margin: EdgeInsets.only(
-            left: SizeConfig.screenWidth! * 0.07,
-            right: SizeConfig.screenWidth! * 0.07),
-        alignment: Alignment.center,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                kLogo,
-                width: SizeConfig.screenWidth! * 0.5,
-                height: SizeConfig.screenHeight! * 0.2,
+    return Container(
+      margin: EdgeInsets.only(
+          left: SizeConfig.screenWidth! * 0.07,
+          right: SizeConfig.screenWidth! * 0.07),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const VirticalSpace(15),
+            Image.asset(
+              kLogo,
+              width: SizeConfig.screenWidth! * 0.5,
+              height: SizeConfig.screenHeight! * 0.2,
+            ),
+            const VirticalSpace(2),
+            const Text(
+              "Phone Verification",
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+            const VirticalSpace(1),
+            const Text(
+              "We need to register your phone without getting started!",
+              style: TextStyle(
+                fontSize: 16,
               ),
-              const VirticalSpace(2),
-              const Text(
-                "Phone Verification",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-              const VirticalSpace(1),
-              const Text(
-                "We need to register your phone without getting started!",
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const VirticalSpace(3),
-              Container(
-                height: 55,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const HorizintalSpace(1.5),
-                    SizedBox(
-                        width: SizeConfig.screenWidth! * 0.1,
-                        child: const Text('+2')),
-                    const Text(
-                      "|",
-                      style: TextStyle(fontSize: 33, color: Colors.grey),
+              textAlign: TextAlign.center,
+            ),
+            const VirticalSpace(3),
+            Container(
+              height: 55,
+              decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: Colors.grey),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const HorizintalSpace(1.5),
+                  SizedBox(
+                      width: SizeConfig.screenWidth! * 0.1,
+                      child: const Text('+2')),
+                  const Text(
+                    "|",
+                    style: TextStyle(fontSize: 33, color: Colors.grey),
+                  ),
+                  const HorizintalSpace(1),
+                  Expanded(
+                      child: TextField(
+                    keyboardType: TextInputType.phone,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Phone",
                     ),
-                    const HorizintalSpace(1),
-                    Expanded(
-                        child: TextField(
-                      keyboardType: TextInputType.phone,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Phone",
-                      ),
-                      onChanged: (value) {
-                        accessCubit.phone = value;
-                      },
-                    ))
-                  ],
-                ),
+                    onChanged: (value) {
+                      accessCubit.phone = value;
+                    },
+                  ))
+                ],
               ),
-              const VirticalSpace(2),
-              BlocConsumer<LoginCubit, LoginState>(
-                listener: (context, state) {
-                  if (state is LoginSuccessState) {
-                    Get.to(() => const VerifyView());
-                  } else if (state is LoginFailureState) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        duration: const Duration(seconds: 2),
-                        content: Text(state.errMessage),
-                      ),
-                    );
-                  }
-                },
-                builder: (context, state) {
-                  if (state is LoginLoadingState) {
-                    return CustomElevatedButton(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: SizeConfig.screenWidth! * 0.3,
-                            vertical: SizeConfig.screenWidth! * 0.04),
-                        child: const Center(
-                          child: CustomLoadingIndicator(),
-                        ));
-                  } else {
-                    return CustomElevatedButton(
+            ),
+            const VirticalSpace(2),
+            BlocConsumer<LoginCubit, LoginState>(
+              listener: (context, state) {
+                if (state is LoginSuccessState) {
+                  Get.to(() => const VerifyView());
+                } else if (state is LoginFailureState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      duration: const Duration(seconds: 2),
+                      content: Text(state.errMessage),
+                    ),
+                  );
+                }
+              },
+              builder: (context, state) {
+                if (state is LoginLoadingState) {
+                  return CustomElevatedButton(
                       padding: EdgeInsets.symmetric(
                           horizontal: SizeConfig.screenWidth! * 0.3,
                           vertical: SizeConfig.screenWidth! * 0.04),
-                      child: const Text(
-                        'Send the Code',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      onPressed: () async {
-                        await accessCubit.createPhoneSession(
-                            phoneNumber: accessCubit.phone!);
-                      },
-                    );
-                  }
-                },
-              )
-            ],
-          ),
+                      child: const Center(
+                        child: CustomLoadingIndicator(),
+                      ));
+                } else {
+                  return CustomElevatedButton(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: SizeConfig.screenWidth! * 0.3,
+                        vertical: SizeConfig.screenWidth! * 0.04),
+                    child: const Text(
+                      'Send the Code',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    onPressed: () async {
+                      await accessCubit.createPhoneSession(
+                          phoneNumber: accessCubit.phone!);
+                    },
+                  );
+                }
+              },
+            )
+          ],
         ),
       ),
     );

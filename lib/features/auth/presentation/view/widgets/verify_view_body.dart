@@ -3,11 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:otp_text_field/otp_field.dart';
-
 import 'package:pinput/pinput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:telephony/telephony.dart';
 import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/core/widgets/custom_elevated_button.dart';
 import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
@@ -36,11 +33,10 @@ class VerifyViewBody extends StatelessWidget {
         margin: EdgeInsets.only(
             left: SizeConfig.screenWidth! * 0.07,
             right: SizeConfig.screenWidth! * 0.07),
-        alignment: Alignment.center,
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const VirticalSpace(15),
               Image.asset(
                 kLogo,
                 width: SizeConfig.screenWidth! * 0.5,
@@ -90,7 +86,7 @@ class VerifyViewBody extends StatelessWidget {
                           'userId', accessLoginCubit.loginModel!.userId);
                       BlocProvider.of<SplashCubit>(context).userId =
                           state.loginModel.userId!;
-                      Get.to(() => const BottomNavigationBarHome());
+                      Get.off(() => const BottomNavigationBarHome());
                     } else if (state is VerifyFailure) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

@@ -1,4 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../core/utils/app_strings.dart';
 
 class CustomDropDownButton1 extends StatefulWidget {
   const CustomDropDownButton1({
@@ -47,7 +50,7 @@ class _CustomDropDownButton1State extends State<CustomDropDownButton1> {
       ),
       validator: (value) {
         if (value == null) {
-          return 'this field is required';
+          return AppStrings.fieldRequired.tr();
         } else {
           return null;
         }
