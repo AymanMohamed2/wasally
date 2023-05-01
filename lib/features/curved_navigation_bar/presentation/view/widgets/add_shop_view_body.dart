@@ -15,10 +15,9 @@ import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../../../core/widgets/space_widget.dart';
 import 'buiseness_section.dart';
 import '../../manager/add_shop_cubit/add_shop_cubit.dart';
-import 'buiseness_section.dart';
 
-class SignUpViewBody extends StatelessWidget {
-  SignUpViewBody({
+class AddShopViewBody extends StatelessWidget {
+  AddShopViewBody({
     super.key,
   });
   final _formKey = GlobalKey<FormState>();
@@ -44,11 +43,11 @@ class SignUpViewBody extends StatelessWidget {
             BlocConsumer<AddShopCubit, AddShopState>(
               listener: (context, state) {
                 if (state is AddShopSuccess) {
-                  Get.off(() => const LoginView());
+                  Get.back();
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       duration: const Duration(seconds: 2),
-                      content: Text(AppStrings.accountCreated.tr()),
+                      content: Text(AppStrings.shopCreated.tr()),
                     ),
                   );
                 } else if (state is AddShopFailure) {

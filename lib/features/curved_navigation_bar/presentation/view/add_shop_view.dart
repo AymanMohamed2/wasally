@@ -9,8 +9,8 @@ import '../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import 'widgets/add_shop_view_body.dart';
 import '../manager/add_shop_cubit/add_shop_cubit.dart';
 
-class SignUpView extends StatelessWidget {
-  const SignUpView({super.key});
+class CustomButtomSheetViewBody extends StatelessWidget {
+  const CustomButtomSheetViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class SignUpView extends StatelessWidget {
         ),
       ],
       child: Scaffold(
-        body: SignUpViewBody(),
+        body: AddShopViewBody(),
       ),
     );
   }

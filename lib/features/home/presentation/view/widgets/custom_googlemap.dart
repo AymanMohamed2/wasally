@@ -73,18 +73,18 @@ class _TestGoogleMapState extends State<TestGoogleMap> {
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            CustomElevatedButton(
-              onPressed: position != null
-                  ? () {
-                      Get.back();
-                    }
-                  : null,
-              padding: EdgeInsets.symmetric(
-                  horizontal: SizeConfig.screenWidth! * 0.17,
-                  vertical: SizeConfig.screenHeight! * 0.02),
-              child: Text(
-                AppStrings.determineMyCurrent.tr(),
-                style: const TextStyle(color: Colors.black),
+            SizedBox(
+              width: SizeConfig.screenWidth! * 0.7,
+              child: CustomElevatedButton(
+                onPressed: position != null
+                    ? () {
+                        Get.back();
+                      }
+                    : null,
+                child: Text(
+                  AppStrings.determineMyCurrent.tr(),
+                  style: const TextStyle(color: Colors.black),
+                ),
               ),
             ),
             const HorizintalSpace(2),

@@ -2,8 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 import 'package:pinput/pinput.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/core/widgets/custom_elevated_button.dart';
@@ -12,6 +13,7 @@ import 'package:wasally/features/auth/presentation/manager/verify_cubit/verify_c
 import 'package:wasally/features/splash/presentation/manager/splash_cubit/splash_cubit.dart';
 
 import '../../../../../core/constants.dart';
+import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../../../core/widgets/custom_text.dart';
 import '../../../../../core/widgets/space_widget.dart';
@@ -43,13 +45,13 @@ class VerifyViewBody extends StatelessWidget {
                 height: SizeConfig.screenHeight! * 0.2,
               ),
               const VirticalSpace(2.5),
-              const CustomText(
-                text: 'Phone Verification',
+              CustomText(
+                text: AppStrings.verifyCode.tr(),
                 fontWeight: FontWeight.bold,
               ),
               const VirticalSpace(1.1),
-              const CustomText(
-                text: 'We need to register your phone without getting started!',
+              CustomText(
+                text: AppStrings.subTitleVerificton.tr(),
                 fontSize: 16,
                 textAlign: TextAlign.center,
               ),
@@ -68,7 +70,7 @@ class VerifyViewBody extends StatelessWidget {
                 },
                 validator: (value) {
                   if (value != null && value.length < 6) {
-                    return 'Please Complete Your Verifiction Code';
+                    return AppStrings.completeVerifyErrMessage.tr();
                   } else {
                     return null;
                   }
@@ -107,8 +109,8 @@ class VerifyViewBody extends StatelessWidget {
                           ));
                     } else {
                       return CustomElevatedButton(
-                        child: const CustomText(
-                          text: 'Phone Verifiction',
+                        child: CustomText(
+                          text: AppStrings.verify.tr(),
                           fontSize: 16,
                         ),
                         onPressed: () {
@@ -129,8 +131,8 @@ class VerifyViewBody extends StatelessWidget {
                     onPressed: () {
                       Get.back();
                     },
-                    child: const CustomText(
-                      text: 'Edit Phone Number ?',
+                    child: CustomText(
+                      text: AppStrings.editPhoneNumber.tr(),
                       fontSize: 16,
                     ),
                   ),

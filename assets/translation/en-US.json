@@ -31,7 +31,7 @@
   "address":"Address",
   "shop_name":"Shop Name",
   "name":"Name",
-  "account_created":"Account Created Successfully 🥳",
+  "account_created":"ٍShop Added Successfully 🥳",
 
   "categories":"Categories",
   "other":"Other",
@@ -56,7 +56,16 @@
   "you_are_already_get_location":"You are already Selected Where to deliver the order before",
   "location_successfuly":"The delivery location has been successfully determined",
   "determine_my_current":"Delivery to my current location",
-  "get_location":"Select your location"
+  "get_location":"Select your location",
+
+  "phone_verifiction":"Phone Verifiction",
+  "verify_code":"Verify Code",
+  "sub_title_login":"We need to register your phone before we start!",
+  "send_the_code":"Send The Code",
+  "sub_title_verifiction":"We need to confirm the verification code before we Start!",
+  "verify":"Verify",
+  "edit_phone_number":"Edit Phone Number?",
+  "compelete_verify_err_message":"Please Complete Your Verifiction Code"
 
 
 

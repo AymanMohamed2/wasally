@@ -7,6 +7,8 @@ class AddShopBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(child: SignUpView());
+    return const SizedBox(
+      child: CustomButtomSheetViewBody(),
+    );
   }
 }

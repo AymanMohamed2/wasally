@@ -32,7 +32,7 @@ class AppStrings {
   static const String address = 'address';
   static const String shopName = 'shop_name';
   static const String name = 'name';
-  static const String accountCreated = 'account_created';
+  static const String shopCreated = 'account_created';
 
   static const String categories = 'categories';
   static const String other = 'other';
@@ -59,4 +59,15 @@ class AppStrings {
   static const String locationSuccessfuly = 'location_successfuly';
   static const String determineMyCurrent = 'determine_my_current';
   static const String getLocation = 'get_location';
+
+  static const String phoneVerifiction = 'phone_verifiction';
+  static const String subTitleLogin = 'sub_title_login';
+
+  static const String sendTheCode = 'send_the_code';
+
+  static const String verifyCode = 'verify_code';
+  static const String subTitleVerificton = 'sub_title_verifiction';
+  static const String verify = 'verify';
+  static const String editPhoneNumber = 'edit_phone_number';
+  static const String completeVerifyErrMessage = 'compelete_verify_err_message';
 }

@@ -158,15 +158,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 import 'package:wasally/core/widgets/custom_loading_indicator.dart';
 import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 
 import '../../../../../core/constants.dart';
+import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/custom_elevated_button.dart';
 import '../../../../../core/widgets/space_widget.dart';
 import '../verify_view.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({Key? key}) : super(key: key);
@@ -191,14 +193,14 @@ class LoginViewBody extends StatelessWidget {
               height: SizeConfig.screenHeight! * 0.2,
             ),
             const VirticalSpace(2),
-            const Text(
-              "Phone Verification",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            Text(
+              AppStrings.phoneVerifiction.tr(),
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const VirticalSpace(1),
-            const Text(
-              "We need to register your phone without getting started!",
-              style: TextStyle(
+            Text(
+              AppStrings.subTitleLogin.tr(),
+              style: const TextStyle(
                 fontSize: 16,
               ),
               textAlign: TextAlign.center,
@@ -224,9 +226,9 @@ class LoginViewBody extends StatelessWidget {
                   Expanded(
                       child: TextField(
                     keyboardType: TextInputType.phone,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: "Phone",
+                      hintText: AppStrings.phoneNumber.tr(),
                     ),
                     onChanged: (value) {
                       accessCubit.phone = value;
@@ -251,26 +253,26 @@ class LoginViewBody extends StatelessWidget {
               },
               builder: (context, state) {
                 if (state is LoginLoadingState) {
-                  return CustomElevatedButton(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: SizeConfig.screenWidth! * 0.3,
-                          vertical: SizeConfig.screenWidth! * 0.04),
-                      child: const Center(
-                        child: CustomLoadingIndicator(),
-                      ));
+                  return const SizedBox(
+                    width: double.infinity,
+                    child: CustomElevatedButton(
+                        child: Center(
+                      child: CustomLoadingIndicator(),
+                    )),
+                  );
                 } else {
-                  return CustomElevatedButton(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: SizeConfig.screenWidth! * 0.3,
-                        vertical: SizeConfig.screenWidth! * 0.04),
-                    child: const Text(
-                      'Send the Code',
-                      style: TextStyle(color: Colors.black),
+                  return SizedBox(
+                    width: double.infinity,
+                    child: CustomElevatedButton(
+                      child: Text(
+                        AppStrings.sendTheCode.tr(),
+                        style: const TextStyle(color: Colors.black),
+                      ),
+                      onPressed: () async {
+                        await accessCubit.createPhoneSession(
+                            phoneNumber: accessCubit.phone!);
+                      },
                     ),
-                    onPressed: () async {
-                      await accessCubit.createPhoneSession(
-                          phoneNumber: accessCubit.phone!);
-                    },
                   );
                 }
               },

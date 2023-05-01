@@ -19,9 +19,8 @@ import 'features/home/presentation/manager/complete_order_button_cubit/complete_
 import 'features/splash/presentation/view/splash_view.dart';
 
 class Wasally extends StatefulWidget {
-  Wasally({this.userId,  Key? key}) : super(key: key);
+  Wasally({this.userId, Key? key}) : super(key: key);
   final String? userId;
- 
 
   @override
   _WasallyState createState() => _WasallyState();
@@ -37,7 +36,7 @@ class _WasallyState extends State<Wasally> {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<SplashCubit>(context).userId = widget.userId;
-    
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(

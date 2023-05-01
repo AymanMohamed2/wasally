@@ -26,7 +26,7 @@ class AddShopCubit extends Cubit<AddShopState> {
         category == 'مخبوزات و حلويات') {
       return '64405c5d508f5a87af04';
     } else if (category == 'Vegetables and Fruits' ||
-        category == 'خضار و قاكهه') {
+        category == 'خضار و فاكهه') {
       return '64405cdd6349581b8a59';
     } else if (category == 'Library' || category == 'مكتبه') {
       return '64405d822764430f3f55';
