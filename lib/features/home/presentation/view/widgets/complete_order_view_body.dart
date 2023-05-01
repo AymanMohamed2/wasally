@@ -85,7 +85,7 @@ class CompleteOrderViewBody extends StatelessWidget {
                 ),
                 onTap: () async {
                   accessLocationCubit.getUserCurrentLocation();
-                  Get.to(() => const TestGoogleMap());
+                  Get.to(() => const CustomGoogleMap());
                 },
               );
             }

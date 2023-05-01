@@ -65,7 +65,7 @@ class CompleteOrderView extends StatelessWidget {
                               .position !=
                           null) {
                         BlocProvider.of<CompleteOrderCubit>(context).postOrderAdmin(
-                            phone: accessVerifyCubit.verifyModel!.userId!,
+                            phone: accessVerifyCubit.userInfoModel!.phone!,
                             categoryName: document!.categoryName!,
                             shopName: title,
                             order: accessCubit.order!,

@@ -13,16 +13,16 @@ import 'package:wasally/features/home/presentation/manager/complete_order_get_lo
 
 import '../../../../../core/utils/app_strings.dart';
 
-class TestGoogleMap extends StatefulWidget {
-  const TestGoogleMap({
+class CustomGoogleMap extends StatefulWidget {
+  const CustomGoogleMap({
     Key? key,
   }) : super(key: key);
 
   @override
-  _TestGoogleMapState createState() => _TestGoogleMapState();
+  _CustomGoogleMapState createState() => _CustomGoogleMapState();
 }
 
-class _TestGoogleMapState extends State<TestGoogleMap> {
+class _CustomGoogleMapState extends State<CustomGoogleMap> {
   Completer<GoogleMapController> _controller = Completer();
 // on below line we have specified camera position
   static final CameraPosition _kGoogle = const CameraPosition(
@@ -95,6 +95,7 @@ class _TestGoogleMapState extends State<TestGoogleMap> {
                     .getUserCurrentLocation()
                     .then((value) async {
                   position = value;
+                  print(position);
 
                   _markers.add(Marker(
                     markerId: const MarkerId("2"),
