@@ -71,6 +71,7 @@ class _WasallyState extends State<Wasally> {
           theme: appTheme(),
           debugShowCheckedModeBanner: false,
           home: const SplashView(),
+          
         ),
       ),
     );

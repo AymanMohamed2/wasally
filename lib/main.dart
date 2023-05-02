@@ -16,18 +16,20 @@ void main() async {
 
   String? userId = prefs.getString("userId");
   //test commit
-  runApp(EasyLocalization(
-    supportedLocales: const [arabicLocal, englishLocal],
-    path: assetPathLocalization,
-    child: Phoenix(
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => SplashCubit()),
-        ],
-        child: Wasally(
-          userId: userId,
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [arabicLocal, englishLocal],
+      path: assetPathLocalization,
+      child: Phoenix(
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => SplashCubit()),
+          ],
+          child: Wasally(
+            userId: userId,
+          ),
         ),
       ),
     ),
-  ));
+  );
 }
