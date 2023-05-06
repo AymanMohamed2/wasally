@@ -67,7 +67,10 @@
   "sub_title_verifiction":"نحتاج الي تاكيد رمز التحقق قبل ان نبدأ",
   "verify":"تأكيد",
   "edit_phone_number":"تعديل رقم الهاتف؟",
-  "compelete_verify_err_message":"الرجاء إكمال رمز التحقق الخاص بك"
+  "compelete_verify_err_message":"الرجاء إكمال رمز التحقق الخاص بك",
+
+  "my_shops":"محلاتي",
+  "language":"اللغه"
 
 
 }

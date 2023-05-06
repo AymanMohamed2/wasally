@@ -65,7 +65,10 @@
   "sub_title_verifiction":"We need to confirm the verification code before we Start!",
   "verify":"Verify",
   "edit_phone_number":"Edit Phone Number?",
-  "compelete_verify_err_message":"Please Complete Your Verifiction Code"
+  "compelete_verify_err_message":"Please Complete Your Verifiction Code",
+
+  "my_shops":"My Shops",
+  "language":"Language"
 
 
 

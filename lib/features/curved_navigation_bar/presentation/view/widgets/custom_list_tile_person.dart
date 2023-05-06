@@ -4,7 +4,7 @@ class CustomListTile extends StatelessWidget {
   const CustomListTile(
       {super.key, required this.title, required this.icon, this.onTap});
 
-  final String title;
+  final Widget title;
   final IconData icon;
   final void Function()? onTap;
 
@@ -18,15 +18,8 @@ class CustomListTile extends StatelessWidget {
             color: Colors.orange,
             size: 30,
           ),
-          title: Text(
-            title,
-            style: const TextStyle(fontSize: 15),
-          ),
+          title: title,
           onTap: onTap,
-        ),
-        const Divider(
-          color: Colors.orange,
-          thickness: 1,
         ),
       ],
     );

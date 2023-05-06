@@ -2,20 +2,28 @@ import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wasally/core/constants.dart';
+import 'package:wasally/core/utils/language_manager.dart';
 import 'package:wasally/features/auth/presentation/manager/verify_cubit/verify_cubit.dart';
 
 import 'package:wasally/features/auth/presentation/view/login_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../../../../core/functions/custom_alert_dialog.dart';
 import '../../../../../core/utils/app_strings.dart';
+import 'custom_drop_down_button.dart';
 import 'custom_list_tile_person.dart';
 import 'package:get/get.dart' hide Trans;
 
-class PersonInfoViewBody extends StatelessWidget {
+class PersonInfoViewBody extends StatefulWidget {
   const PersonInfoViewBody({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<PersonInfoViewBody> createState() => _PersonInfoViewBodyState();
+}
+
+class _PersonInfoViewBodyState extends State<PersonInfoViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +41,7 @@ class PersonInfoViewBody extends StatelessWidget {
                       '',
                   style: const TextStyle(color: Colors.black),
                 ),
-                decoration: const BoxDecoration(color: Colors.orange),
+                decoration: const BoxDecoration(color: kPrimaryColor),
                 currentAccountPicture: const CircleAvatar(
                   backgroundColor: Colors.black,
                   child: Icon(
@@ -44,19 +52,19 @@ class PersonInfoViewBody extends StatelessWidget {
                 ),
               ),
               CustomListTile(
-                title: AppStrings.contactUs.tr(),
+                title: CustomDropDownButton(),
+                icon: Icons.language,
+              ),
+              CustomListTile(
+                title: Text(AppStrings.contactUs.tr()),
                 icon: Icons.chat,
               ),
               CustomListTile(
-                title: AppStrings.generalSettings.tr(),
-                icon: Icons.settings,
-              ),
-              CustomListTile(
-                title: AppStrings.shareApp.tr(),
+                title: Text(AppStrings.shareApp.tr()),
                 icon: Icons.share,
               ),
               CustomListTile(
-                title: AppStrings.logout.tr(),
+                title: Text(AppStrings.logout.tr()),
                 icon: Icons.logout,
                 onTap: () async {
                   customAlertDialog(context,
@@ -78,3 +86,16 @@ class PersonInfoViewBody extends StatelessWidget {
     );
   }
 }
+
+// DropdownButton(
+//   icon: Icon(Icons.language),
+//   items: [
+//     DropdownMenuItem( value: Locale( 'en' ),
+//       child: Text( 'English'),),
+//     DropdownMenuItem( value: Locale( 'ar' ),
+//       child: Text( 'العربية' ),
+//     ],
+//   onChanged: (v) => setState(() { helper.onLocaleChanged( v )}),
+//   value: AppLocalizations.of(context).locale,
+// ),
+

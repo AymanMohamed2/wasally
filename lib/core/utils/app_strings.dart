@@ -70,4 +70,8 @@ class AppStrings {
   static const String verify = 'verify';
   static const String editPhoneNumber = 'edit_phone_number';
   static const String completeVerifyErrMessage = 'compelete_verify_err_message';
+
+  
+  static const String myShops = 'my_shops';
+  static const String language = 'language';
 }

@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/core/utils/api_services.dart';
 import 'package:wasally/core/utils/language_manager.dart';
 import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
@@ -28,8 +29,13 @@ class Wasally extends StatefulWidget {
 
 class _WasallyState extends State<Wasally> {
   @override
-  void didChangeDependencies() {
-    context.setLocale(englishLocal);
+  void didChangeDependencies() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? languageCode = prefs.getString('languageCode');
+
+    String? countryCode = prefs.getString('countryCode');
+
+    context.setLocale(Locale(languageCode ?? 'en', countryCode ?? 'US'));
     super.didChangeDependencies();
   }
 
@@ -71,7 +77,6 @@ class _WasallyState extends State<Wasally> {
           theme: appTheme(),
           debugShowCheckedModeBanner: false,
           home: const SplashView(),
-          
         ),
       ),
     );

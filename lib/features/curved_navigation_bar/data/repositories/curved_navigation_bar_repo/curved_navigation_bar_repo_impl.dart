@@ -1,4 +1,3 @@
-import 'package:appwrite/appwrite.dart';
 import 'package:dio/dio.dart';
 import 'package:wasally/core/utils/api_services.dart';
 import 'package:wasally/features/auth/data/models/user_info_model/user_info_model.dart';

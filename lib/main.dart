@@ -15,10 +15,13 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
   String? userId = prefs.getString("userId");
+  String? countryCode = prefs.getString("countryCode");
+  String? languageCode = prefs.getString("languageCode");
+
   //test commit
   runApp(
     EasyLocalization(
-      supportedLocales: const [arabicLocal, englishLocal],
+      supportedLocales: const [Locale('ar', 'EG'), Locale('en', 'US')],
       path: assetPathLocalization,
       child: Phoenix(
         child: MultiBlocProvider(
