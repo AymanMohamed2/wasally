@@ -1,3 +1,127 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart' hide Trans;
+import 'package:wasally/core/widgets/custom_loading_indicator.dart';
+import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
+
+import '../../../../../core/constants.dart';
+import '../../../../../core/utils/app_strings.dart';
+import '../../../../../core/utils/size_config.dart';
+import '../../../../../core/widgets/costum_text_field.dart';
+import '../../../../../core/widgets/custom_elevated_button.dart';
+import '../../../../../core/widgets/space_widget.dart';
+import '../verify_view.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+class LoginViewBody extends StatelessWidget {
+  const LoginViewBody({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var accessCubit = BlocProvider.of<LoginCubit>(context);
+    TextEditingController controller = TextEditingController();
+    String? phoneNumber;
+    final _formKey = GlobalKey<FormState>();
+
+    return Form(
+      key: _formKey,
+      child: Container(
+        margin: EdgeInsets.only(
+            left: SizeConfig.screenWidth! * 0.07,
+            right: SizeConfig.screenWidth! * 0.07),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const VirticalSpace(15),
+              Image.asset(
+                kLogo,
+                width: SizeConfig.screenWidth! * 0.5,
+                height: SizeConfig.screenHeight! * 0.2,
+              ),
+              const VirticalSpace(2),
+              Text(
+                AppStrings.phoneVerifiction.tr(),
+                style:
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+              const VirticalSpace(1),
+              Text(
+                AppStrings.subTitleLogin.tr(),
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const VirticalSpace(3),
+              CustomTextField(
+                controller: controller,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings.fieldRequired.tr();
+                  } else if (value.length < 11) {
+                    return AppStrings.phoneLessThan.tr();
+                  } else if (value.length > 11) {
+                    return AppStrings.phoneMoreThan.tr();
+                  } else {
+                    return null;
+                  }
+                },
+                onChanged: (value) {
+                  accessCubit.phone = value;
+                },
+                hintText: AppStrings.phoneNumber.tr(),
+                prefixIcon: const Icon(Icons.phone_android),
+                textInputType: TextInputType.number,
+              ),
+              const VirticalSpace(2),
+              BlocConsumer<LoginCubit, LoginState>(
+                listener: (context, state) {
+                  if (state is LoginSuccessState) {
+                    Get.to(() => const VerifyView());
+                  } else if (state is LoginFailureState) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        duration: const Duration(seconds: 2),
+                        content: Text(state.errMessage),
+                      ),
+                    );
+                  }
+                },
+                builder: (context, state) {
+                  if (state is LoginLoadingState) {
+                    return const SizedBox(
+                      width: double.infinity,
+                      child: CustomElevatedButton(
+                          child: Center(
+                        child: CustomLoadingIndicator(),
+                      )),
+                    );
+                  } else {
+                    return SizedBox(
+                      width: double.infinity,
+                      child: CustomElevatedButton(
+                        child: Text(
+                          AppStrings.sendTheCode.tr(),
+                          style: const TextStyle(color: Colors.black),
+                        ),
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            await accessCubit.createPhoneSession(
+                                phoneNumber: accessCubit.phone!);
+                          }
+                        },
+                      ),
+                    );
+                  }
+                },
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 // import 'package:easy_localization/easy_localization.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
@@ -155,131 +279,3 @@
 //     );
 //   }
 // }
-
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart' hide Trans;
-import 'package:wasally/core/widgets/custom_loading_indicator.dart';
-import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
-
-import '../../../../../core/constants.dart';
-import '../../../../../core/utils/app_strings.dart';
-import '../../../../../core/utils/size_config.dart';
-import '../../../../../core/widgets/custom_elevated_button.dart';
-import '../../../../../core/widgets/space_widget.dart';
-import '../verify_view.dart';
-import 'package:easy_localization/easy_localization.dart';
-
-class LoginViewBody extends StatelessWidget {
-  const LoginViewBody({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var accessCubit = BlocProvider.of<LoginCubit>(context);
-    TextEditingController controller = TextEditingController();
-    String? phoneNumber;
-
-    return Container(
-      margin: EdgeInsets.only(
-          left: SizeConfig.screenWidth! * 0.07,
-          right: SizeConfig.screenWidth! * 0.07),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const VirticalSpace(15),
-            Image.asset(
-              kLogo,
-              width: SizeConfig.screenWidth! * 0.5,
-              height: SizeConfig.screenHeight! * 0.2,
-            ),
-            const VirticalSpace(2),
-            Text(
-              AppStrings.phoneVerifiction.tr(),
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            const VirticalSpace(1),
-            Text(
-              AppStrings.subTitleLogin.tr(),
-              style: const TextStyle(
-                fontSize: 16,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const VirticalSpace(3),
-            Container(
-              height: 55,
-              decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.grey),
-                  borderRadius: BorderRadius.circular(10)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const HorizintalSpace(1.5),
-                  SizedBox(
-                      width: SizeConfig.screenWidth! * 0.1,
-                      child: const Text('+2')),
-                  const Text(
-                    "|",
-                    style: TextStyle(fontSize: 33, color: Colors.grey),
-                  ),
-                  const HorizintalSpace(1),
-                  Expanded(
-                      child: TextField(
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: AppStrings.phoneNumber.tr(),
-                    ),
-                    onChanged: (value) {
-                      accessCubit.phone = value;
-                    },
-                  ))
-                ],
-              ),
-            ),
-            const VirticalSpace(2),
-            BlocConsumer<LoginCubit, LoginState>(
-              listener: (context, state) {
-                if (state is LoginSuccessState) {
-                  Get.to(() => const VerifyView());
-                } else if (state is LoginFailureState) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      duration: const Duration(seconds: 2),
-                      content: Text(state.errMessage),
-                    ),
-                  );
-                }
-              },
-              builder: (context, state) {
-                if (state is LoginLoadingState) {
-                  return const SizedBox(
-                    width: double.infinity,
-                    child: CustomElevatedButton(
-                        child: Center(
-                      child: CustomLoadingIndicator(),
-                    )),
-                  );
-                } else {
-                  return SizedBox(
-                    width: double.infinity,
-                    child: CustomElevatedButton(
-                      child: Text(
-                        AppStrings.sendTheCode.tr(),
-                        style: const TextStyle(color: Colors.black),
-                      ),
-                      onPressed: () async {
-                        await accessCubit.createPhoneSession(
-                            phoneNumber: accessCubit.phone!);
-                      },
-                    ),
-                  );
-                }
-              },
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}

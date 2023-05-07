@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wasally/core/constants.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -42,7 +43,7 @@ class CustomTextField extends StatelessWidget {
       minLines: minLines,
       maxLines: maxLines,
       obscureText: obscureText,
-      cursorColor: Colors.orange,
+      cursorColor: kPrimaryColor,
       decoration: InputDecoration(
           floatingLabelStyle: const TextStyle(color: Colors.black),
           label: Text(hintText),
