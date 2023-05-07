@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:wasally/core/widgets/costum_text_field.dart';
 import 'package:wasally/features/home/presentation/manager/complete_order_get_location_cubit/complete_order_get_location_cubit.dart';
-import 'package:wasally/features/home/presentation/view/widgets/custom_googlemap.dart';
+import 'package:wasally/features/home/presentation/view/widgets/custom_google_map.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/size_config.dart';

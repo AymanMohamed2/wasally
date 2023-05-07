@@ -26,7 +26,8 @@ class CompleteOrderCubit extends Cubit<CompleteOrderState> {
     required String categoryName,
     required String shopName,
     required String order,
-    required String address,
+    required String latitude,
+    required String longtude,
   }) async {
     emit(CompleteOrderLoading());
     var response = await homeRepo.postOrderAdmin(
@@ -34,7 +35,8 @@ class CompleteOrderCubit extends Cubit<CompleteOrderState> {
       categoryName: categoryName,
       shopName: shopName,
       order: order,
-      address: address,
+      latitude: latitude,
+      longitude: longtude,
     );
 
     response.fold((failure) {

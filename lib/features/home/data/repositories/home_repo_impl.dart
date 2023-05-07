@@ -76,7 +76,8 @@ class HomeRepoImpl implements HomeRepo {
     required String categoryName,
     required String shopName,
     required String order,
-    required String address,
+    required String latitude,
+    required String longitude,
   }) async {
     try {
       var response = await apiServices.post(
@@ -95,7 +96,8 @@ class HomeRepoImpl implements HomeRepo {
               'categoryName': categoryName,
               'shopName': shopName,
               'order': order,
-              'address': address,
+              'latitude': latitude,
+              'longtude': longitude,
             }
           });
 

@@ -11,7 +11,8 @@ abstract class HomeRepo {
     required String categoryName,
     required String shopName,
     required String order,
-    required String address,
+    required String latitude,
+    required String longitude,
   });
 
   Future<Either<Failure, List<dynamic>>> getSliderList();

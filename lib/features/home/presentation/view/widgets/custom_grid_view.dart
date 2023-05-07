@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:easy_localization/easy_localization.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wasally/core/constants.dart';
 import 'package:wasally/features/home/presentation/view/category_details_view.dart';
 import 'package:wasally/features/home/presentation/view/complete_order_view.dart';
@@ -87,6 +89,7 @@ class CustomGrideView extends StatelessWidget {
           ),
           CustomItemHomeView(
             onTap: () async {
+              await openGoogleMaps(31.205753, 29.924526);
               Get.to(
                 () => CategoryDetailsView(
                   title: AppStrings.library.tr(),
@@ -113,15 +116,31 @@ class CustomGrideView extends StatelessWidget {
     );
   }
 
-  // Future<void> openGoogleMaps(double startLatitude, double startLongitude,
-  //     double endLatitude, double endLongitude) async {
-  //   final String googleMapsUrl =
-  //       "https://www.google.com/maps/dir/?api=1&origin=$startLatitude,$startLongitude&destination=$endLatitude,$endLongitude&travelmode=driving";
+  Future<void> openGoogleMaps(double endLatitude, double endLongitude) async {
+    Position position = await getUserCurrentLocation();
+    String text = "Hello World !! Hey There";
+    String url =
+        "https://www.google.com/maps/dir/?api=1&origin=${position.latitude},${position.longitude}&destination=$endLatitude,$endLongitude&travelmode=driving/?text=${Uri.encodeFull(text)}";
+    final String googleMapsUrl = url;
 
-  //   if (await canLaunchUrl(Uri.parse(googleMapsUrl))) {
-  //     await launchUrl(Uri.parse(googleMapsUrl));
-  //   } else {
-  //     throw 'Could not launch $googleMapsUrl';
-  //   }
-  // }
+    if (await canLaunchUrl(Uri.parse(googleMapsUrl))) {
+      await launchUrl(Uri.parse(googleMapsUrl),
+          mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Could not launch $googleMapsUrl';
+    }
+  }
+
+  Future<Position> getUserCurrentLocation() async {
+    Position position;
+    await Geolocator.requestPermission()
+        .then((value) {})
+        .onError((error, stackTrace) async {
+      await Geolocator.requestPermission();
+    });
+
+    position = await Geolocator.getCurrentPosition();
+
+    return position;
+  }
 }

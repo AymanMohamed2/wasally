@@ -64,13 +64,25 @@ class CompleteOrderView extends StatelessWidget {
                                   context)
                               .position !=
                           null) {
-                        BlocProvider.of<CompleteOrderCubit>(context).postOrderAdmin(
-                            phone: accessVerifyCubit.userInfoModel!.phone!,
-                            categoryName: document!.categoryName!,
-                            shopName: title,
-                            order: accessCubit.order!,
-                            address:
-                                '${BlocProvider.of<CompleteOrderGetLocationCubit>(context).position}');
+                        BlocProvider.of<CompleteOrderCubit>(context)
+                            .postOrderAdmin(
+                          phone: accessVerifyCubit.userInfoModel!.phone!,
+                          categoryName: document!.categoryName!,
+                          shopName: title,
+                          order: accessCubit.order!,
+                          latitude:
+                              BlocProvider.of<CompleteOrderGetLocationCubit>(
+                                      context)
+                                  .position!
+                                  .latitude
+                                  .toString(),
+                          longtude:
+                              BlocProvider.of<CompleteOrderGetLocationCubit>(
+                                      context)
+                                  .position!
+                                  .longitude
+                                  .toString(),
+                        );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
@@ -89,12 +101,23 @@ class CompleteOrderView extends StatelessWidget {
                     if (_formKey.currentState!.validate()) {
                       await BlocProvider.of<CompleteOrderCubit>(context)
                           .postOrderAdmin(
-                              phone: accessVerifyCubit.verifyModel!.userId!,
-                              categoryName: document!.categoryName!,
-                              shopName: title,
-                              order: accessCubit.order!,
-                              address:
-                                  '${BlocProvider.of<CompleteOrderGetLocationCubit>(context).position}');
+                        phone: accessVerifyCubit.verifyModel!.userId!,
+                        categoryName: document!.categoryName!,
+                        shopName: title,
+                        order: accessCubit.order!,
+                        latitude:
+                            BlocProvider.of<CompleteOrderGetLocationCubit>(
+                                    context)
+                                .position!
+                                .latitude
+                                .toString(),
+                        longtude:
+                            BlocProvider.of<CompleteOrderGetLocationCubit>(
+                                    context)
+                                .position!
+                                .longitude
+                                .toString(),
+                      );
 
                       _controller.clear();
                     }
@@ -107,12 +130,23 @@ class CompleteOrderView extends StatelessWidget {
                     if (_formKey.currentState!.validate()) {
                       await BlocProvider.of<CompleteOrderCubit>(context)
                           .postOrderAdmin(
-                              phone: accessVerifyCubit.verifyModel!.userId!,
-                              categoryName: document!.categoryName!,
-                              shopName: title,
-                              order: accessCubit.order!,
-                              address:
-                                  '${BlocProvider.of<CompleteOrderGetLocationCubit>(context).position}');
+                        phone: accessVerifyCubit.verifyModel!.userId!,
+                        categoryName: document!.categoryName!,
+                        shopName: title,
+                        order: accessCubit.order!,
+                        latitude:
+                            BlocProvider.of<CompleteOrderGetLocationCubit>(
+                                    context)
+                                .position!
+                                .latitude
+                                .toString(),
+                        longtude:
+                            BlocProvider.of<CompleteOrderGetLocationCubit>(
+                                    context)
+                                .position!
+                                .longitude
+                                .toString(),
+                      );
                     }
                   },
                   text: AppStrings.wasally.tr(),

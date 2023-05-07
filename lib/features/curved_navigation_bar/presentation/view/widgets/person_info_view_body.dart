@@ -2,6 +2,7 @@ import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wasally/core/constants.dart';
 import 'package:wasally/core/utils/language_manager.dart';
 import 'package:wasally/features/auth/presentation/manager/verify_cubit/verify_cubit.dart';
@@ -51,13 +52,20 @@ class _PersonInfoViewBodyState extends State<PersonInfoViewBody> {
                   ),
                 ),
               ),
-              CustomListTile(
+              const CustomListTile(
                 title: CustomDropDownButton(),
                 icon: Icons.language,
               ),
               CustomListTile(
                 title: Text(AppStrings.contactUs.tr()),
                 icon: Icons.chat,
+                onTap: () async {
+                  String text = "Hello World !! Hey There";
+                  String url =
+                      "https://www.facebook.com/aymanmohamed6/?text=${Uri.encodeFull(text)}";
+                  await launchUrl(Uri.parse(url),
+                      mode: LaunchMode.externalApplication);
+                },
               ),
               CustomListTile(
                 title: Text(AppStrings.shareApp.tr()),
@@ -86,16 +94,3 @@ class _PersonInfoViewBodyState extends State<PersonInfoViewBody> {
     );
   }
 }
-
-// DropdownButton(
-//   icon: Icon(Icons.language),
-//   items: [
-//     DropdownMenuItem( value: Locale( 'en' ),
-//       child: Text( 'English'),),
-//     DropdownMenuItem( value: Locale( 'ar' ),
-//       child: Text( 'العربية' ),
-//     ],
-//   onChanged: (v) => setState(() { helper.onLocaleChanged( v )}),
-//   value: AppLocalizations.of(context).locale,
-// ),
-
