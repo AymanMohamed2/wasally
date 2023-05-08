@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' hide Trans;
-import 'package:wasally/core/widgets/custom_loading_indicator.dart';
 import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
-
-import '../../../../../core/constants.dart';
-import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/size_config.dart';
-import '../../../../../core/widgets/costum_text_field.dart';
-import '../../../../../core/widgets/custom_elevated_button.dart';
-import '../../../../../core/widgets/space_widget.dart';
 import '../verify_view.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'login_initial_section.dart';
+import 'login_loading_section.dart';
+import 'login_section.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({Key? key}) : super(key: key);
@@ -20,7 +15,7 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     var accessCubit = BlocProvider.of<LoginCubit>(context);
     TextEditingController controller = TextEditingController();
-    String? phoneNumber;
+
     final _formKey = GlobalKey<FormState>();
 
     return Form(
@@ -32,48 +27,10 @@ class LoginViewBody extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const VirticalSpace(15),
-              Image.asset(
-                kLogo,
-                width: SizeConfig.screenWidth! * 0.5,
-                height: SizeConfig.screenHeight! * 0.2,
-              ),
-              const VirticalSpace(2),
-              Text(
-                AppStrings.phoneVerifiction.tr(),
-                style:
-                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-              const VirticalSpace(1),
-              Text(
-                AppStrings.subTitleLogin.tr(),
-                style: const TextStyle(
-                  fontSize: 16,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const VirticalSpace(3),
-              CustomTextField(
+              LoginSection(
+                accessCubit: accessCubit,
                 controller: controller,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppStrings.fieldRequired.tr();
-                  } else if (value.length < 11) {
-                    return AppStrings.phoneLessThan.tr();
-                  } else if (value.length > 11) {
-                    return AppStrings.phoneMoreThan.tr();
-                  } else {
-                    return null;
-                  }
-                },
-                onChanged: (value) {
-                  accessCubit.phone = value;
-                },
-                hintText: AppStrings.phoneNumber.tr(),
-                prefixIcon: const Icon(Icons.phone_android),
-                textInputType: TextInputType.number,
               ),
-              const VirticalSpace(2),
               BlocConsumer<LoginCubit, LoginState>(
                 listener: (context, state) {
                   if (state is LoginSuccessState) {
@@ -89,29 +46,10 @@ class LoginViewBody extends StatelessWidget {
                 },
                 builder: (context, state) {
                   if (state is LoginLoadingState) {
-                    return const SizedBox(
-                      width: double.infinity,
-                      child: CustomElevatedButton(
-                          child: Center(
-                        child: CustomLoadingIndicator(),
-                      )),
-                    );
+                    return const LoginLoadingSection();
                   } else {
-                    return SizedBox(
-                      width: double.infinity,
-                      child: CustomElevatedButton(
-                        child: Text(
-                          AppStrings.sendTheCode.tr(),
-                          style: const TextStyle(color: Colors.black),
-                        ),
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            await accessCubit.createPhoneSession(
-                                phoneNumber: accessCubit.phone!);
-                          }
-                        },
-                      ),
-                    );
+                    return LoginInitialSection(
+                        formKey: _formKey, accessCubit: accessCubit);
                   }
                 },
               )
@@ -122,6 +60,9 @@ class LoginViewBody extends StatelessWidget {
     );
   }
 }
+
+
+
 // import 'package:easy_localization/easy_localization.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
