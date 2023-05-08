@@ -30,15 +30,23 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
         fontSize: 16,
       ),
       value: selected,
-      items: const [
+      items: [
         DropdownMenuItem(
           value: 'en',
-          child: Text('🇺🇸   English'),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [Text('English'), Text('🇺🇸')],
+          ),
         ),
         DropdownMenuItem(
-          value: 'ar',
-          child: Text('🇪🇬   العربية'),
-        ),
+            value: 'ar',
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text('العربية'),
+                Text('🇪🇬'),
+              ],
+            )),
       ],
       onChanged: (String? value) {
         setState(() {
