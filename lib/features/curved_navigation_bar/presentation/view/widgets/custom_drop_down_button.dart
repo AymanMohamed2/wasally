@@ -8,7 +8,6 @@ import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/language_manager.dart';
 import 'package:get/get.dart' hide Trans;
 
-
 class CustomDropDownButton extends StatefulWidget {
   const CustomDropDownButton({super.key});
 
@@ -34,11 +33,11 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
       items: const [
         DropdownMenuItem(
           value: 'en',
-          child: Text('English'),
+          child: Text('🇺🇸   English'),
         ),
         DropdownMenuItem(
           value: 'ar',
-          child: Text('العربية'),
+          child: Text('🇪🇬   العربية'),
         ),
       ],
       onChanged: (String? value) {

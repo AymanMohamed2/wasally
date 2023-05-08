@@ -89,7 +89,6 @@ class CustomGrideView extends StatelessWidget {
           ),
           CustomItemHomeView(
             onTap: () async {
-              await openGoogleMaps(31.205753, 29.924526);
               Get.to(
                 () => CategoryDetailsView(
                   title: AppStrings.library.tr(),
@@ -116,20 +115,20 @@ class CustomGrideView extends StatelessWidget {
     );
   }
 
-  Future<void> openGoogleMaps(double endLatitude, double endLongitude) async {
-    Position position = await getUserCurrentLocation();
-    String text = "Hello World !! Hey There";
-    String url =
-        "https://www.google.com/maps/dir/?api=1&origin=${position.latitude},${position.longitude}&destination=$endLatitude,$endLongitude&travelmode=driving/?text=${Uri.encodeFull(text)}";
-    final String googleMapsUrl = url;
+  // Future<void> openGoogleMaps(double endLatitude, double endLongitude) async {
+  //   Position position = await getUserCurrentLocation();
+  //   String text = "Hello World !! Hey There";
+  //   String url =
+  //       "https://www.google.com/maps/dir/?api=1&origin=${position.latitude},${position.longitude}&destination=$endLatitude,$endLongitude&travelmode=driving/?text=${Uri.encodeFull(text)}";
+  //   final String googleMapsUrl = url;
 
-    if (await canLaunchUrl(Uri.parse(googleMapsUrl))) {
-      await launchUrl(Uri.parse(googleMapsUrl),
-          mode: LaunchMode.externalApplication);
-    } else {
-      throw 'Could not launch $googleMapsUrl';
-    }
-  }
+  //   if (await canLaunchUrl(Uri.parse(googleMapsUrl))) {
+  //     await launchUrl(Uri.parse(googleMapsUrl),
+  //         mode: LaunchMode.externalApplication);
+  //   } else {
+  //     throw 'Could not launch $googleMapsUrl';
+  //   }
+  // }
 
   Future<Position> getUserCurrentLocation() async {
     Position position;
