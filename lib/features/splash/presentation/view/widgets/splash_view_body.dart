@@ -8,7 +8,11 @@ import '../../../../../core/utils/size_config.dart';
 import '../../../../curved_navigation_bar/presentation/view/curved_navigation_bar.dart';
 
 class SplashViewBody extends StatelessWidget {
-  const SplashViewBody({super.key});
+  const SplashViewBody({
+    super.key,
+    this.userId,
+  });
+  final String? userId;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +33,7 @@ class SplashViewBody extends StatelessWidget {
         child: Image.asset("assets/images/splash.png"),
       ),
       onAnimationEnd: () => debugPrint("On Fade In End"),
-      defaultNextScreen: accessCubit.userId == null
+      defaultNextScreen: userId == null
           ? const OnBoardingView()
           : const BottomNavigationBarHome(),
     );

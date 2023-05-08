@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/features/auth/data/repositories/auth_repo.dart';
 
 import '../../../data/models/user_info_model/user_info_model.dart';

@@ -62,9 +62,9 @@ class _PersonInfoViewBodyState extends State<PersonInfoViewBody> {
                 onTap: () async {
                   String text = "Hello World !! Hey There";
                   String url =
-                      "https://www.facebook.com/aymanmohamed6/?text=${Uri.encodeFull(text)}";
+                      "https://www.facebook.com/profile.php?id=100072411852468";
                   await launchUrl(Uri.parse(url),
-                      mode: LaunchMode.externalApplication);
+                      mode: LaunchMode.externalNonBrowserApplication);
                 },
               ),
               CustomListTile(

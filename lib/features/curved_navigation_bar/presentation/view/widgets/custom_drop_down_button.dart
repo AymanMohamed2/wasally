@@ -2,12 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/core/widgets/custom_text.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/language_manager.dart';
 import 'package:get/get.dart' hide Trans;
+
 
 class CustomDropDownButton extends StatefulWidget {
   const CustomDropDownButton({super.key});
@@ -52,14 +52,8 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
 
   void _switchLanguage(BuildContext context, {required String value}) async {
     Locale newLocale = value == 'en' ? englishLocal : arabicLocal;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? languageCode =
-        prefs.setString('languageCode', newLocale.languageCode).toString();
-
-    String? countryCode =
-        prefs.setString('countryCode', newLocale.countryCode!).toString();
-
     context.setLocale(newLocale);
+
     Phoenix.rebirth(context);
   }
 }

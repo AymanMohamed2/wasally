@@ -3,9 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/core/utils/api_services.dart';
-import 'package:wasally/core/utils/language_manager.dart';
 import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:wasally/features/home/presentation/manager/category_details_cubit/category_details_cubit.dart';
 import 'package:wasally/features/home/presentation/manager/complete_order_get_location_cubit/complete_order_get_location_cubit.dart';
@@ -19,29 +17,16 @@ import 'features/home/data/repositories/home_repo_impl.dart';
 import 'features/home/presentation/manager/complete_order_button_cubit/complete_order_button_cubit.dart';
 import 'features/splash/presentation/view/splash_view.dart';
 
-class Wasally extends StatefulWidget {
-  Wasally({this.userId, Key? key}) : super(key: key);
+class Wasally extends StatelessWidget {
+  Wasally({
+    this.userId,
+    Key? key,
+  }) : super(key: key);
   final String? userId;
 
   @override
-  _WasallyState createState() => _WasallyState();
-}
-
-class _WasallyState extends State<Wasally> {
-  @override
-  void didChangeDependencies() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? languageCode = prefs.getString('languageCode');
-
-    String? countryCode = prefs.getString('countryCode');
-
-    context.setLocale(Locale(languageCode ?? 'en', countryCode ?? 'US'));
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    BlocProvider.of<SplashCubit>(context).userId = widget.userId;
+    BlocProvider.of<SplashCubit>(context).userId = userId;
 
     return MultiBlocProvider(
       providers: [
@@ -76,7 +61,9 @@ class _WasallyState extends State<Wasally> {
           title: AppStrings.appName,
           theme: appTheme(),
           debugShowCheckedModeBanner: false,
-          home: const SplashView(),
+          home: SplashView(
+            userId: userId,
+          ),
         ),
       ),
     );
