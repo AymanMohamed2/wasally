@@ -8,6 +8,8 @@ import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/language_manager.dart';
 import 'package:get/get.dart' hide Trans;
 
+import '../../../../../core/utils/size_config.dart';
+
 class CustomDropDownButton extends StatefulWidget {
   const CustomDropDownButton({super.key});
 
@@ -27,7 +29,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
       hint: CustomText(
         text: AppStrings.language.tr(),
         color: Colors.black,
-        fontSize: 16,
+        fontSize: SizeConfig.screenHeight! * 0.02,
       ),
       value: selected,
       items: [

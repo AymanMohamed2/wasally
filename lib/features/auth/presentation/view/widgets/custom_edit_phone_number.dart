@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 
 import '../../../../../core/utils/app_strings.dart';
+import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/custom_text.dart';
 
 class CustomEditPhoneNumber extends StatelessWidget {
@@ -20,7 +21,7 @@ class CustomEditPhoneNumber extends StatelessWidget {
           },
           child: CustomText(
             text: AppStrings.editPhoneNumber.tr(),
-            fontSize: 16,
+            fontSize: SizeConfig.screenHeight! * 0.02,
           ),
         ),
       ],

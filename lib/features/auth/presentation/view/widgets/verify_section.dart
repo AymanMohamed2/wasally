@@ -33,32 +33,36 @@ class VerifySection extends StatelessWidget {
         const VirticalSpace(2.5),
         CustomText(
           text: AppStrings.verifyCode.tr(),
+          fontSize: SizeConfig.screenHeight! * 0.03,
           fontWeight: FontWeight.bold,
         ),
         const VirticalSpace(1.1),
         CustomText(
           text: AppStrings.subTitleVerificton.tr(),
-          fontSize: 16,
+          fontSize: SizeConfig.screenHeight! * 0.02,
           textAlign: TextAlign.center,
         ),
         const VirticalSpace(3.2),
-        Pinput(
-          length: 6,
-          showCursor: true,
-          onCompleted: (value) {
-            accessCubit.virifictionCode = value;
-            if (_formKey.currentState!.validate()) {
-              accessCubit.confirmPhoneSession(
-                  userId: accessLoginCubit.loginModel!.userId, secret: value);
-            }
-          },
-          validator: (value) {
-            if (value != null && value.length < 6) {
-              return AppStrings.completeVerifyErrMessage.tr();
-            } else {
-              return null;
-            }
-          },
+        SizedBox(
+          width: double.infinity,
+          child: Pinput(
+            length: 6,
+            showCursor: true,
+            onCompleted: (value) {
+              accessCubit.virifictionCode = value;
+              if (_formKey.currentState!.validate()) {
+                accessCubit.confirmPhoneSession(
+                    userId: accessLoginCubit.loginModel!.userId, secret: value);
+              }
+            },
+            validator: (value) {
+              if (value != null && value.length < 6) {
+                return AppStrings.completeVerifyErrMessage.tr();
+              } else {
+                return null;
+              }
+            },
+          ),
         ),
         const VirticalSpace(2.2),
       ],

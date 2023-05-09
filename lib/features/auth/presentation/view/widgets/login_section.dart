@@ -27,13 +27,15 @@ class LoginSection extends StatelessWidget {
         const VirticalSpace(2),
         Text(
           AppStrings.phoneVerifiction.tr(),
-          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: SizeConfig.screenHeight! * 0.03,
+              fontWeight: FontWeight.bold),
         ),
         const VirticalSpace(1),
         Text(
           AppStrings.subTitleLogin.tr(),
-          style: const TextStyle(
-            fontSize: 16,
+          style: TextStyle(
+            fontSize: SizeConfig.screenHeight! * 0.02,
           ),
           textAlign: TextAlign.center,
         ),

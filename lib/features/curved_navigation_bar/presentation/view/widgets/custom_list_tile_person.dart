@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wasally/core/utils/size_config.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile(
@@ -12,14 +13,18 @@ class CustomListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(
-          leading: Icon(
-            icon,
-            color: Colors.orange,
-            size: 30,
+        SizedBox(
+          height: SizeConfig.screenHeight! * 0.1,
+          width: double.infinity,
+          child: ListTile(
+            leading: Icon(
+              icon,
+              color: Colors.orange,
+              size: SizeConfig.screenHeight! * 0.04,
+            ),
+            title: title,
+            onTap: onTap,
           ),
-          title: title,
-          onTap: onTap,
         ),
       ],
     );

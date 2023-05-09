@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wasally/core/utils/size_config.dart';
+import 'package:wasally/core/widgets/custom_text.dart';
 import '../../../../../core/functions/custom_alert_dialog.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../auth/presentation/view/login_view.dart';
@@ -22,10 +24,12 @@ class PersonBodySection extends StatelessWidget {
           icon: Icons.language,
         ),
         CustomListTile(
-          title: Text(AppStrings.contactUs.tr()),
+          title: CustomText(
+            text: AppStrings.contactUs.tr(),
+            fontSize: SizeConfig.screenHeight! * 0.02,
+          ),
           icon: Icons.chat,
           onTap: () async {
-            String text = "Hello World !! Hey There";
             String url =
                 "https://www.facebook.com/profile.php?id=100072411852468";
             await launchUrl(Uri.parse(url),
@@ -33,11 +37,15 @@ class PersonBodySection extends StatelessWidget {
           },
         ),
         CustomListTile(
-          title: Text(AppStrings.shareApp.tr()),
+          title: CustomText(
+              text: AppStrings.shareApp.tr(),
+              fontSize: SizeConfig.screenHeight! * 0.02),
           icon: Icons.share,
         ),
         CustomListTile(
-          title: Text(AppStrings.logout.tr()),
+          title: CustomText(
+              text: AppStrings.logout.tr(),
+              fontSize: SizeConfig.screenHeight! * 0.02),
           icon: Icons.logout,
           onTap: () async {
             customAlertDialog(context,

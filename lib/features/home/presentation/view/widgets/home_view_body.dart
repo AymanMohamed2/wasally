@@ -45,8 +45,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 right: SizeConfig.defaultSize! * 2),
             child: Text(
               AppStrings.categories.tr(),
-              style: const TextStyle(
-                  fontSize: 24,
+              style: TextStyle(
+                  fontSize: SizeConfig.screenHeight! * 0.03,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Gulzar'),
             ),
