@@ -34,7 +34,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             image: kLogo,
           ),
           const VirticalSpace(3),
-          const CustomCarousel(),
+          SizedBox(
+              height: SizeConfig.screenHeight! * 0.2,
+              width: double.infinity,
+              child: const CustomCarousel()),
           Padding(
             padding: EdgeInsets.only(
                 left: SizeConfig.defaultSize! * 2,
