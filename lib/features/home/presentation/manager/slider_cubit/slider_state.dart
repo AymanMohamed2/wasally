@@ -9,6 +9,8 @@ abstract class SliderState extends Equatable {
 
 class SliderInitial extends SliderState {}
 
+class SliderStreamChange extends SliderState {}
+
 class SliderStateLoading extends SliderState {}
 
 class SliderStateSuccess extends SliderState {

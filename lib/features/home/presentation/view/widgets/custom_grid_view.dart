@@ -1,9 +1,7 @@
-import 'package:dio/dio.dart';
+import 'package:appwrite/appwrite.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:easy_localization/easy_localization.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:wasally/core/constants.dart';
 import 'package:wasally/features/home/presentation/view/category_details_view.dart';
 import 'package:wasally/features/home/presentation/view/complete_order_view.dart';
@@ -130,16 +128,16 @@ class CustomGrideView extends StatelessWidget {
   //   }
   // }
 
-  Future<Position> getUserCurrentLocation() async {
-    Position position;
-    await Geolocator.requestPermission()
-        .then((value) {})
-        .onError((error, stackTrace) async {
-      await Geolocator.requestPermission();
-    });
+  // Future<Position> getUserCurrentLocation() async {
+  //   Position position;
+  //   await Geolocator.requestPermission()
+  //       .then((value) {})
+  //       .onError((error, stackTrace) async {
+  //     await Geolocator.requestPermission();
+  //   });
 
-    position = await Geolocator.getCurrentPosition();
+  //   position = await Geolocator.getCurrentPosition();
 
-    return position;
-  }
+  //   return position;
+  // }
 }

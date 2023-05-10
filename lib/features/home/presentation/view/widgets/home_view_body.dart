@@ -21,6 +21,7 @@ class HomeViewBody extends StatefulWidget {
 class _HomeViewBodyState extends State<HomeViewBody> {
   void initState() {
     BlocProvider.of<SliderCubit>(context).getSliderList();
+    BlocProvider.of<SliderCubit>(context).getAllOrder();
   }
 
   @override
