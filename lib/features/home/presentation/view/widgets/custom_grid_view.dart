@@ -113,31 +113,5 @@ class CustomGrideView extends StatelessWidget {
     );
   }
 
-  // Future<void> openGoogleMaps(double endLatitude, double endLongitude) async {
-  //   Position position = await getUserCurrentLocation();
-  //   String text = "Hello World !! Hey There";
-  //   String url =
-  //       "https://www.google.com/maps/dir/?api=1&origin=${position.latitude},${position.longitude}&destination=$endLatitude,$endLongitude&travelmode=driving/?text=${Uri.encodeFull(text)}";
-  //   final String googleMapsUrl = url;
 
-  //   if (await canLaunchUrl(Uri.parse(googleMapsUrl))) {
-  //     await launchUrl(Uri.parse(googleMapsUrl),
-  //         mode: LaunchMode.externalApplication);
-  //   } else {
-  //     throw 'Could not launch $googleMapsUrl';
-  //   }
-  // }
-
-  // Future<Position> getUserCurrentLocation() async {
-  //   Position position;
-  //   await Geolocator.requestPermission()
-  //       .then((value) {})
-  //       .onError((error, stackTrace) async {
-  //     await Geolocator.requestPermission();
-  //   });
-
-  //   position = await Geolocator.getCurrentPosition();
-
-  //   return position;
-  // }
 }

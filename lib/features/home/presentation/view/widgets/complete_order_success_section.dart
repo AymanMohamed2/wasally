@@ -34,7 +34,8 @@ class CompleteOrderSuccessSection extends StatelessWidget {
         onTap: () async {
           if (_formKey.currentState!.validate()) {
             await BlocProvider.of<CompleteOrderCubit>(context).postOrderAdmin(
-              phone: accessVerifyCubit.verifyModel!.userId!,
+              
+              phone: accessVerifyCubit.userInfoModel!.phone!,
               categoryName: document!.categoryName!,
               shopName: title,
               order: accessCubit.order!,
