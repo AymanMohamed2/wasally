@@ -33,23 +33,35 @@ class CompleteOrderSuccessSection extends StatelessWidget {
     return CostumButtonSignUp(
         onTap: () async {
           if (_formKey.currentState!.validate()) {
-            await BlocProvider.of<CompleteOrderCubit>(context).postOrderAdmin(
-              
-              phone: accessVerifyCubit.userInfoModel!.phone!,
-              categoryName: document!.categoryName!,
-              shopName: title,
-              order: accessCubit.order!,
-              latitude: BlocProvider.of<CompleteOrderGetLocationCubit>(context)
-                  .position!
-                  .latitude
-                  .toString(),
-              longtude: BlocProvider.of<CompleteOrderGetLocationCubit>(context)
-                  .position!
-                  .longitude
-                  .toString(),
-            );
+            if (BlocProvider.of<CompleteOrderGetLocationCubit>(context)
+                    .position !=
+                null) {
+              await BlocProvider.of<CompleteOrderCubit>(context).postOrderAdmin(
+                phone: accessVerifyCubit.userInfoModel!.phone!,
+                categoryName: document!.categoryName!,
+                shopName: title,
+                order: accessCubit.order!,
+                latitude:
+                    BlocProvider.of<CompleteOrderGetLocationCubit>(context)
+                        .position!
+                        .latitude
+                        .toString(),
+                longtude:
+                    BlocProvider.of<CompleteOrderGetLocationCubit>(context)
+                        .position!
+                        .longitude
+                        .toString(),
+              );
 
-            _controller.clear();
+              _controller.clear();
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  duration: const Duration(seconds: 2),
+                  content: Text(AppStrings.plsChooseLocation.tr()),
+                ),
+              );
+            }
           }
         },
         text: AppStrings.wasally.tr(),
