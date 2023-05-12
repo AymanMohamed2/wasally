@@ -86,7 +86,6 @@ class AuthRepoImpl implements AuthRepo {
         },
         endPoint: 'users/$userId',
       );
-      print(response);
 
       return right(
         UserInfoModel.fromJson(response),

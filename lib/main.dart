@@ -15,6 +15,7 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
   String? userId = prefs.getString("userId");
+  String? phoneNumber = prefs.getString("phoneNumber");
 
   //test commit
   runApp(
@@ -28,6 +29,7 @@ void main() async {
           ],
           child: Wasally(
             userId: userId,
+            phoneNumber: phoneNumber,
           ),
         ),
       ),

@@ -13,8 +13,6 @@ import 'config/themes/app_theme.dart';
 import 'core/utils/app_strings.dart';
 import 'features/auth/data/repositories/auth_repo_impl.dart';
 import 'features/auth/presentation/manager/verify_cubit/verify_cubit.dart';
-import 'features/curved_navigation_bar/data/repositories/curved_navigation_bar_repo/curved_navigation_bar_repo_impl.dart';
-import 'features/curved_navigation_bar/presentation/manager/get_user_order_cubit/get_user_order_cubit.dart';
 import 'features/home/data/repositories/home_repo_impl.dart';
 import 'features/home/presentation/manager/complete_order_button_cubit/complete_order_button_cubit.dart';
 import 'features/splash/presentation/view/splash_view.dart';
@@ -23,12 +21,15 @@ class Wasally extends StatelessWidget {
   Wasally({
     this.userId,
     Key? key,
+    this.phoneNumber,
   }) : super(key: key);
   final String? userId;
+  final String? phoneNumber;
 
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<SplashCubit>(context).userId = userId;
+    BlocProvider.of<SplashCubit>(context).phoneNumber = phoneNumber;
 
     return MultiBlocProvider(
       providers: [

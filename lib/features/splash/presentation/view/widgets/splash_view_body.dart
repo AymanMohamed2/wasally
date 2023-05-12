@@ -1,14 +1,10 @@
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wasally/features/auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import 'package:wasally/features/on_boarding/presentation/view/on_boarding_view.dart';
 import 'package:wasally/features/splash/presentation/manager/splash_cubit/splash_cubit.dart';
 
-import '../../../../../core/utils/api_services.dart';
 import '../../../../../core/utils/size_config.dart';
-import '../../../../auth/data/repositories/auth_repo_impl.dart';
 import '../../../../curved_navigation_bar/presentation/view/curved_navigation_bar.dart';
 
 class SplashViewBody extends StatelessWidget {
@@ -37,12 +33,8 @@ class SplashViewBody extends StatelessWidget {
         child: Image.asset("assets/images/splash.png"),
       ),
       onAnimationEnd: () => debugPrint("On Fade In End"),
-      defaultNextScreen: userId == null
-          ? const OnBoardingView()
-          : BlocProvider(
-              create: (context) => VerifyCubit(AuthRepoImpl(ApiServices(Dio())))..getUserInfo(userId: userId!),
-              child: BottomNavigationBarHome(),
-            ),
+      defaultNextScreen:
+          userId == null ? const OnBoardingView() : BottomNavigationBarHome(),
     );
   }
 }

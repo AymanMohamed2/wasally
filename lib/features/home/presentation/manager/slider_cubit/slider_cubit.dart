@@ -37,7 +37,7 @@ class SliderCubit extends Cubit<SliderState> {
       ]);
 
       subscription.stream.listen((event) async {
-        print(event);
+       
         await getSliderList();
       });
     } on Exception catch (e) {

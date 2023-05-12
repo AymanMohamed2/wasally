@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/utils/size_config.dart';
+import 'package:wasally/features/splash/presentation/manager/splash_cubit/splash_cubit.dart';
 
 import '../../../../../core/constants.dart';
 import '../../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
@@ -20,7 +21,7 @@ class PersonHeaderSection extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
         accountEmail: Text(
-          BlocProvider.of<VerifyCubit>(context).userInfoModel?.phone ?? '',
+          BlocProvider.of<SplashCubit>(context).phoneNumber ?? '',
           style: TextStyle(
               color: Colors.black, fontSize: SizeConfig.screenHeight! * 0.02),
         ),

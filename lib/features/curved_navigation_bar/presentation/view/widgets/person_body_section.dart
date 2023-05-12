@@ -55,6 +55,7 @@ class PersonBodySection extends StatelessWidget {
                 type: CoolAlertType.confirm, onConfirmBtnTap: () async {
               SharedPreferences pref = await SharedPreferences.getInstance();
               pref.remove('userId');
+              pref.remove('phoneNumber');
               Get.off(() => const LoginView());
             }, onCancelBtnTap: () {});
           },
