@@ -74,4 +74,14 @@ class AppStrings {
   
   static const String myShops = 'my_shops';
   static const String language = 'language';
+  static const String noOrders = 'no_orders';
+  static const String myOrders = 'my_orders';
+  static const String category = 'category';
+  static const String shop = 'shop';
+  static const String order = 'order';
+  static const String phone = 'phone';
+  static const String waiting = 'waiting';
+  static const String orderOnTheWay = 'order_on_the_way';
+  static const String delivered = 'delivered';
+  static const String location = 'location';
 }

@@ -14,6 +14,8 @@ import 'package:wasally/features/home/presentation/view/widgets/complete_order_v
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart' hide Trans;
 import '../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
+import '../../../curved_navigation_bar/presentation/view/curved_navigation_bar.dart';
+import '../../../curved_navigation_bar/presentation/view/talbat_view.dart';
 import '../manager/complete_order_button_cubit/complete_order_button_cubit.dart';
 
 class CompleteOrderView extends StatelessWidget {
@@ -82,22 +84,13 @@ class CompleteOrderView extends StatelessWidget {
             }
           }, listener: (context, state) {
             if (state is CompleteOrderSuccess) {
-              customAlertDialog(
-                context,
-                showCancelBtn: false,
-                title: AppStrings.orderSendSuccessfuly.tr(),
-                text: AppStrings.orderWillArrive.tr(),
-                type: CoolAlertType.success,
-              );
-              _controller.clear();
+              Get.off(() => BottomNavigationBarHome(
+                    selectedindex: 1,
+                  ));
+              showSnakeBar(context,
+                  message: AppStrings.orderSendSuccessfuly.tr());
             } else if (state is CompleteOrderFailure) {
-              customAlertDialog(
-                context,
-                showCancelBtn: false,
-                title: 'Oops...',
-                text: state.errMessage,
-                type: CoolAlertType.error,
-              );
+              showSnakeBar(context, message: '${state.errMessage}  ❌');
             }
           }),
           body: CompleteOrderViewBody(

@@ -1,13 +1,19 @@
 import 'package:appwrite/appwrite.dart';
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:easy_localization/easy_localization.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/core/constants.dart';
 import 'package:wasally/features/home/presentation/view/category_details_view.dart';
 import 'package:wasally/features/home/presentation/view/complete_order_view.dart';
 
+import '../../../../../core/errors/failures.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/size_config.dart';
+import '../../../../curved_navigation_bar/data/models/order_model/document.dart';
+import '../../../../curved_navigation_bar/data/models/order_model/order_model.dart';
 import 'custom_item_home.dart';
 
 class CustomGrideView extends StatelessWidget {
@@ -87,6 +93,8 @@ class CustomGrideView extends StatelessWidget {
           ),
           CustomItemHomeView(
             onTap: () async {
+            
+
               Get.to(
                 () => CategoryDetailsView(
                   title: AppStrings.library.tr(),
@@ -112,6 +120,4 @@ class CustomGrideView extends StatelessWidget {
       ),
     );
   }
-
-
 }

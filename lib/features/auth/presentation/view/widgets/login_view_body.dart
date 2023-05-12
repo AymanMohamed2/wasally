@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
+import '../../../../../core/functions/custom_alert_dialog.dart';
 import '../../../../../core/utils/size_config.dart';
 import '../verify_view.dart';
 import 'login_initial_section.dart';
@@ -36,12 +37,7 @@ class LoginViewBody extends StatelessWidget {
                   if (state is LoginSuccessState) {
                     Get.to(() => const VerifyView());
                   } else if (state is LoginFailureState) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        duration: const Duration(seconds: 2),
-                        content: Text(state.errMessage),
-                      ),
-                    );
+                    showSnakeBar(context, message: '${state.errMessage}  ❌');
                   }
                 },
                 builder: (context, state) {

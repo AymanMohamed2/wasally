@@ -32,4 +32,10 @@ class ApiServices {
     return response.data;
   }
 
+  Future<void> delete({
+    required String endPoint,
+    required var headers,
+  }) async {
+    await dio.delete('$_baseUrl$endPoint', options: Options(headers: headers));
+  }
 }

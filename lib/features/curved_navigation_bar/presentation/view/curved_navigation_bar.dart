@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/utils/size_config.dart';
-import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:wasally/features/home/presentation/view/home_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/person_info_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/talbat_view.dart';
@@ -16,7 +15,8 @@ import '../../../home/presentation/manager/slider_cubit/slider_cubit.dart';
 import '../../../splash/presentation/manager/splash_cubit/splash_cubit.dart';
 
 class BottomNavigationBarHome extends StatefulWidget {
-  const BottomNavigationBarHome({Key? key}) : super(key: key);
+  BottomNavigationBarHome({Key? key, this.selectedindex = 0}) : super(key: key);
+  int selectedindex;
 
   @override
   State<BottomNavigationBarHome> createState() =>
@@ -31,10 +31,9 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
     super.initState();
   }
 
-  int selectedindex = 0;
   List<Widget> pages = [
     const HomeView(),
-    const Talbat(),
+    const TalbatView(),
     const Person(),
   ];
 
@@ -55,7 +54,7 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
       ],
       child: Scaffold(
           bottomNavigationBar: CurvedNavigationBar(
-            index: selectedindex,
+            index: widget.selectedindex,
             animationDuration: const Duration(milliseconds: 400),
             height: SizeConfig.defaultSize! * 5.5,
             color: Colors.white,
@@ -80,11 +79,11 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
             ],
             onTap: (index) {
               setState(() {
-                selectedindex = index;
+                widget.selectedindex = index;
               });
             },
           ),
-          body: pages.elementAt(selectedindex)),
+          body: pages.elementAt(widget.selectedindex)),
     );
   }
 }

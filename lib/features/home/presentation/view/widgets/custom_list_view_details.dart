@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/core/widgets/custom_loading_indicator.dart';
 import 'package:wasally/features/home/presentation/manager/category_details_cubit/category_details_cubit.dart';
+import '../../../../../core/constants.dart';
 import '../../../../../core/utils/app_strings.dart';
 import 'custom_item_details.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -58,7 +59,7 @@ class CustomListViewDetails extends StatelessWidget {
                   height: SizeConfig.defaultSize! * 30,
                 ),
                 const CustomLoadingIndicator(
-                  color: Colors.orange,
+                  color: kPrimaryColor,
                   height: 30,
                   width: 30,
                 ),

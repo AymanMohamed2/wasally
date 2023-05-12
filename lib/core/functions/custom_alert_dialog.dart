@@ -26,3 +26,17 @@ void customAlertDialog(
     text: text,
   );
 }
+
+void showSnakeBar(BuildContext context, {required String message}) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      behavior: SnackBarBehavior.floating,
+      margin: EdgeInsets.only(
+        bottom: MediaQuery.of(context).size.height - 130,
+        left: 10,
+        right: 10,
+      ),
+    ),
+  );
+}

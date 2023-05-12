@@ -9,6 +9,7 @@ import 'package:wasally/features/auth/presentation/view/widgets/verify_initial_s
 import 'package:wasally/features/auth/presentation/view/widgets/verify_loading_section.dart';
 import 'package:wasally/features/auth/presentation/view/widgets/verify_section.dart';
 import 'package:wasally/features/splash/presentation/manager/splash_cubit/splash_cubit.dart';
+import '../../../../../core/functions/custom_alert_dialog.dart';
 import '../../../../curved_navigation_bar/presentation/view/curved_navigation_bar.dart';
 import 'custom_edit_phone_number.dart';
 
@@ -42,18 +43,17 @@ class VerifyViewBody extends StatelessWidget {
                     if (state is VerifySuccess) {
                       SharedPreferences pref =
                           await SharedPreferences.getInstance();
+                      pref.getString("phoneNumber");
+
                       await pref.setString(
                           'userId', accessCubit.userInfoModel!.id!);
                       BlocProvider.of<SplashCubit>(context).userId =
                           state.loginModel.userId!;
-                      Get.off(() => const BottomNavigationBarHome());
+                      await pref.setString(
+                          'phoneNumber', accessCubit.userInfoModel!.phone!);
+                      Get.off(() => BottomNavigationBarHome());
                     } else if (state is VerifyFailure) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          duration: const Duration(seconds: 2),
-                          content: Text(state.errMessage),
-                        ),
-                      );
+                      showSnakeBar(context, message: '${state.errMessage}  ❌');
                     }
                   },
                   builder: (context, state) {

@@ -49,7 +49,7 @@
   "pls_chooseLocation":"الرجاء تحديد مكان تسليم الطلب",
 
   "wasally":"وصل لي",
-  "order_send_successfuly":"تم ارسال الطلب بنجاح",
+  "order_send_successfuly":"تم ارسال الطلب بنجاح   ✅",
   "order_will_arrive":"سوف يصل طلبك في اسرع وقت ممكن",
   "write_your_order":"اكتب طلبك",
   "get_possition":"حدد مكان تسليم الطلب",
@@ -70,7 +70,17 @@
   "compelete_verify_err_message":"الرجاء إكمال رمز التحقق الخاص بك",
 
   "my_shops":"محلاتي",
-  "language":"اللغه"
+  "language":"اللغه",
+  "no_orders":"لا يوجد طلبات حاليه",
+  "my_orders":"طلباتي",
+  "category":"قسم",
+  "shop":"محل",
+  "order":"الطلب",
+  "phone":"الهاتف",
+  "waiting":"انتظار",
+  "order_on_the_way":"جاري التوصيل",
+  "delivered":"تم التوصيل",
+  "location":"الموقع"
 
 
 }
