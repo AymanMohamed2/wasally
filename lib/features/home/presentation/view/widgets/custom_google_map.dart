@@ -23,9 +23,9 @@ class CustomGoogleMap extends StatefulWidget {
 }
 
 class _CustomGoogleMapState extends State<CustomGoogleMap> {
-  Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _controller = Completer();
 // on below line we have specified camera position
-  static final CameraPosition _kGoogle = const CameraPosition(
+  static const CameraPosition _kGoogle = CameraPosition(
     target: LatLng(20.42796133580664, 80.885749655962),
     zoom: 14.4746,
   );
@@ -105,7 +105,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                     ),
                   ));
 
-                  CameraPosition cameraPosition = new CameraPosition(
+                  CameraPosition cameraPosition = CameraPosition(
                     target: LatLng(value.latitude, value.longitude),
                     zoom: 14,
                   );
@@ -123,7 +123,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                 color: Colors.black,
               ),
             ),
-            VirticalSpace(10)
+            const VirticalSpace(10)
           ],
         ),
       ),

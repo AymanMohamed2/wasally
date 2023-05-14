@@ -6,7 +6,6 @@ import 'package:wasally/core/widgets/custom_text.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/language_manager.dart';
-import 'package:get/get.dart' hide Trans;
 
 import '../../../../../core/utils/size_config.dart';
 
@@ -32,19 +31,19 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
         fontSize: SizeConfig.screenHeight! * 0.02,
       ),
       value: selected,
-      items: [
+      items: const [
         DropdownMenuItem(
           value: 'en',
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [Text('English'), Text('🇺🇸')],
+            children: [Text('English'), Text('🇺🇸')],
           ),
         ),
         DropdownMenuItem(
             value: 'ar',
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text('العربية'),
                 Text('🇪🇬'),
               ],

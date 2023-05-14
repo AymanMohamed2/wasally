@@ -5,7 +5,6 @@ import 'package:wasally/features/curved_navigation_bar/presentation/view/widgets
 import 'package:wasally/features/splash/presentation/manager/splash_cubit/splash_cubit.dart';
 
 import '../../../../core/utils/api_services.dart';
-import '../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import '../../data/repositories/curved_navigation_bar_repo/curved_navigation_bar_repo_impl.dart';
 import '../manager/delete_order_cubit/delete_order_cubit.dart';
 import '../manager/get_user_order_cubit/get_user_order_cubit.dart';
@@ -17,12 +16,6 @@ class TalbatView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-            create: (context) => GetUserOrderCubit(
-                CurvedNavigationBarRepoImpl(ApiServices(Dio())))
-              ..getUserOrder(
-                  phoneNumber:
-                      BlocProvider.of<SplashCubit>(context).phoneNumber!)),
         BlocProvider(
             create: (context) => DeleteOrderCubit(
                 CurvedNavigationBarRepoImpl(ApiServices(Dio())))),

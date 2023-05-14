@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wasally/features/auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/manager/get_user_order_cubit/get_user_order_cubit.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/widgets/custom_app_bar.dart';
 
@@ -26,7 +25,7 @@ class _TalbatViewBodyState extends State<TalbatViewBody> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          CustomAppBar(
+          const CustomAppBar(
             image: kLogo,
             icon: Icons.shopping_cart,
           ),
@@ -66,7 +65,7 @@ class _TalbatViewBodyState extends State<TalbatViewBody> {
                   ),
                 ]);
               } else {
-                return Column(children: const [
+                return const Column(children: [
                   VirticalSpace(30),
                   CustomLoadingIndicator(
                     color: kPrimaryColor,

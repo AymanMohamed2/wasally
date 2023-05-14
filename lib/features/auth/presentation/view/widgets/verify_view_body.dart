@@ -20,10 +20,10 @@ class VerifyViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     VerifyCubit accessCubit = BlocProvider.of<VerifyCubit>(context);
     LoginCubit accessLoginCubit = BlocProvider.of<LoginCubit>(context);
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Container(
         margin: EdgeInsets.only(
             left: SizeConfig.screenWidth! * 0.07,
@@ -34,7 +34,7 @@ class VerifyViewBody extends StatelessWidget {
               VerifySection(
                 accessCubit: accessCubit,
                 accessLoginCubit: accessLoginCubit,
-                formKey: _formKey,
+                formKey: formKey,
               ),
               SizedBox(
                 width: double.infinity,
@@ -61,7 +61,7 @@ class VerifyViewBody extends StatelessWidget {
                       return const VerifyLoadingSection();
                     } else {
                       return VerifyInitialSection(
-                        formKey: _formKey,
+                        formKey: formKey,
                         accessCubit: accessCubit,
                         accessLoginCubit: accessLoginCubit,
                         virifictionCode: accessCubit.virifictionCode,

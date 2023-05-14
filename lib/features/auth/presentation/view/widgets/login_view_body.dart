@@ -17,10 +17,10 @@ class LoginViewBody extends StatelessWidget {
     var accessCubit = BlocProvider.of<LoginCubit>(context);
     TextEditingController controller = TextEditingController();
 
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Container(
         margin: EdgeInsets.only(
             left: SizeConfig.screenWidth! * 0.07,
@@ -45,7 +45,7 @@ class LoginViewBody extends StatelessWidget {
                     return const LoginLoadingSection();
                   } else {
                     return LoginInitialSection(
-                        formKey: _formKey, accessCubit: accessCubit);
+                        formKey: formKey, accessCubit: accessCubit);
                   }
                 },
               )

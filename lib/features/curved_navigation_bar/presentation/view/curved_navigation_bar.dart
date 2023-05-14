@@ -3,7 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/utils/size_config.dart';
-import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:wasally/features/curved_navigation_bar/data/repositories/curved_navigation_bar_repo/curved_navigation_bar_repo_impl.dart';
+import 'package:wasally/features/curved_navigation_bar/presentation/manager/get_user_order_cubit/get_user_order_cubit.dart';
 import 'package:wasally/features/home/presentation/view/home_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/person_info_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/talbat_view.dart';
@@ -52,6 +53,7 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
             HomeRepoImpl(ApiServices(Dio())),
           ),
         ),
+       
       ],
       child: Scaffold(
           bottomNavigationBar: CurvedNavigationBar(
@@ -78,10 +80,15 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
                 color: Colors.orange,
               ),
             ],
-            onTap: (index) {
+            onTap: (index) async {
               setState(() {
                 widget.selectedindex = index;
               });
+              if (index == 1) {
+                await BlocProvider.of<GetUserOrderCubit>(context).getUserOrder(
+                    phoneNumber:
+                        BlocProvider.of<SplashCubit>(context).phoneNumber!);
+              }
             },
           ),
           body: pages.elementAt(widget.selectedindex)),

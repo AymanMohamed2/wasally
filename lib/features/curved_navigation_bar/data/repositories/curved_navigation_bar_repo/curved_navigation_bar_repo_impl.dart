@@ -1,6 +1,5 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:dio/dio.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:wasally/core/utils/api_services.dart';
 import 'package:wasally/features/auth/data/models/user_info_model/user_info_model.dart';
 

@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/functions/custom_alert_dialog.dart';
@@ -15,7 +14,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart' hide Trans;
 import '../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import '../../../curved_navigation_bar/presentation/view/curved_navigation_bar.dart';
-import '../../../curved_navigation_bar/presentation/view/talbat_view.dart';
 import '../manager/complete_order_button_cubit/complete_order_button_cubit.dart';
 
 class CompleteOrderView extends StatelessWidget {

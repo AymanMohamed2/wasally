@@ -4,11 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:wasally/core/constants.dart';
-import 'package:wasally/core/utils/size_config.dart';
-import 'package:wasally/core/widgets/custom_elevated_button.dart';
-import 'package:wasally/core/widgets/space_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:get/get.dart' hide Trans;
 import 'package:wasally/features/home/presentation/manager/complete_order_get_location_cubit/complete_order_get_location_cubit.dart';
 
 import '../../../../../core/utils/app_strings.dart';
@@ -27,7 +23,7 @@ class CustomGoogleMap extends StatefulWidget {
 }
 
 class _CustomGoogleMapState extends State<CustomGoogleMap> {
-  Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _controller = Completer();
   Future<void> getLocation() async {
     _markers.add(Marker(
       markerId: const MarkerId("2"),
@@ -37,7 +33,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       ),
     ));
 
-    CameraPosition cameraPosition = new CameraPosition(
+    CameraPosition cameraPosition = CameraPosition(
       target: LatLng(widget.latitude, widget.longtude),
       zoom: 14,
     );
@@ -56,7 +52,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   }
 
 // on below line we have specified camera position
-  static final CameraPosition _kGoogle = const CameraPosition(
+  static const CameraPosition _kGoogle = CameraPosition(
     target: LatLng(20.42796133580664, 80.885749655962),
     zoom: 14.4746,
   );

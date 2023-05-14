@@ -7,7 +7,6 @@ import '../../../../../core/constants.dart';
 import '../../../../../core/utils/app_strings.dart';
 import 'custom_item_details.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:get/get.dart' hide Trans;
 
 class CustomListViewDetails extends StatelessWidget {
   const CustomListViewDetails({super.key});

@@ -11,12 +11,15 @@ class SplashViewBody extends StatelessWidget {
   const SplashViewBody({
     super.key,
     this.userId,
+    this.phoneNumber,
   });
   final String? userId;
+  final String? phoneNumber;
 
   @override
   Widget build(BuildContext context) {
     var accessCubit = BlocProvider.of<SplashCubit>(context);
+    accessCubit.phoneNumber = phoneNumber;
 
     SizeConfig().init(context);
     return FlutterSplashScreen.fadeIn(

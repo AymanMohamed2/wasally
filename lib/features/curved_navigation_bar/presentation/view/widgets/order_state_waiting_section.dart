@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart' hide Trans;
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_text.dart';
 import '../../../../../core/widgets/space_widget.dart';

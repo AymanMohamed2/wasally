@@ -23,7 +23,7 @@ class SliderCubit extends Cubit<SliderState> {
     });
   }
 
-  void getAllOrder() {
+  void getSliderListStream() {
     final client = Client()
         .setEndpoint('https://cloud.appwrite.io/v1')
         .setProject('6435d5e1a13eff6332c2');
@@ -37,7 +37,6 @@ class SliderCubit extends Cubit<SliderState> {
       ]);
 
       subscription.stream.listen((event) async {
-       
         await getSliderList();
       });
     } on Exception catch (e) {

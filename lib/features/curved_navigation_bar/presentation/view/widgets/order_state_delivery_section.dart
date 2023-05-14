@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart' hide Trans;
 import 'package:wasally/core/constants.dart';
 
 import '../../../../../core/utils/app_strings.dart';

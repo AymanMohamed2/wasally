@@ -5,7 +5,6 @@ import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/features/splash/presentation/manager/splash_cubit/splash_cubit.dart';
 
 import '../../../../../core/constants.dart';
-import '../../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
 
 class PersonHeaderSection extends StatelessWidget {
   const PersonHeaderSection({super.key});

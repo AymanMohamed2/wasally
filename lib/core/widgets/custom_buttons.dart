@@ -3,10 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/features/home/presentation/manager/complete_order_get_location_cubit/complete_order_get_location_cubit.dart';
 
 import '../constants.dart';
-import '../utils/app_strings.dart';
 import '../utils/size_config.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:get/get.dart' hide Trans;
 
 class CustomGeneralButton extends StatelessWidget {
   const CustomGeneralButton({super.key, required this.text, this.onTap});

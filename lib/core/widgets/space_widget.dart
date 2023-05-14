@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../utils/size_config.dart';
 
 class HorizintalSpace extends StatelessWidget {
-  const HorizintalSpace(this.value);
+  const HorizintalSpace(this.value, {super.key});
   final double? value;
 
   @override
@@ -15,7 +15,7 @@ class HorizintalSpace extends StatelessWidget {
 }
 
 class VirticalSpace extends StatelessWidget {
-  const VirticalSpace(this.value);
+  const VirticalSpace(this.value, {super.key});
   final double? value;
 
   @override

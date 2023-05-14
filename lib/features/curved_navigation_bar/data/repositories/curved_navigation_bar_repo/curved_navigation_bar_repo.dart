@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:get/get.dart';
 
 import '../../../../../core/errors/failures.dart';
 import '../../../../auth/data/models/user_info_model/user_info_model.dart';

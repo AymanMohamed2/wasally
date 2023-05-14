@@ -15,7 +15,7 @@ class CustomOnBoarding extends StatefulWidget {
 
   /// Callback on Skip Button Pressed
   final Function()? onTapSkipButton;
-  CustomOnBoarding({
+  const CustomOnBoarding({
     Key? key,
     this.text = 'Skip',
     this.introductionList,
@@ -43,7 +43,7 @@ class _CustomOnBoardingState extends State<CustomOnBoarding> {
         child: AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.light,
           child: Container(
-            color: widget.backgroudColor ?? Theme.of(context).backgroundColor,
+            color: widget.backgroudColor ?? Theme.of(context).colorScheme.background,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 40.0),
               child: Column(
@@ -91,7 +91,7 @@ class _CustomOnBoardingState extends State<CustomOnBoarding> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Container(
+        SizedBox(
           width: 80,
           height: 80,
           child: CircleProgressBar(

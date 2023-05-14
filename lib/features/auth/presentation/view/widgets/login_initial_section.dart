@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart' hide Trans;
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_elevated_button.dart';
 import '../../manager/login_cubit/login_cubit.dart';

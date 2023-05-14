@@ -9,7 +9,6 @@ import 'custom_app_bar.dart';
 import 'custom_carousel.dart';
 import 'custom_grid_view.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:get/get.dart' hide Trans;
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -19,9 +18,11 @@ class HomeViewBody extends StatefulWidget {
 }
 
 class _HomeViewBodyState extends State<HomeViewBody> {
+  @override
   void initState() {
+    super.initState();
     BlocProvider.of<SliderCubit>(context).getSliderList();
-    BlocProvider.of<SliderCubit>(context).getAllOrder();
+    BlocProvider.of<SliderCubit>(context).getSliderListStream();
   }
 
   @override
