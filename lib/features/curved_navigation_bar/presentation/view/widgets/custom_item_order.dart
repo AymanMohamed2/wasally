@@ -11,6 +11,7 @@ import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../../../core/widgets/custom_text.dart';
+import '../../../../../core/widgets/space_widget.dart';
 import '../../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import '../../../data/models/order_model/document.dart';
 import '../../manager/get_user_order_cubit/get_user_order_cubit.dart';
@@ -34,69 +35,91 @@ class CustomItemOrder extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Stack(
+            Column(
               children: [
                 Column(
                   children: [
-                    CustomRow(
-                      icon: Icons.category,
-                      title: AppStrings.category.tr(),
-                      value: document.categoryName!,
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.category,
+                          color: kPrimaryColor,
+                        ),
+                        const HorizintalSpace(1),
+                        CustomText(
+                          text: '${AppStrings.category.tr()} :  ',
+                          fontWeight: FontWeight.bold,
+                        ),
+                        Flexible(
+                            child: CustomText(text: document.categoryName!)),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: SizeConfig.screenWidth! * 0.28,
+                          ),
+                          child: Visibility(
+                            visible: document.orderState == 'تم التوصيل'
+                                ? true
+                                : false,
+                            child: BlocConsumer<DeleteOrderCubit,
+                                DeleteOrderState>(
+                              listener: (context, state) async {
+                                if (state is DeleteOrderSuccess) {
+                                  await BlocProvider.of<GetUserOrderCubit>(
+                                          context)
+                                      .getUserOrder(
+                                          phoneNumber:
+                                              BlocProvider.of<VerifyCubit>(
+                                                      context)
+                                                  .userInfoModel!
+                                                  .phone!);
+                                } else if (state is DeleteOrderFailure) {
+                                  showSnakeBar(context,
+                                      message: state.errMessage);
+                                }
+                              },
+                              builder: (context, state) {
+                                if (state is DeleteOrderLoading) {
+                                  return const Padding(
+                                    padding: EdgeInsets.all(16),
+                                    child: CustomLoadingIndicator(),
+                                  );
+                                } else {
+                                  return IconButton(
+                                    onPressed: () async {
+                                      await BlocProvider.of<DeleteOrderCubit>(
+                                              context)
+                                          .deleteOrder(orderId: document.id);
+                                    },
+                                    icon: const Icon(Icons.delete),
+                                  );
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    CustomRow(
-                      icon: Icons.storefront,
-                      title: AppStrings.shop.tr(),
-                      value: document.shopName!,
-                    ),
-                    CustomRow(
-                        icon: Icons.shopping_cart,
-                        title: AppStrings.order.tr(),
-                        value: document.order!),
-                    CustomRow(
-                      icon: Icons.phone_android,
-                      title: AppStrings.phone.tr(),
-                      value: document.phone!,
-                    ),
+                    const Divider(),
                   ],
                 ),
-                Visibility(
-                  visible: document.orderState == 'تم التوصيل' ? true : false,
-                  child: BlocConsumer<DeleteOrderCubit, DeleteOrderState>(
-                    listener: (context, state) async {
-                      if (state is DeleteOrderSuccess) {
-                        await BlocProvider.of<GetUserOrderCubit>(context)
-                            .getUserOrder(
-                                phoneNumber:
-                                    BlocProvider.of<VerifyCubit>(context)
-                                        .userInfoModel!
-                                        .phone!);
-                      } else if (state is DeleteOrderFailure) {
-                        showSnakeBar(context, message: 'message');
-                      }
-                    },
-                    builder: (context, state) {
-                      if (state is DeleteOrderLoading) {
-                        return Positioned(
-                          left: SizeConfig.screenWidth! * 0.0001,
-                          child: const Padding(
-                            padding: EdgeInsets.all(16),
-                            child: CustomLoadingIndicator(),
-                          ),
-                        );
-                      } else {
-                        return Positioned(
-                          left: SizeConfig.screenWidth! * 0.0001,
-                          child: IconButton(
-                            onPressed: () async {
-                              await BlocProvider.of<DeleteOrderCubit>(context)
-                                  .deleteOrder(orderId: document.id);
-                            },
-                            icon: const Icon(Icons.delete),
-                          ),
-                        );
-                      }
-                    },
-                  ),
+                // CustomRow(
+                //   icon: Icons.category,
+                //   title: AppStrings.category.tr(),
+                //   value: document.categoryName!,
+                // ),
+                CustomRow(
+                  icon: Icons.storefront,
+                  title: AppStrings.shop.tr(),
+                  value: document.shopName!,
+                ),
+                CustomRow(
+                    icon: Icons.shopping_cart,
+                    title: AppStrings.order.tr(),
+                    value: document.order!),
+                CustomRow(
+                  icon: Icons.phone_android,
+                  title: AppStrings.phone.tr(),
+                  value: document.phone!,
                 ),
               ],
             ),

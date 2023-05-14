@@ -43,7 +43,6 @@ class VerifyViewBody extends StatelessWidget {
                     if (state is VerifySuccess) {
                       SharedPreferences pref =
                           await SharedPreferences.getInstance();
-                      pref.getString("phoneNumber");
 
                       await pref.setString(
                           'userId', accessCubit.userInfoModel!.id!);
