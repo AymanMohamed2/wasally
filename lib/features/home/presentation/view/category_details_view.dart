@@ -12,9 +12,11 @@ class CategoryDetailsView extends StatelessWidget {
     super.key,
     required this.title,
     required this.collectionId,
+    required this.image,
   });
   final String title;
   final String collectionId;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,7 @@ class CategoryDetailsView extends StatelessWidget {
           ),
         ],
         child: CategoryDetailsBody(
+          image: image,
           title: title,
         ),
       ),

@@ -31,9 +31,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const VirticalSpace(1),
           const CustomAppBar(
-            icon: Icons.notifications,
-            image: kLogo,
+            logo: kLogo,
+            image: appBarImage,
           ),
           const VirticalSpace(3),
           SizedBox(

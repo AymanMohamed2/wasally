@@ -28,6 +28,7 @@ class CustomGrideView extends StatelessWidget {
             onTap: () {
               Get.to(
                 () => CategoryDetailsView(
+                  image: kServiceRestaurant,
                   title: AppStrings.restaurant.tr(),
                   collectionId: '643fff738de6a968c5ba',
                 ),
@@ -40,6 +41,7 @@ class CustomGrideView extends StatelessWidget {
             onTap: () {
               Get.to(
                 () => CategoryDetailsView(
+                  image: kServiceSuperMarket,
                   title: AppStrings.superMarket.tr(),
                   collectionId: '64405ac2df4dd40f4524',
                 ),
@@ -52,6 +54,7 @@ class CustomGrideView extends StatelessWidget {
             onTap: () {
               Get.to(
                 () => CategoryDetailsView(
+                  image: kServicePharmacy,
                   title: AppStrings.pharmacy.tr(),
                   collectionId: '643cc36ba7aa0f87942e',
                 ),
@@ -64,6 +67,7 @@ class CustomGrideView extends StatelessWidget {
             onTap: () {
               Get.to(
                 () => CategoryDetailsView(
+                  image: kServiceBakery,
                   title: AppStrings.bakery.tr(),
                   collectionId: '64405c5d508f5a87af04',
                 ),
@@ -76,6 +80,7 @@ class CustomGrideView extends StatelessWidget {
             onTap: () {
               Get.to(
                 () => CategoryDetailsView(
+                  image: kServiceVegetables,
                   title: AppStrings.vegetables.tr(),
                   collectionId: '64405cdd6349581b8a59',
                 ),
@@ -86,10 +91,9 @@ class CustomGrideView extends StatelessWidget {
           ),
           CustomItemHomeView(
             onTap: () async {
-            
-
               Get.to(
                 () => CategoryDetailsView(
+                  image: kServiceLibrary,
                   title: AppStrings.library.tr(),
                   collectionId: '64405d822764430f3f55',
                 ),

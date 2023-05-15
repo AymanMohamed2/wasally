@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const kPrimaryColor = Colors.orange;
 const kLogo = 'assets/images/logo.png';
+const appBarImage = 'assets/images/appbar_image.png';
 const kServiceRestaurant = 'assets/images/services/cock.png';
 const kServiceSuperMarket = 'assets/images/services/market.png';
 const kServicePharmacy = 'assets/images/services/pharmacy.png';

@@ -5,34 +5,30 @@ import 'package:wasally/core/utils/size_config.dart';
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
-    required this.icon,
     required this.image,
+    required this.logo,
   });
 
-  final IconData icon;
   final String image;
+  final String logo;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        IconButton(
-            onPressed: () {},
-            icon: Icon(
-              icon,
-              size: SizeConfig.screenHeight! * 0.03,
-            )),
-        Padding(
-          padding: EdgeInsets.only(
-              left: SizeConfig.screenWidth! * 0.02,
-              right: SizeConfig.screenWidth! * 0.02),
-          child: Image.asset(
-            image,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth! * 0.03),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Image.asset(
+            logo,
             height: SizeConfig.defaultSize! * 5,
           ),
-        ),
-      ],
+          Image.asset(
+            image,
+            height: SizeConfig.defaultSize! * 7,
+          ),
+        ],
+      ),
     );
   }
 }
