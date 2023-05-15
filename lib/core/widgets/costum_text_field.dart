@@ -15,6 +15,7 @@ class CustomTextField extends StatelessWidget {
     this.validator,
     this.errorMaxLines,
     this.controller,
+    this.textInputAction,
   }) : super(key: key);
   final String hintText;
   final Icon? prefixIcon;
@@ -25,6 +26,7 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final int? errorMaxLines;
   final TextEditingController? controller;
+  final TextInputAction? textInputAction;
 
   final bool obscureText;
   final TextInputType? textInputType;
@@ -34,13 +36,15 @@ class CustomTextField extends StatelessWidget {
     final FocusNode myFocusNode = FocusNode();
 
     return TextFormField(
+      textInputAction: textInputAction,
+
       controller: controller,
       autocorrect: true,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       focusNode: myFocusNode,
       validator: validator,
       onChanged: onChanged,
-      minLines: minLines,
+      // minLines: minLines,
       maxLines: maxLines,
       obscureText: obscureText,
       cursorColor: kPrimaryColor,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wasally/core/utils/size_config.dart';
 
 import '../../../../../core/constants.dart';
 import '../../../../../core/widgets/custom_text.dart';
@@ -25,13 +26,17 @@ class CustomRow extends StatelessWidget {
               icon,
               color: kPrimaryColor,
             ),
-            const HorizintalSpace(1),
+            const HorizintalSpace(1.7),
             CustomText(
               text: '$title :  ',
               fontWeight: FontWeight.bold,
+              fontSize: SizeConfig.defaultSize! * 2,
             ),
-            Flexible(child: CustomText(text: value)),
-            
+            Flexible(
+                child: CustomText(
+              text: value,
+              fontSize: SizeConfig.defaultSize! * 2,
+            )),
           ],
         ),
         const Divider(),

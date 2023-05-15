@@ -32,7 +32,7 @@ class CustomItemDetailsView extends StatelessWidget {
           Get.to(
             () => CompleteOrderView(
               title: document!.name!,
-              document: document,
+              imageUrl: document!.image!,
             ),
           );
         },

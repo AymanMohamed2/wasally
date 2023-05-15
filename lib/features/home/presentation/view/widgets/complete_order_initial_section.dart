@@ -14,14 +14,14 @@ class CompleteOrderInitialSection extends StatelessWidget {
     super.key,
     required GlobalKey<FormState> formKey,
     required this.accessVerifyCubit,
-    required this.document,
+    required this.categoryName,
     required this.title,
     required this.accessCubit,
   }) : _formKey = formKey;
 
   final GlobalKey<FormState> _formKey;
   final VerifyCubit accessVerifyCubit;
-  final Document? document;
+  final String categoryName;
   final String title;
   final CompleteOrderCubit accessCubit;
 
@@ -35,7 +35,7 @@ class CompleteOrderInitialSection extends StatelessWidget {
                 null) {
               BlocProvider.of<CompleteOrderCubit>(context).postOrderAdmin(
                 phone: accessVerifyCubit.userInfoModel!.phone!,
-                categoryName: document!.categoryName!,
+                categoryName: categoryName,
                 shopName: title,
                 order: accessCubit.order!,
                 latitude:

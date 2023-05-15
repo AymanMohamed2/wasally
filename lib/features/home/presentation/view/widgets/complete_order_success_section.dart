@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_buttons.dart';
 import '../../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
-import '../../../data/models/category_details_model/document.dart';
 import '../../manager/complete_order_button_cubit/complete_order_button_cubit.dart';
 import '../../manager/complete_order_get_location_cubit/complete_order_get_location_cubit.dart';
 
@@ -14,19 +13,20 @@ class CompleteOrderSuccessSection extends StatelessWidget {
     super.key,
     required GlobalKey<FormState> formKey,
     required this.accessVerifyCubit,
-    required this.document,
     required this.title,
     required this.accessCubit,
     required TextEditingController controller,
+    required this.categoryName,
   })  : _formKey = formKey,
         _controller = controller;
 
   final GlobalKey<FormState> _formKey;
   final VerifyCubit accessVerifyCubit;
-  final Document? document;
+
   final String title;
   final CompleteOrderCubit accessCubit;
   final TextEditingController _controller;
+  final String categoryName;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class CompleteOrderSuccessSection extends StatelessWidget {
                 null) {
               await BlocProvider.of<CompleteOrderCubit>(context).postOrderAdmin(
                 phone: accessVerifyCubit.userInfoModel!.phone!,
-                categoryName: document!.categoryName!,
+                categoryName: categoryName,
                 shopName: title,
                 order: accessCubit.order!,
                 latitude:

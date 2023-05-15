@@ -15,6 +15,7 @@ import '../../../../../core/widgets/space_widget.dart';
 import '../../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import '../../../data/models/order_model/document.dart';
 import '../../manager/get_user_order_cubit/get_user_order_cubit.dart';
+import 'custom_list_tile.dart';
 import 'custom_row.dart';
 import 'order_state_delivery_section.dart';
 import 'order_state_done_section.dart';
@@ -37,71 +38,7 @@ class CustomItemOrder extends StatelessWidget {
           children: [
             Column(
               children: [
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.category,
-                          color: kPrimaryColor,
-                        ),
-                        const HorizintalSpace(1),
-                        CustomText(
-                          text: '${AppStrings.category.tr()} :  ',
-                          fontWeight: FontWeight.bold,
-                        ),
-                        Flexible(
-                            child: CustomText(text: document.categoryName!)),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            left: SizeConfig.screenWidth! * 0.28,
-                          ),
-                          child: Visibility(
-                            visible: document.orderState == 'تم التوصيل'
-                                ? true
-                                : false,
-                            child: BlocConsumer<DeleteOrderCubit,
-                                DeleteOrderState>(
-                              listener: (context, state) async {
-                                if (state is DeleteOrderSuccess) {
-                                  await BlocProvider.of<GetUserOrderCubit>(
-                                          context)
-                                      .getUserOrder(
-                                          phoneNumber:
-                                              BlocProvider.of<VerifyCubit>(
-                                                      context)
-                                                  .userInfoModel!
-                                                  .phone!);
-                                } else if (state is DeleteOrderFailure) {
-                                  showSnakeBar(context,
-                                      message: state.errMessage);
-                                }
-                              },
-                              builder: (context, state) {
-                                if (state is DeleteOrderLoading) {
-                                  return const Padding(
-                                    padding: EdgeInsets.all(16),
-                                    child: CustomLoadingIndicator(),
-                                  );
-                                } else {
-                                  return IconButton(
-                                    onPressed: () async {
-                                      await BlocProvider.of<DeleteOrderCubit>(
-                                              context)
-                                          .deleteOrder(orderId: document.id);
-                                    },
-                                    icon: const Icon(Icons.delete),
-                                  );
-                                }
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Divider(),
-                  ],
-                ),
+                CustomListTile(document: document),
                 CustomRow(
                   icon: Icons.storefront,
                   title: AppStrings.shop.tr(),
@@ -156,3 +93,4 @@ class CustomItemOrder extends StatelessWidget {
     );
   }
 }
+

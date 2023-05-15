@@ -20,10 +20,10 @@ class CompleteOrderView extends StatelessWidget {
   CompleteOrderView({
     super.key,
     required this.title,
-    this.document,
+    required this.imageUrl,
   });
   final String title;
-  final Document? document;
+  final String imageUrl;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -41,12 +41,7 @@ class CompleteOrderView extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            actions: [
-              CachedNetworkImage(
-                imageUrl: document?.image ??
-                    'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cf5d2553db8e9ad/view?project=6435d5e1a13eff6332c2&mode=admin',
-              )
-            ],
+            actions: [CachedNetworkImage(imageUrl: imageUrl)],
             title: Text(
               title,
               style: const TextStyle(color: Colors.black),
@@ -57,16 +52,16 @@ class CompleteOrderView extends StatelessWidget {
                   builder: (context, state) {
             if (state is CompleteOrderInitial) {
               return CompleteOrderInitialSection(
+                  categoryName: title,
                   formKey: _formKey,
                   accessVerifyCubit: accessVerifyCubit,
-                  document: document,
                   title: title,
                   accessCubit: accessCubit);
             } else if (state is CompleteOrderSuccess) {
               return CompleteOrderSuccessSection(
                   formKey: _formKey,
                   accessVerifyCubit: accessVerifyCubit,
-                  document: document,
+                  categoryName: title,
                   title: title,
                   accessCubit: accessCubit,
                   controller: _controller);
@@ -74,7 +69,7 @@ class CompleteOrderView extends StatelessWidget {
               return CompleteOrderFailureSection(
                   formKey: _formKey,
                   accessVerifyCubit: accessVerifyCubit,
-                  document: document,
+                  categoryName: title,
                   title: title,
                   accessCubit: accessCubit);
             } else {

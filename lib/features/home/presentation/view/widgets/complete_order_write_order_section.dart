@@ -13,26 +13,32 @@ class CompleteOrderWriteOrderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: SizeConfig.screenHeight! * 0.3,
-      margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
-      child: Card(
-        child: CustomTextField(
-          textInputType: TextInputType.text,
-          controller: controller,
-          onChanged: (value) {
-            accessCubit.order = value;
-          },
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return AppStrings.plsWriteOrder.tr();
-            } else {
-              return null;
-            }
-          },
-          hintText: AppStrings.writeYourOrder.tr(),
-          minLines: 100,
-          maxLines: 200,
+    return Padding(
+      padding: EdgeInsets.only(
+        right: SizeConfig.screenWidth! * 0.022,
+        left: SizeConfig.screenWidth! * 0.022,
+        top: SizeConfig.screenWidth! * 0.022,
+      ),
+      child: SizedBox(
+        height: SizeConfig.screenHeight! * 0.3,
+        child: Card(
+          child: CustomTextField(
+            textInputType: TextInputType.multiline,
+            controller: controller,
+            onChanged: (value) {
+              accessCubit.order = value;
+            },
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return AppStrings.plsWriteOrder.tr();
+              } else {
+                return null;
+              }
+            },
+            hintText: AppStrings.writeYourOrder.tr(),
+            minLines: 100,
+            maxLines: 200,
+          ),
         ),
       ),
     );

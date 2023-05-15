@@ -40,10 +40,10 @@ class CustomGrideView extends StatelessWidget {
           CustomItemHomeView(
             onTap: () {
               Get.to(
-                () => CategoryDetailsView(
-                  image: kServiceSuperMarket,
+                () => CompleteOrderView(
                   title: AppStrings.superMarket.tr(),
-                  collectionId: '64405ac2df4dd40f4524',
+                  imageUrl:
+                      'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cbd617494e7c8c6/view?project=6435d5e1a13eff6332c2&mode=admin',
                 ),
               );
             },
@@ -52,52 +52,40 @@ class CustomGrideView extends StatelessWidget {
           ),
           CustomItemHomeView(
             onTap: () {
-              Get.to(
-                () => CategoryDetailsView(
-                  image: kServicePharmacy,
+              Get.to(() => CompleteOrderView(
                   title: AppStrings.pharmacy.tr(),
-                  collectionId: '643cc36ba7aa0f87942e',
-                ),
-              );
+                  imageUrl:
+                      'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cff19fc276d88df/view?project=6435d5e1a13eff6332c2&mode=admin'));
             },
             name: AppStrings.pharmacy.tr(),
             imageUrl: kServicePharmacy,
           ),
           CustomItemHomeView(
             onTap: () {
-              Get.to(
-                () => CategoryDetailsView(
-                  image: kServiceBakery,
+              Get.to(() => CompleteOrderView(
                   title: AppStrings.bakery.tr(),
-                  collectionId: '64405c5d508f5a87af04',
-                ),
-              );
+                  imageUrl:
+                      'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cc55ed1e30e61d9/view?project=6435d5e1a13eff6332c2&mode=admin'));
             },
             name: AppStrings.bakery.tr(),
             imageUrl: kServiceBakery,
           ),
           CustomItemHomeView(
             onTap: () {
-              Get.to(
-                () => CategoryDetailsView(
-                  image: kServiceVegetables,
+              Get.to(() => CompleteOrderView(
                   title: AppStrings.vegetables.tr(),
-                  collectionId: '64405cdd6349581b8a59',
-                ),
-              );
+                  imageUrl:
+                      'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9d08aaf0a92aa3c7/view?project=6435d5e1a13eff6332c2&mode=admin'));
             },
             name: AppStrings.vegetables.tr(),
             imageUrl: kServiceVegetables,
           ),
           CustomItemHomeView(
             onTap: () async {
-              Get.to(
-                () => CategoryDetailsView(
-                  image: kServiceLibrary,
+              Get.to(() => CompleteOrderView(
                   title: AppStrings.library.tr(),
-                  collectionId: '64405d822764430f3f55',
-                ),
-              );
+                  imageUrl:
+                      'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cb2ee061aa167c9/view?project=6435d5e1a13eff6332c2&mode=admin'));
             },
             name: AppStrings.library.tr(),
             imageUrl: kServiceLibrary,
@@ -106,6 +94,8 @@ class CustomGrideView extends StatelessWidget {
             onTap: () {
               Get.to(
                 () => CompleteOrderView(
+                  imageUrl:
+                      'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cf5d2553db8e9ad/view?project=6435d5e1a13eff6332c2&mode=admin',
                   title: AppStrings.other.tr(),
                 ),
               );
