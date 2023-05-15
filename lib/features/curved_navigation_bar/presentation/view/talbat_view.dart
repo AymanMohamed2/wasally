@@ -8,7 +8,8 @@ import '../../data/repositories/curved_navigation_bar_repo/curved_navigation_bar
 import '../manager/delete_order_cubit/delete_order_cubit.dart';
 
 class TalbatView extends StatelessWidget {
-  const TalbatView({super.key});
+  const TalbatView({super.key, this.phoneNumber});
+  final String? phoneNumber;
 
   @override
   Widget build(BuildContext context) {

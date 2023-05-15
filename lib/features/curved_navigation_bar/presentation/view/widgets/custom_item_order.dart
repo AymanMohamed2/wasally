@@ -102,11 +102,6 @@ class CustomItemOrder extends StatelessWidget {
                     const Divider(),
                   ],
                 ),
-                // CustomRow(
-                //   icon: Icons.category,
-                //   title: AppStrings.category.tr(),
-                //   value: document.categoryName!,
-                // ),
                 CustomRow(
                   icon: Icons.storefront,
                   title: AppStrings.shop.tr(),

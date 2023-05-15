@@ -14,6 +14,7 @@ class VerifyCubit extends Cubit<VerifyState> {
   UserInfoModel? userInfoModel;
   bool readOnly = false;
   String? virifictionCode;
+  String? phoneNumber;
 
   Future<void> confirmPhoneSession({
     required String userId,

@@ -24,7 +24,9 @@ class CustomAppBar extends StatelessWidget {
               size: SizeConfig.screenHeight! * 0.03,
             )),
         Padding(
-          padding: EdgeInsets.only(left: SizeConfig.screenWidth! * 0.01),
+          padding: EdgeInsets.only(
+              left: SizeConfig.screenWidth! * 0.02,
+              right: SizeConfig.screenWidth! * 0.02),
           child: Image.asset(
             image,
             height: SizeConfig.defaultSize! * 5,

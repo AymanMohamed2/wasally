@@ -82,11 +82,6 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
               setState(() {
                 widget.selectedindex = index;
               });
-              if (index == 1) {
-                await BlocProvider.of<GetUserOrderCubit>(context).getUserOrder(
-                    phoneNumber:
-                        BlocProvider.of<SplashCubit>(context).phoneNumber!);
-              }
             },
           ),
           body: pages.elementAt(widget.selectedindex)),
