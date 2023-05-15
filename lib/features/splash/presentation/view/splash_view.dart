@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/size_config.dart';
 import 'widgets/splash_view_body.dart';
 
 class SplashView extends StatelessWidget {

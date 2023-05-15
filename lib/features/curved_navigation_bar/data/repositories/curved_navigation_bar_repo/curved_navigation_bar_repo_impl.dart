@@ -113,7 +113,7 @@ class CurvedNavigationBarRepoImpl implements CurvedNavigationBarRepo {
   @override
   Future<Either<Failure, void>> deleteOrder({required String orderId}) async {
     try {
-      var response = await apiServices.delete(
+      await apiServices.delete(
           endPoint:
               'databases/64439ac773343115d92a/collections/64439af01110334cae23/documents/$orderId',
           headers: {

@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/utils/size_config.dart';
-import 'package:wasally/features/curved_navigation_bar/presentation/manager/get_user_order_cubit/get_user_order_cubit.dart';
 import 'package:wasally/features/home/presentation/view/home_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/person_info_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/talbat_view.dart';

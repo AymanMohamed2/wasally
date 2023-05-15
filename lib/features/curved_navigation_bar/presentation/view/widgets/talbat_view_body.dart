@@ -35,6 +35,7 @@ class _TalbatViewBodyState extends State<TalbatViewBody> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          const VirticalSpace(1),
           const CustomAppBar(
             image: kLogo,
             icon: Icons.shopping_cart,
