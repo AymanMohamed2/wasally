@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' hide Trans;
-import 'package:wasally/core/functions/custom_alert_dialog.dart';
-import 'package:wasally/features/curved_navigation_bar/presentation/manager/delete_order_cubit/delete_order_cubit.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/widgets/custom_elevated_button.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/widgets/custom_google_map.dart';
-
 import '../../../../../core/constants.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/size_config.dart';
-import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../../../core/widgets/custom_text.dart';
-import '../../../../../core/widgets/space_widget.dart';
-import '../../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import '../../../data/models/order_model/document.dart';
-import '../../manager/get_user_order_cubit/get_user_order_cubit.dart';
 import 'custom_list_tile.dart';
 import 'custom_row.dart';
 import 'order_state_delivery_section.dart';
@@ -48,10 +40,13 @@ class CustomItemOrder extends StatelessWidget {
                     icon: Icons.shopping_cart,
                     title: AppStrings.order.tr(),
                     value: document.order!),
-                CustomRow(
-                  icon: Icons.phone_android,
-                  title: AppStrings.phone.tr(),
-                  value: document.phone!,
+                Visibility(
+                  visible: document.deliveryPhone == null ? false : true,
+                  child: CustomRow(
+                    icon: Icons.phone_android,
+                    title: AppStrings.deliveryPhone.tr(),
+                    value: document.deliveryPhone ?? '',
+                  ),
                 ),
               ],
             ),
@@ -93,4 +88,3 @@ class CustomItemOrder extends StatelessWidget {
     );
   }
 }
-

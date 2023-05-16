@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/functions/custom_alert_dialog.dart';
 import 'package:wasally/core/utils/app_strings.dart';
-import 'package:wasally/features/home/data/models/category_details_model/document.dart';
 import 'package:wasally/features/home/presentation/manager/complete_order_get_location_cubit/complete_order_get_location_cubit.dart';
 import 'package:wasally/features/home/presentation/view/widgets/complete_order_failure_section.dart';
 import 'package:wasally/features/home/presentation/view/widgets/complete_order_initial_section.dart';

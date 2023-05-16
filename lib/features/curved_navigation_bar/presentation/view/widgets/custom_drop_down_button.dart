@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:get/get.dart' hide Trans;
 
 import 'package:wasally/core/widgets/custom_text.dart';
 
@@ -62,6 +62,6 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
     Locale newLocale = value == 'en' ? englishLocal : arabicLocal;
     context.setLocale(newLocale);
 
-    Phoenix.rebirth(context);
+    Get.updateLocale(newLocale);
   }
 }

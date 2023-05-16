@@ -25,14 +25,22 @@ class CustomListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       trailing: Visibility(
-        visible: document.orderState == 'تم التوصيل' ? true : false,
+        visible: document.orderState == 'تم التوصيل' ||
+                document.orderState == 'توصيل'
+            ? true
+            : false,
         child: BlocConsumer<DeleteOrderCubit, DeleteOrderState>(
           listener: (context, state) async {
             if (state is DeleteOrderSuccess) {
-              await BlocProvider.of<GetUserOrderCubit>(context).getUserOrder(
-                  phoneNumber: BlocProvider.of<VerifyCubit>(context)
-                      .userInfoModel!
-                      .phone!);
+              await BlocProvider.of<GetUserOrderCubit>(context)
+                  .getUserOrder(
+                      phoneNumber: BlocProvider.of<VerifyCubit>(context)
+                          .userInfoModel!
+                          .phone!)
+                  .whenComplete(() {
+                showSnakeBar(context,
+                    message: AppStrings.orderDeleteSuccesfully.tr());
+              });
             } else if (state is DeleteOrderFailure) {
               showSnakeBar(context, message: state.errMessage);
             }

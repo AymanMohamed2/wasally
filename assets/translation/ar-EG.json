@@ -80,7 +80,9 @@
   "waiting":"انتظار",
   "order_on_the_way":"جاري التوصيل",
   "delivered":"تم التوصيل",
-  "location":"الموقع"
+  "location":"الموقع",
+  "delivery_phone":"رقم الطيار",
+  "order_delete_successfuly":"تم حذف الطلب بنجاح   ✅"
 
 
 }

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/functions/custom_alert_dialog.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_buttons.dart';
 import '../../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
@@ -49,12 +50,7 @@ class CompleteOrderFailureSection extends StatelessWidget {
                         .toString(),
               );
             } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  duration: const Duration(seconds: 2),
-                  content: Text(AppStrings.plsChooseLocation.tr()),
-                ),
-              );
+              showSnakeBar(context, message: AppStrings.plsChooseLocation.tr());
             }
           }
         },

@@ -46,6 +46,9 @@ class VerifySection extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: Pinput(
+            androidSmsAutofillMethod:
+                AndroidSmsAutofillMethod.smsUserConsentApi,
+            listenForMultipleSmsOnAndroid: true,
             length: 6,
             showCursor: true,
             onCompleted: (value) {

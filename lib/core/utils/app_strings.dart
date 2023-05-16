@@ -71,7 +71,6 @@ class AppStrings {
   static const String editPhoneNumber = 'edit_phone_number';
   static const String completeVerifyErrMessage = 'compelete_verify_err_message';
 
-  
   static const String myShops = 'my_shops';
   static const String language = 'language';
   static const String noOrders = 'no_orders';
@@ -84,4 +83,6 @@ class AppStrings {
   static const String orderOnTheWay = 'order_on_the_way';
   static const String delivered = 'delivered';
   static const String location = 'location';
+  static const String deliveryPhone = 'delivery_phone';
+  static const String orderDeleteSuccesfully = 'order_delete_successfuly';
 }

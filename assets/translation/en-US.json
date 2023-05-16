@@ -78,7 +78,9 @@
   "waiting":"Waiting",
   "order_on_the_way":"Deliverey",
   "delivered":"Delevered",
-  "location":"Location"
+  "location":"Location",
+  "delivery_phone":"Delivery Phone",
+  "order_delete_successfuly":"Order has been successfully deleted   ✅"
 
 
 

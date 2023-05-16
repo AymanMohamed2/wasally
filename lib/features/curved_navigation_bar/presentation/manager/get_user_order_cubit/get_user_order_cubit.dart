@@ -49,13 +49,4 @@ class GetUserOrderCubit extends Cubit<GetUserOrderState> {
       print('exception = ${e.toString()}');
     }
   }
-
-  // Future<void> deleteOrder({required orderId}) async {
-  //   emit(GetUserOrderLoading());
-  //   var response = await curvedNavigationBarRepo.deleteOrder(orderId: orderId);
-
-  //   response.fold((failure) {
-  //     emit(GetUserOrderFailure(failure.errMessage));
-  //   }, (success) {});
-  // }
 }

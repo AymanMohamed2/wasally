@@ -32,11 +32,6 @@ void showSnakeBar(BuildContext context, {required String message}) {
     SnackBar(
       content: Text(message),
       behavior: SnackBarBehavior.floating,
-      margin: EdgeInsets.only(
-        bottom: MediaQuery.of(context).size.height - 130,
-        left: 10,
-        right: 10,
-      ),
     ),
   );
 }

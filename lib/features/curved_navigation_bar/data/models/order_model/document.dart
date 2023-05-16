@@ -8,6 +8,7 @@ class Document extends Equatable {
   final dynamic latitude;
   final dynamic longtude;
   final String? orderState;
+  final String? deliveryPhone;
   final String? id;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -23,6 +24,7 @@ class Document extends Equatable {
     this.latitude,
     this.longtude,
     this.orderState,
+    this.deliveryPhone,
     this.id,
     this.createdAt,
     this.updatedAt,
@@ -39,6 +41,9 @@ class Document extends Equatable {
         latitude: json['latitude'] as dynamic,
         longtude: json['longtude'] as dynamic,
         orderState: json['orderState'] as String,
+        deliveryPhone: json['deliveryPhone'] == null
+            ? null
+            : json['deliveryPhone'] as String,
         id: json['\$id'] as String?,
         createdAt: json['\$createdAt'] == null
             ? null
