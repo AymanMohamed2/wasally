@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/features/auth/presentation/manager/verify_cubit/verify_cubit.dart';
-import 'package:wasally/features/splash/presentation/manager/splash_cubit/splash_cubit.dart';
 
 import '../../../../../core/constants.dart';
 

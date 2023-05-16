@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' hide Trans;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import '../../../../../core/functions/custom_alert_dialog.dart';
 import '../../../../../core/utils/size_config.dart';
@@ -33,8 +34,11 @@ class LoginViewBody extends StatelessWidget {
                 controller: controller,
               ),
               BlocConsumer<LoginCubit, LoginState>(
-                listener: (context, state) {
+                listener: (context, state) async {
                   if (state is LoginSuccessState) {
+                    SharedPreferences pref =
+                        await SharedPreferences.getInstance();
+                    pref.setString('userId', state.user.id);
                     Get.to(() => const VerifyView());
                   } else if (state is LoginFailureState) {
                     showSnakeBar(context, message: '${state.errMessage}  ❌');

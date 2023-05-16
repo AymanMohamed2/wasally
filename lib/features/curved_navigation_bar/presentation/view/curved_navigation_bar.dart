@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/features/home/presentation/view/home_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/person_info_view.dart';
@@ -12,7 +13,6 @@ import '../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import '../../../home/data/repositories/home_repo_impl.dart';
 import '../../../home/presentation/manager/category_details_cubit/category_details_cubit.dart';
 import '../../../home/presentation/manager/slider_cubit/slider_cubit.dart';
-import '../../../splash/presentation/manager/splash_cubit/splash_cubit.dart';
 
 class BottomNavigationBarHome extends StatefulWidget {
   BottomNavigationBarHome({Key? key, this.selectedindex = 0}) : super(key: key);
@@ -24,10 +24,17 @@ class BottomNavigationBarHome extends StatefulWidget {
 }
 
 class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
+  Future<String> nameRetriever() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    return prefs.getString('userId')!;
+  }
+
   @override
   void initState() {
-    BlocProvider.of<VerifyCubit>(context)
-        .getUserInfo(userId: BlocProvider.of<SplashCubit>(context).userId);
+    nameRetriever().then((value) {
+      BlocProvider.of<VerifyCubit>(context).getUserInfo(userId: value);
+    });
     super.initState();
   }
 

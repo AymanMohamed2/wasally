@@ -20,9 +20,11 @@ class CompleteOrderView extends StatelessWidget {
     super.key,
     required this.title,
     required this.imageUrl,
+    required this.categoryName,
   });
   final String title;
   final String imageUrl;
+  final String categoryName;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -51,7 +53,7 @@ class CompleteOrderView extends StatelessWidget {
                   builder: (context, state) {
             if (state is CompleteOrderInitial) {
               return CompleteOrderInitialSection(
-                  categoryName: title,
+                  categoryName: categoryName,
                   formKey: _formKey,
                   accessVerifyCubit: accessVerifyCubit,
                   title: title,
@@ -60,7 +62,7 @@ class CompleteOrderView extends StatelessWidget {
               return CompleteOrderSuccessSection(
                   formKey: _formKey,
                   accessVerifyCubit: accessVerifyCubit,
-                  categoryName: title,
+                  categoryName: categoryName,
                   title: title,
                   accessCubit: accessCubit,
                   controller: _controller);
@@ -68,7 +70,7 @@ class CompleteOrderView extends StatelessWidget {
               return CompleteOrderFailureSection(
                   formKey: _formKey,
                   accessVerifyCubit: accessVerifyCubit,
-                  categoryName: title,
+                  categoryName: categoryName,
                   title: title,
                   accessCubit: accessCubit);
             } else {

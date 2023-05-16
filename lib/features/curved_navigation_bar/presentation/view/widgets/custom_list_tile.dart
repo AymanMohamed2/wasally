@@ -8,10 +8,8 @@ import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../../../core/widgets/custom_text.dart';
-import '../../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import '../../../data/models/order_model/document.dart';
 import '../../manager/delete_order_cubit/delete_order_cubit.dart';
-import '../../manager/get_user_order_cubit/get_user_order_cubit.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile({
@@ -32,15 +30,16 @@ class CustomListTile extends StatelessWidget {
         child: BlocConsumer<DeleteOrderCubit, DeleteOrderState>(
           listener: (context, state) async {
             if (state is DeleteOrderSuccess) {
-              await BlocProvider.of<GetUserOrderCubit>(context)
-                  .getUserOrder(
-                      phoneNumber: BlocProvider.of<VerifyCubit>(context)
-                          .userInfoModel!
-                          .phone!)
-                  .whenComplete(() {
-                showSnakeBar(context,
-                    message: AppStrings.orderDeleteSuccesfully.tr());
-              });
+              showSnakeBar(context,
+                  message: AppStrings.orderDeleteSuccesfully.tr());
+              // await BlocProvider.of<GetUserOrderCubit>(context)
+              //     .getUserOrder(
+              //         phoneNumber: BlocProvider.of<VerifyCubit>(context)
+              //             .userInfoModel!
+              //             .phone!)
+              //     .whenComplete(() {
+
+              // });
             } else if (state is DeleteOrderFailure) {
               showSnakeBar(context, message: state.errMessage);
             }

@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 
+import '../../../../../core/utils/app_strings.dart';
 import '../../../data/models/category_details_model/document.dart';
 import '../complete_order_view.dart';
 
@@ -31,6 +33,7 @@ class CustomItemDetailsView extends StatelessWidget {
         onTap: () {
           Get.to(
             () => CompleteOrderView(
+              categoryName: AppStrings.restaurant.tr(),
               title: document!.name!,
               imageUrl: document!.image!,
             ),

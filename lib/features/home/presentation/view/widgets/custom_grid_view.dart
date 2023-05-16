@@ -41,6 +41,7 @@ class CustomGrideView extends StatelessWidget {
             onTap: () {
               Get.to(
                 () => CompleteOrderView(
+                  categoryName: AppStrings.superMarket.tr(),
                   title: AppStrings.superMarket.tr(),
                   imageUrl:
                       'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cbd617494e7c8c6/view?project=6435d5e1a13eff6332c2&mode=admin',
@@ -53,6 +54,7 @@ class CustomGrideView extends StatelessWidget {
           CustomItemHomeView(
             onTap: () {
               Get.to(() => CompleteOrderView(
+                  categoryName: AppStrings.pharmacy.tr(),
                   title: AppStrings.pharmacy.tr(),
                   imageUrl:
                       'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cff19fc276d88df/view?project=6435d5e1a13eff6332c2&mode=admin'));
@@ -63,6 +65,7 @@ class CustomGrideView extends StatelessWidget {
           CustomItemHomeView(
             onTap: () {
               Get.to(() => CompleteOrderView(
+                  categoryName: AppStrings.bakery.tr(),
                   title: AppStrings.bakery.tr(),
                   imageUrl:
                       'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cc55ed1e30e61d9/view?project=6435d5e1a13eff6332c2&mode=admin'));
@@ -73,6 +76,7 @@ class CustomGrideView extends StatelessWidget {
           CustomItemHomeView(
             onTap: () {
               Get.to(() => CompleteOrderView(
+                  categoryName: AppStrings.vegetables.tr(),
                   title: AppStrings.vegetables.tr(),
                   imageUrl:
                       'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9d08aaf0a92aa3c7/view?project=6435d5e1a13eff6332c2&mode=admin'));
@@ -83,6 +87,7 @@ class CustomGrideView extends StatelessWidget {
           CustomItemHomeView(
             onTap: () async {
               Get.to(() => CompleteOrderView(
+                  categoryName: AppStrings.library.tr(),
                   title: AppStrings.library.tr(),
                   imageUrl:
                       'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cb2ee061aa167c9/view?project=6435d5e1a13eff6332c2&mode=admin'));
@@ -94,6 +99,7 @@ class CustomGrideView extends StatelessWidget {
             onTap: () {
               Get.to(
                 () => CompleteOrderView(
+                  categoryName: AppStrings.other.tr(),
                   imageUrl:
                       'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cf5d2553db8e9ad/view?project=6435d5e1a13eff6332c2&mode=admin',
                   title: AppStrings.other.tr(),
