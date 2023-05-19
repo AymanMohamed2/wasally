@@ -43,13 +43,10 @@ class VerifyViewBody extends StatelessWidget {
                     if (state is VerifySuccess) {
                       SharedPreferences pref =
                           await SharedPreferences.getInstance();
-
-                      await pref.setString(
-                          'userId', accessCubit.userInfoModel!.id!);
-                      BlocProvider.of<SplashCubit>(context).userId =
-                          state.loginModel.userId!;
-                      await pref.setString(
+                      pref.setBool('isLogin', true);
+                      pref.setString(
                           'phoneNumber', accessCubit.userInfoModel!.phone!);
+
                       Get.off(() => BottomNavigationBarHome());
                     } else if (state is VerifyFailure) {
                       showSnakeBar(context, message: '${state.errMessage}  ❌');

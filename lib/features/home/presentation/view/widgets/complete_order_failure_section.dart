@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/functions/custom_alert_dialog.dart';
 import '../../../../../core/utils/app_strings.dart';
@@ -24,6 +25,11 @@ class CompleteOrderFailureSection extends StatelessWidget {
   final String title;
   final CompleteOrderCubit accessCubit;
   final String categoryName;
+  Future<String> nameRetriever() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    return prefs.getString('phoneNumber')!;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,22 +39,25 @@ class CompleteOrderFailureSection extends StatelessWidget {
             if (BlocProvider.of<CompleteOrderGetLocationCubit>(context)
                     .position !=
                 null) {
-              await BlocProvider.of<CompleteOrderCubit>(context).postOrderAdmin(
-                phone: accessVerifyCubit.verifyModel!.userId!,
-                categoryName: categoryName,
-                shopName: title,
-                order: accessCubit.order!,
-                latitude:
-                    BlocProvider.of<CompleteOrderGetLocationCubit>(context)
-                        .position!
-                        .latitude
-                        .toString(),
-                longtude:
-                    BlocProvider.of<CompleteOrderGetLocationCubit>(context)
-                        .position!
-                        .longitude
-                        .toString(),
-              );
+              nameRetriever().then((value) async {
+                await BlocProvider.of<CompleteOrderCubit>(context)
+                    .postOrderAdmin(
+                  phone: value,
+                  categoryName: categoryName,
+                  shopName: title,
+                  order: accessCubit.order!,
+                  latitude:
+                      BlocProvider.of<CompleteOrderGetLocationCubit>(context)
+                          .position!
+                          .latitude
+                          .toString(),
+                  longtude:
+                      BlocProvider.of<CompleteOrderGetLocationCubit>(context)
+                          .position!
+                          .longitude
+                          .toString(),
+                );
+              });
             } else {
               showSnakeBar(context, message: AppStrings.plsChooseLocation.tr());
             }

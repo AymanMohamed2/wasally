@@ -10,17 +10,13 @@ import '../../../../curved_navigation_bar/presentation/view/curved_navigation_ba
 class SplashViewBody extends StatelessWidget {
   const SplashViewBody({
     super.key,
-    this.userId,
-    this.phoneNumber,
+    this.isLogin,
   });
-  final String? userId;
-  final String? phoneNumber;
+
+  final bool? isLogin;
 
   @override
   Widget build(BuildContext context) {
-    var accessCubit = BlocProvider.of<SplashCubit>(context);
-    accessCubit.phoneNumber = phoneNumber;
-
     SizeConfig().init(context);
     return FlutterSplashScreen.fadeIn(
       backgroundColor: Colors.white,
@@ -37,7 +33,7 @@ class SplashViewBody extends StatelessWidget {
       ),
       onAnimationEnd: () => debugPrint("On Fade In End"),
       defaultNextScreen:
-          userId == null ? const OnBoardingView() : BottomNavigationBarHome(),
+          isLogin == true ? BottomNavigationBarHome() : const OnBoardingView(),
     );
   }
 }

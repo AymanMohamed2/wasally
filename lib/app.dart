@@ -21,18 +21,14 @@ import 'features/splash/presentation/view/splash_view.dart';
 
 class Wasally extends StatelessWidget {
   const Wasally({
-    this.userId,
     Key? key,
-    this.phoneNumber,
+    this.isLogin,
   }) : super(key: key);
-  final String? userId;
-  final String? phoneNumber;
+
+  final bool? isLogin;
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<SplashCubit>(context).userId = userId;
-    BlocProvider.of<SplashCubit>(context).phoneNumber = phoneNumber;
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -70,8 +66,7 @@ class Wasally extends StatelessWidget {
         theme: appTheme(),
         debugShowCheckedModeBanner: false,
         home: SplashView(
-          phoneNumber: phoneNumber,
-          userId: userId,
+          isLogin: isLogin,
         ),
       ),
     );

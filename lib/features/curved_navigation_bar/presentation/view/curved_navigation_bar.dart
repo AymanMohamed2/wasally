@@ -32,9 +32,9 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
 
   @override
   void initState() {
-    nameRetriever().then((value) {
-      BlocProvider.of<VerifyCubit>(context).getUserInfo(userId: value);
-    });
+    // nameRetriever().then((value) {
+    //   BlocProvider.of<VerifyCubit>(context).getUserInfo(userId: value);
+    // });
     super.initState();
   }
 

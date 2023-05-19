@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/features/auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/manager/get_user_order_cubit/get_user_order_cubit.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/widgets/custom_app_bar.dart';
@@ -20,11 +21,19 @@ class TalbatViewBody extends StatefulWidget {
 }
 
 class _TalbatViewBodyState extends State<TalbatViewBody> {
+  Future<String> nameRetriever() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    return prefs.getString('phoneNumber')!;
+  }
+
   @override
   void initState() {
-    BlocProvider.of<GetUserOrderCubit>(context).getUserOrder(
-        phoneNumber:
-            BlocProvider.of<VerifyCubit>(context).userInfoModel!.phone!);
+    nameRetriever().then((value) {
+      BlocProvider.of<GetUserOrderCubit>(context)
+          .getUserOrder(phoneNumber: value);
+    });
+
     BlocProvider.of<GetUserOrderCubit>(context).getAllOrderStream();
     super.initState();
   }

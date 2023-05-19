@@ -1,4 +1,4 @@
-package com.example.wasally
+package com.darknaya.wasally
 
 import io.flutter.embedding.android.FlutterActivity
 
