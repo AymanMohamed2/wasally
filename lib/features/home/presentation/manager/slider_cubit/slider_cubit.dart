@@ -40,6 +40,7 @@ class SliderCubit extends Cubit<SliderState> {
         await getSliderList();
       });
     } on Exception catch (e) {
+      // ignore: avoid_print
       print('exception = ${e.toString()}');
     }
   }

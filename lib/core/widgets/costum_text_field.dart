@@ -16,6 +16,7 @@ class CustomTextField extends StatelessWidget {
     this.errorMaxLines,
     this.controller,
     this.textInputAction,
+    this.maxLength,
   }) : super(key: key);
   final String hintText;
   final Icon? prefixIcon;
@@ -27,6 +28,7 @@ class CustomTextField extends StatelessWidget {
   final int? errorMaxLines;
   final TextEditingController? controller;
   final TextInputAction? textInputAction;
+  final int? maxLength;
 
   final bool obscureText;
   final TextInputType? textInputType;
@@ -37,7 +39,7 @@ class CustomTextField extends StatelessWidget {
 
     return TextFormField(
       textInputAction: textInputAction,
-
+      maxLength: maxLength,
       controller: controller,
       autocorrect: true,
       autovalidateMode: AutovalidateMode.onUserInteraction,

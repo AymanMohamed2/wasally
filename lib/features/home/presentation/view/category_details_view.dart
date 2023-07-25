@@ -26,7 +26,7 @@ class CategoryDetailsView extends StatelessWidget {
           BlocProvider(
             create: (context) =>
                 CategoryDetailsCubit(HomeRepoImpl(ApiServices(Dio())))
-                  ..getCategoryDetails(collectionId: collectionId),
+                  ..getCategoryDetails(),
           ),
         ],
         child: CategoryDetailsBody(

@@ -1,3 +1,4 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,14 +33,6 @@ class CustomListTile extends StatelessWidget {
             if (state is DeleteOrderSuccess) {
               showSnakeBar(context,
                   message: AppStrings.orderDeleteSuccesfully.tr());
-              // await BlocProvider.of<GetUserOrderCubit>(context)
-              //     .getUserOrder(
-              //         phoneNumber: BlocProvider.of<VerifyCubit>(context)
-              //             .userInfoModel!
-              //             .phone!)
-              //     .whenComplete(() {
-
-              // });
             } else if (state is DeleteOrderFailure) {
               showSnakeBar(context, message: state.errMessage);
             }
@@ -53,8 +46,14 @@ class CustomListTile extends StatelessWidget {
             } else {
               return IconButton(
                 onPressed: () async {
-                  await BlocProvider.of<DeleteOrderCubit>(context)
-                      .deleteOrder(orderId: document.id);
+                  customAlertDialog(context,
+                      cancelBtnColor: Colors.black,
+                      title: AppStrings.areYouSure.tr(),
+                      text: AppStrings.youWantToDeleteThisOrder.tr(),
+                      type: CoolAlertType.confirm, onConfirmBtnTap: () async {
+                    await BlocProvider.of<DeleteOrderCubit>(context)
+                        .deleteOrder(orderId: document.id);
+                  }, onCancelBtnTap: () {});
                 },
                 icon: const Icon(
                   Icons.delete,

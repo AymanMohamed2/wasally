@@ -1,68 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/core/widgets/custom_loading_indicator.dart';
 import 'package:wasally/features/home/presentation/manager/category_details_cubit/category_details_cubit.dart';
 import '../../../../../core/constants.dart';
 import '../../../../../core/utils/app_strings.dart';
-import 'custom_item_details.dart';
+import '../../../data/models/category_details_model/document.dart';
+import 'category_details_list_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class CustomListViewDetails extends StatelessWidget {
-  const CustomListViewDetails({super.key});
+class CustomListViewDetailsBlocBuilder extends StatefulWidget {
+  const CustomListViewDetailsBlocBuilder({super.key});
 
   @override
+  State<CustomListViewDetailsBlocBuilder> createState() =>
+      _CustomListViewDetailsBlocBuilderState();
+}
+
+class _CustomListViewDetailsBlocBuilderState
+    extends State<CustomListViewDetailsBlocBuilder> {
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoryDetailsCubit, CategoryDetailsState>(
-      builder: (context, state) {
+    List<Document> shopsList = [];
+
+    return BlocConsumer<CategoryDetailsCubit, CategoryDetailsState>(
+      listener: (context, state) {
         if (state is CategoryDetailsStateSuccess) {
-          if (state.categoryDetailsModel.total != 0) {
-            return Expanded(
-              child: SizedBox(
-                child: ListView.builder(
-                  itemCount: state.categoryDetailsModel.documents!.length,
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return CustomItemDetailsView(
-                      document: state.categoryDetailsModel.documents![index],
-                    );
-                  },
-                ),
-              ),
+          shopsList.addAll(state.shopsList);
+        }
+      },
+      builder: (context, state) {
+        if (state is CategoryDetailsStateSuccess ||
+            state is CategoryDetailsStatePaginationLoading ||
+            state is CategoryDetailsStatePaginationFailure) {
+          if (shopsList.isNotEmpty) {
+            return CategoryDetailsListView(
+              documentList: shopsList,
             );
           } else {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: SizeConfig.defaultSize! * 30,
-                ),
-                Text(AppStrings.noShops.tr()),
-              ],
-            );
+            return Expanded(
+                child: SizedBox(
+                    child: Center(child: Text(AppStrings.noShops.tr()))));
           }
         } else if (state is CategoryDetailsStateFailure) {
-          return Column(
-            children: [
-              SizedBox(
-                height: SizeConfig.defaultSize! * 30,
-              ),
-              Text(state.errMessage),
-            ],
-          );
+          return Expanded(
+              child: SizedBox(child: Center(child: Text(state.errMessage))));
         } else {
-          return Center(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: SizeConfig.defaultSize! * 30,
-                ),
-                const CustomLoadingIndicator(
+          return const Expanded(
+            child: SizedBox(
+              child: Center(
+                child: CustomLoadingIndicator(
                   color: kPrimaryColor,
                   height: 30,
                   width: 30,
                 ),
-              ],
+              ),
             ),
           );
         }

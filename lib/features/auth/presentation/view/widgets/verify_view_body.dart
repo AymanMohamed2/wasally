@@ -8,7 +8,6 @@ import 'package:wasally/features/auth/presentation/manager/verify_cubit/verify_c
 import 'package:wasally/features/auth/presentation/view/widgets/verify_initial_section.dart';
 import 'package:wasally/features/auth/presentation/view/widgets/verify_loading_section.dart';
 import 'package:wasally/features/auth/presentation/view/widgets/verify_section.dart';
-import 'package:wasally/features/splash/presentation/manager/splash_cubit/splash_cubit.dart';
 import '../../../../../core/functions/custom_alert_dialog.dart';
 import '../../../../curved_navigation_bar/presentation/view/curved_navigation_bar.dart';
 import 'custom_edit_phone_number.dart';
@@ -21,7 +20,6 @@ class VerifyViewBody extends StatelessWidget {
     VerifyCubit accessCubit = BlocProvider.of<VerifyCubit>(context);
     LoginCubit accessLoginCubit = BlocProvider.of<LoginCubit>(context);
     final formKey = GlobalKey<FormState>();
-
     return Form(
       key: formKey,
       child: Container(
@@ -47,7 +45,7 @@ class VerifyViewBody extends StatelessWidget {
                       pref.setString(
                           'phoneNumber', accessCubit.userInfoModel!.phone!);
 
-                      Get.off(() => BottomNavigationBarHome());
+                      Get.offAll(() => BottomNavigationBarHome());
                     } else if (state is VerifyFailure) {
                       showSnakeBar(context, message: '${state.errMessage}  ❌');
                     }

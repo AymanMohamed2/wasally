@@ -23,8 +23,8 @@
   "restaurant":"Restaurant",
   "super_market":"Super Market",
   "pharmacy":"Pharmacy",
-  "bakery":"Bakery and sweets",
-  "vegetables":"Vegetables and Fruits",
+  "bakery":"Bakery",
+  "vegetables":"Vegetables",
   "library":"Library",
   "field_required":"This field is required",
   "password_must_be":"Password Must be more than 8 character",
@@ -80,7 +80,16 @@
   "delivered":"Delevered",
   "location":"Location",
   "delivery_phone":"Delivery Phone",
-  "order_delete_successfuly":"Order has been successfully deleted   ✅"
+  "price":"Price",
+  "order_delete_successfuly":"Order has been successfully deleted   ✅",
+  "working_time":"Sorry , outside working hours from 8 am to 12 pm",
+  "you_want_to_delete_this_order":"You Want To Delete This Order ?",
+  "no_products":"There are no products for this Shop",
+  "product_name":"Product Name",
+  "descreption":"Descreption",
+  "choose_a_photo_from_gallery":"Choose a photo from the gallery (optional)",
+  "there_was_an_error":"There Was an Error Please Try again",
+  "image":"Image"
 
 
 

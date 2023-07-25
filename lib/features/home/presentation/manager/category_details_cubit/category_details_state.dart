@@ -11,10 +11,14 @@ class CategoryDetailsInitial extends CategoryDetailsState {}
 
 class CategoryDetailsStateLoading extends CategoryDetailsState {}
 
-class CategoryDetailsStateSuccess extends CategoryDetailsState {
-  final CategoryDetailsModel categoryDetailsModel;
+class CategoryDetailsStatePaginationLoading extends CategoryDetailsState {}
 
-  const CategoryDetailsStateSuccess(this.categoryDetailsModel);
+class CategoryDetailsStatePaginationFailure extends CategoryDetailsState {}
+
+class CategoryDetailsStateSuccess extends CategoryDetailsState {
+  final List<Document> shopsList;
+
+  const CategoryDetailsStateSuccess(this.shopsList);
 }
 
 class CategoryDetailsStateFailure extends CategoryDetailsState {

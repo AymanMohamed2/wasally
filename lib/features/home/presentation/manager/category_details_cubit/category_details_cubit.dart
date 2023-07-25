@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:wasally/features/home/data/models/category_details_model/category_details_model.dart';
 
+import '../../../data/models/category_details_model/document.dart';
 import '../../../data/repositories/home_repo.dart';
 
 part 'category_details_state.dart';
@@ -10,22 +10,27 @@ class CategoryDetailsCubit extends Cubit<CategoryDetailsState> {
   CategoryDetailsCubit(this.homeRepo) : super(CategoryDetailsInitial());
 
   final HomeRepo homeRepo;
-  CategoryDetailsModel? categoryDetailsModel;
+  List<Document> shopsList = [];
 
-  Future<void> getCategoryDetails({required String collectionId}) async {
-    var response =
-        await homeRepo.getCategoryDetails(collectionId: collectionId);
+  Future<void> getCategoryDetails({int pageNumber = 0}) async {
+    if (pageNumber == 0) {
+      emit(CategoryDetailsStateLoading());
+    } else {
+      emit(CategoryDetailsStatePaginationLoading());
+    }
+    var response = await homeRepo.getCategoryDetails(pageNumber: pageNumber);
     response.fold(
       (failure) {
         emit(
           CategoryDetailsStateFailure(failure.errMessage),
         );
       },
-      (categoryDetailsModel) {
+      (shopsList) {
+        this.shopsList.addAll(shopsList);
+
         emit(
-          CategoryDetailsStateSuccess(categoryDetailsModel),
+          CategoryDetailsStateSuccess(shopsList),
         );
-        this.categoryDetailsModel = categoryDetailsModel;
       },
     );
   }

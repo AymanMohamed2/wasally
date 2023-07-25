@@ -84,5 +84,15 @@ class AppStrings {
   static const String delivered = 'delivered';
   static const String location = 'location';
   static const String deliveryPhone = 'delivery_phone';
+  static const String price = 'price';
   static const String orderDeleteSuccesfully = 'order_delete_successfuly';
+  static const String workingTime = 'working_time';
+  static const String youWantToDeleteThisOrder =
+      'you_want_to_delete_this_order';
+  static const String noProducts = 'no_products';
+  static const String productName = 'product_name';
+  static const String descreption = 'descreption';
+  static const String chooseAPhotoFromGallery = 'choose_a_photo_from_gallery';
+  static const String thereWasAnError = 'there_was_an_error';
+  static const String image = 'image';
 }

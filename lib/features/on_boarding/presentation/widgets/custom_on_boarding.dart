@@ -26,6 +26,7 @@ class CustomOnBoarding extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CustomOnBoardingState createState() => _CustomOnBoardingState();
 }
 
@@ -43,7 +44,8 @@ class _CustomOnBoardingState extends State<CustomOnBoarding> {
         child: AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.light,
           child: Container(
-            color: widget.backgroudColor ?? Theme.of(context).colorScheme.background,
+            color: widget.backgroudColor ??
+                Theme.of(context).colorScheme.background,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 40.0),
               child: Column(

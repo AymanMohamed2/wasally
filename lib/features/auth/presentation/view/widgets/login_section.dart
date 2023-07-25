@@ -41,6 +41,7 @@ class LoginSection extends StatelessWidget {
         ),
         const VirticalSpace(3),
         CustomTextField(
+          maxLength: 11,
           controller: controller,
           validator: (value) {
             if (value == null || value.isEmpty) {

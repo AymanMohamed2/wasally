@@ -24,8 +24,8 @@
   "restaurant":"مطعم",
   "super_market":"سوبر ماركت",
   "pharmacy":"صيدليه",
-  "bakery":"مخبوزات و حلويات",
-  "vegetables":"خضار و فاكهه",
+  "bakery":"مخبوزات",
+  "vegetables":"خضار",
   "library":"مكتبه",
   "field_required":"هذا الحقل مطلوب",
   "password_must_be":"كلمة المرور يجب ان تكون اكثر من 8 رموز",
@@ -82,7 +82,17 @@
   "delivered":"تم التوصيل",
   "location":"الموقع",
   "delivery_phone":"رقم الطيار",
-  "order_delete_successfuly":"تم حذف الطلب بنجاح   ✅"
+  "price":"السعر",
+  "order_delete_successfuly":"تم حذف الطلب بنجاح   ✅",
+  "working_time":"آسف خارج مواعيد العمل من 8ص حتى 12م",
+  "you_want_to_delete_this_order":"من انك تريد حذف هذا الطلب ؟",
+  "There are no products for this store":"لا توجد منتجات لهذا المتجر",
+  "product_name":"اسم المنتج",
+  "descreption":"الوصف",
+  "no_products":"لا يوجد منتجات لهذا المتجر حاليا",
+  "choose_a_photo_from_gallery":"اختر صورة من المعرض (اختياري)",
+  "there_was_an_error":"حدث خطأ ما يرجى المحاولة مرة أخرى",
+  "image":"الصوره"
 
 
 }

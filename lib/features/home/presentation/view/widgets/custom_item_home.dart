@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../core/utils/size_config.dart';
+import 'package:wasally/core/constants.dart';
 
 class CustomItemHomeView extends StatelessWidget {
   const CustomItemHomeView({
@@ -15,20 +14,17 @@ class CustomItemHomeView extends StatelessWidget {
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 3,
-      child: InkWell(
-        onTap: onTap,
+    return InkWell(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
         child: GridTile(
           footer: Container(
-            color: Colors.yellow.withOpacity(0.5),
+            color: kPrimaryColor.withOpacity(0.7),
             child: Text(
               name,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: SizeConfig.defaultSize! * 1.5),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
             ),
           ),
           child: Image.asset(imageUrl),

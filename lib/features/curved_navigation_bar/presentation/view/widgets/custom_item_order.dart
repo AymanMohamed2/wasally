@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:wasally/features/curved_navigation_bar/presentation/view/widgets/custom_elevated_button.dart';
@@ -7,6 +8,7 @@ import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/custom_text.dart';
 import '../../../data/models/order_model/document.dart';
+import 'custom_image_viewer.dart';
 import 'custom_list_tile.dart';
 import 'custom_row.dart';
 import 'order_state_delivery_section.dart';
@@ -29,6 +31,7 @@ class CustomItemOrder extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomListTile(document: document),
                 CustomRow(
@@ -47,6 +50,48 @@ class CustomItemOrder extends StatelessWidget {
                     title: AppStrings.deliveryPhone.tr(),
                     value: document.deliveryPhone ?? '',
                   ),
+                ),
+                Visibility(
+                  visible: document.price == null ? false : true,
+                  child: CustomRow(
+                    icon: Icons.currency_pound,
+                    title: AppStrings.price.tr(),
+                    value: '${document.price} 🪙',
+                  ),
+                ),
+                Builder(
+                  builder: (context) {
+                    if (document.orderImage != null) {
+                      return ListTile(
+                        horizontalTitleGap: 0,
+                        contentPadding: const EdgeInsets.all(0),
+                        leading: const Icon(
+                          Icons.image,
+                          color: kPrimaryColor,
+                        ),
+                        title: CustomText(
+                          text: '${AppStrings.image.tr()} :',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        trailing: InkWell(
+                          onTap: () {
+                            Get.to(() => CustomImageViewer(
+                                  imageUrl: document.orderImage!,
+                                ));
+                          },
+                          child: AspectRatio(
+                            aspectRatio: 2 / 2,
+                            child: CachedNetworkImage(
+                              imageUrl: document.orderImage!,
+                            ),
+                          ),
+                        ),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
                 ),
               ],
             ),

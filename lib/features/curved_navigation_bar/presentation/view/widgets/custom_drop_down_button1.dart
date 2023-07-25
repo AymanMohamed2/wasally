@@ -22,6 +22,7 @@ class CustomDropDownButton1 extends StatefulWidget {
 }
 
 class _CustomDropDownButton1State extends State<CustomDropDownButton1> {
+  // ignore: prefer_typing_uninitialized_variables
   var selected;
 
   @override

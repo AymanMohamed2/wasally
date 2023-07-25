@@ -9,11 +9,10 @@ import 'package:wasally/features/curved_navigation_bar/presentation/view/person_
 import 'package:wasally/features/curved_navigation_bar/presentation/view/talbat_view.dart';
 
 import '../../../../core/utils/api_services.dart';
-import '../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import '../../../home/data/repositories/home_repo_impl.dart';
-import '../../../home/presentation/manager/category_details_cubit/category_details_cubit.dart';
 import '../../../home/presentation/manager/slider_cubit/slider_cubit.dart';
 
+// ignore: must_be_immutable
 class BottomNavigationBarHome extends StatefulWidget {
   BottomNavigationBarHome({Key? key, this.selectedindex = 0}) : super(key: key);
   int selectedindex;
@@ -50,11 +49,6 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
       providers: [
         BlocProvider(
           create: (context) => SliderCubit(
-            HomeRepoImpl(ApiServices(Dio())),
-          ),
-        ),
-        BlocProvider(
-          create: (context) => CategoryDetailsCubit(
             HomeRepoImpl(ApiServices(Dio())),
           ),
         ),

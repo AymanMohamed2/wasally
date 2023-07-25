@@ -1,11 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' hide Trans;
+import 'package:wasally/core/utils/service_locator.dart';
+import 'package:wasally/features/complete_order/data/repositories/complete_order_repo_Impl.dart';
 
 import '../../../../../core/utils/app_strings.dart';
+import '../../../../complete_order/presentation/manager/complete_order_button_cubit/complete_order_button_cubit.dart';
+import '../../../../complete_order/presentation/manager/fetch_products_cubit/fetch_products_cubit.dart';
 import '../../../data/models/category_details_model/document.dart';
-import '../complete_order_view.dart';
+import '../../../../complete_order/presentation/view/complete_order_view.dart';
 
 class CustomItemDetailsView extends StatelessWidget {
   const CustomItemDetailsView({
@@ -32,10 +37,24 @@ class CustomItemDetailsView extends StatelessWidget {
         ),
         onTap: () {
           Get.to(
-            () => CompleteOrderView(
-              categoryName: AppStrings.restaurant.tr(),
-              title: document!.name!,
-              imageUrl: document!.image!,
+            () => MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => CompleteOrderCubit(
+                    getIt.get<CompleteOrderRepoImpl>(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (context) => FetchProductsCubit(
+                    getIt.get<CompleteOrderRepoImpl>(),
+                  )..fetchShopProducts(shopId: document!.id!),
+                ),
+              ],
+              child: CompleteOrderView(
+                categoryName: AppStrings.restaurant.tr(),
+                title: document!.name!,
+                imageUrl: document!.image!,
+              ),
             ),
           );
         },

@@ -5,10 +5,12 @@ class Document extends Equatable {
   final String? categoryName;
   final String? shopName;
   final String? order;
+  final String? price;
   final dynamic latitude;
   final dynamic longtude;
   final String? orderState;
   final String? deliveryPhone;
+  final String? orderImage;
   final String? id;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -17,10 +19,12 @@ class Document extends Equatable {
   final String? databaseId;
 
   const Document({
+    this.orderImage,
     this.phone,
     this.categoryName,
     this.shopName,
     this.order,
+    this.price,
     this.latitude,
     this.longtude,
     this.orderState,
@@ -36,8 +40,11 @@ class Document extends Equatable {
   factory Document.fromJson(Map<String, dynamic> json) => Document(
         phone: json['phone'] as String?,
         categoryName: json['categoryName'] as String?,
+        orderImage:
+            json['orderImage'] == null ? null : json['orderImage'] as String?,
         shopName: json['shopName'] as String?,
         order: json['order'] as String?,
+        price: json['price'] == null ? null : json['price'] as String?,
         latitude: json['latitude'] as dynamic,
         longtude: json['longtude'] as dynamic,
         orderState: json['orderState'] as String,

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wasally/features/auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/manager/get_user_order_cubit/get_user_order_cubit.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/widgets/custom_app_bar.dart';
-
 import '../../../../../core/constants.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_loading_indicator.dart';
@@ -68,31 +66,40 @@ class _TalbatViewBodyState extends State<TalbatViewBody> {
                         }),
                   );
                 } else {
-                  return Column(children: [
-                    const VirticalSpace(30),
-                    CustomText(
-                      text: AppStrings.noOrders.tr(),
+                  return Expanded(
+                    child: SizedBox(
+                      child: Center(
+                        child: CustomText(
+                          text: AppStrings.noOrders.tr(),
+                        ),
+                      ),
                     ),
-                  ]);
+                  );
                 }
               } else if (state is GetUserOrderFailure) {
-                return Column(children: [
-                  const VirticalSpace(30),
-                  CustomText(
-                    text: BlocProvider.of<GetUserOrderCubit>(context)
-                            .errMessage ??
-                        '',
+                return Expanded(
+                  child: SizedBox(
+                    child: Center(
+                      child: CustomText(
+                        text: BlocProvider.of<GetUserOrderCubit>(context)
+                                .errMessage ??
+                            '',
+                      ),
+                    ),
                   ),
-                ]);
+                );
               } else {
-                return const Column(children: [
-                  VirticalSpace(30),
-                  CustomLoadingIndicator(
-                    color: kPrimaryColor,
-                    height: 30,
-                    width: 30,
+                return const Expanded(
+                  child: SizedBox(
+                    child: Center(
+                      child: CustomLoadingIndicator(
+                        color: kPrimaryColor,
+                        height: 30,
+                        width: 30,
+                      ),
+                    ),
                   ),
-                ]);
+                );
               }
             },
           )

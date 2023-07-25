@@ -17,6 +17,7 @@ class CustomGoogleMap extends StatefulWidget {
   final double longtude;
 
   @override
+  // ignore: library_private_types_in_public_api
   _CustomGoogleMapState createState() => _CustomGoogleMapState();
 }
 
@@ -76,6 +77,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
             style: const TextStyle(color: Colors.black),
           ),
         ),
+        // ignore: avoid_unnecessary_containers
         body: Container(
           child: SafeArea(
             child: GoogleMap(

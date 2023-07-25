@@ -46,6 +46,7 @@ class GetUserOrderCubit extends Cubit<GetUserOrderState> {
         getUserOrder(phoneNumber: pref.getString("phoneNumber")!);
       });
     } on Exception catch (e) {
+      // ignore: avoid_print
       print('exception = ${e.toString()}');
     }
   }

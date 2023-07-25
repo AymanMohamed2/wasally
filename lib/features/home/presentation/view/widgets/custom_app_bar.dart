@@ -23,10 +23,10 @@ class CustomAppBar extends StatelessWidget {
             logo,
             height: SizeConfig.defaultSize! * 5,
           ),
-          Image.asset(
-            image,
-            height: SizeConfig.defaultSize! * 7,
-          ),
+          // Image.asset(
+          //   image,
+          //   height: SizeConfig.defaultSize! * 7,
+          // ),
         ],
       ),
     );

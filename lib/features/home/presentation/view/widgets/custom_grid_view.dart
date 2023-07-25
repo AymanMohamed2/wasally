@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:wasally/core/constants.dart';
+import 'package:wasally/core/utils/service_locator.dart';
+import 'package:wasally/features/complete_order/data/repositories/complete_order_repo_Impl.dart';
 import 'package:wasally/features/home/presentation/view/category_details_view.dart';
-import 'package:wasally/features/home/presentation/view/complete_order_view.dart';
+import 'package:wasally/features/complete_order/presentation/view/complete_order_view.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/size_config.dart';
+import '../../../../complete_order/presentation/manager/complete_order_button_cubit/complete_order_button_cubit.dart';
 import 'custom_item_home.dart';
 
 class CustomGrideView extends StatelessWidget {
@@ -17,7 +21,7 @@ class CustomGrideView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: GridView(
-        padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultSize! * 1),
+        padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultSize! * 2),
         physics: const BouncingScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
@@ -40,11 +44,15 @@ class CustomGrideView extends StatelessWidget {
           CustomItemHomeView(
             onTap: () {
               Get.to(
-                () => CompleteOrderView(
-                  categoryName: AppStrings.superMarket.tr(),
-                  title: AppStrings.superMarket.tr(),
-                  imageUrl:
-                      'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cbd617494e7c8c6/view?project=6435d5e1a13eff6332c2&mode=admin',
+                () => BlocProvider(
+                  create: (context) =>
+                      CompleteOrderCubit(getIt.get<CompleteOrderRepoImpl>()),
+                  child: CompleteOrderView(
+                    categoryName: AppStrings.superMarket.tr(),
+                    title: AppStrings.superMarket.tr(),
+                    imageUrl:
+                        'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/64bee1266fe6d70589ae/view?project=6435d5e1a13eff6332c2&mode=admin',
+                  ),
                 ),
               );
             },
@@ -53,56 +61,76 @@ class CustomGrideView extends StatelessWidget {
           ),
           CustomItemHomeView(
             onTap: () {
-              Get.to(() => CompleteOrderView(
-                  categoryName: AppStrings.pharmacy.tr(),
-                  title: AppStrings.pharmacy.tr(),
-                  imageUrl:
-                      'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cff19fc276d88df/view?project=6435d5e1a13eff6332c2&mode=admin'));
+              Get.to(() => BlocProvider(
+                    create: (context) =>
+                        CompleteOrderCubit(getIt.get<CompleteOrderRepoImpl>()),
+                    child: CompleteOrderView(
+                        categoryName: AppStrings.pharmacy.tr(),
+                        title: AppStrings.pharmacy.tr(),
+                        imageUrl:
+                            'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/64bee1346e6172246763/view?project=6435d5e1a13eff6332c2&mode=admin'),
+                  ));
             },
             name: AppStrings.pharmacy.tr(),
             imageUrl: kServicePharmacy,
           ),
           CustomItemHomeView(
             onTap: () {
-              Get.to(() => CompleteOrderView(
-                  categoryName: AppStrings.bakery.tr(),
-                  title: AppStrings.bakery.tr(),
-                  imageUrl:
-                      'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cc55ed1e30e61d9/view?project=6435d5e1a13eff6332c2&mode=admin'));
+              Get.to(() => BlocProvider(
+                    create: (context) =>
+                        CompleteOrderCubit(getIt.get<CompleteOrderRepoImpl>()),
+                    child: CompleteOrderView(
+                        categoryName: AppStrings.bakery.tr(),
+                        title: AppStrings.bakery.tr(),
+                        imageUrl:
+                            'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/64bee0ef388bb152b890/view?project=6435d5e1a13eff6332c2&mode=admin'),
+                  ));
             },
             name: AppStrings.bakery.tr(),
             imageUrl: kServiceBakery,
           ),
           CustomItemHomeView(
             onTap: () {
-              Get.to(() => CompleteOrderView(
-                  categoryName: AppStrings.vegetables.tr(),
-                  title: AppStrings.vegetables.tr(),
-                  imageUrl:
-                      'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9d08aaf0a92aa3c7/view?project=6435d5e1a13eff6332c2&mode=admin'));
+              Get.to(() => BlocProvider(
+                    create: (context) =>
+                        CompleteOrderCubit(getIt.get<CompleteOrderRepoImpl>()),
+                    child: CompleteOrderView(
+                        categoryName: AppStrings.vegetables.tr(),
+                        title: AppStrings.vegetables.tr(),
+                        imageUrl:
+                            'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/64bee14d87725dc9889c/view?project=6435d5e1a13eff6332c2&mode=admin'),
+                  ));
             },
             name: AppStrings.vegetables.tr(),
             imageUrl: kServiceVegetables,
           ),
           CustomItemHomeView(
             onTap: () async {
-              Get.to(() => CompleteOrderView(
-                  categoryName: AppStrings.library.tr(),
-                  title: AppStrings.library.tr(),
-                  imageUrl:
-                      'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cb2ee061aa167c9/view?project=6435d5e1a13eff6332c2&mode=admin'));
+              Get.to(() => BlocProvider(
+                    create: (context) =>
+                        CompleteOrderCubit(getIt.get<CompleteOrderRepoImpl>()),
+                    child: CompleteOrderView(
+                        categoryName: AppStrings.library.tr(),
+                        title: AppStrings.library.tr(),
+                        imageUrl:
+                            'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/64bee17fb20e34fa5957/view?project=6435d5e1a13eff6332c2&mode=admin'),
+                  ));
             },
             name: AppStrings.library.tr(),
             imageUrl: kServiceLibrary,
           ),
           CustomItemHomeView(
-            onTap: () {
+            onTap: () async {
               Get.to(
-                () => CompleteOrderView(
-                  categoryName: AppStrings.other.tr(),
-                  imageUrl:
-                      'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/643e9cf5d2553db8e9ad/view?project=6435d5e1a13eff6332c2&mode=admin',
-                  title: AppStrings.other.tr(),
+                () => BlocProvider(
+                  create: (context) =>
+                      CompleteOrderCubit(getIt.get<CompleteOrderRepoImpl>()),
+                  child: CompleteOrderView(
+                    categoryName: AppStrings.other.tr(),
+                    imageUrl:
+                        'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/64bee168ac03aab36929/view?project=6435d5e1a13eff6332c2&mode=admin',
+                    title: AppStrings.other.tr(),
+                  ),
                 ),
               );
             },
