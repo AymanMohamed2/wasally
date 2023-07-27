@@ -38,7 +38,6 @@ class _CategoryDetailsListViewState extends State<CategoryDetailsListView> {
         isLoading = true;
         await BlocProvider.of<CategoryDetailsCubit>(context)
             .getCategoryDetails(pageNumber: nextPage++);
-        print('Shops get done');
 
         isLoading = false;
       }

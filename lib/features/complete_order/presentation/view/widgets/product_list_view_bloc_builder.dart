@@ -60,7 +60,12 @@ class ProductsListViewBlocBuilder extends StatelessWidget {
           return Expanded(
             // ignore: avoid_unnecessary_containers
             child: Container(
-              child: Center(child: CustomText(text: state.errMessage)),
+              child: Center(
+                  child: CustomText(
+                      text: state.errMessage ==
+                              "AppwriteException: null, Failed host lookup: 'cloud.appwrite.io' (0)"
+                          ? 'No Internet Connection 🌐'
+                          : state.errMessage)),
             ),
           );
         } else {

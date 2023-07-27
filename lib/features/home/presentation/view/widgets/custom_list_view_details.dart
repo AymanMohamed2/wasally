@@ -47,7 +47,12 @@ class _CustomListViewDetailsBlocBuilderState
           }
         } else if (state is CategoryDetailsStateFailure) {
           return Expanded(
-              child: SizedBox(child: Center(child: Text(state.errMessage))));
+              child: SizedBox(
+                  child: Center(
+                      child: Text(state.errMessage ==
+                              "AppwriteException: null, Failed host lookup: 'cloud.appwrite.io' (0)"
+                          ? 'No Internet Connection 🌐'
+                          : state.errMessage))));
         } else {
           return const Expanded(
             child: SizedBox(
