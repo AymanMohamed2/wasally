@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../../core/functions/custom_alert_dialog.dart';
+import '../../../../../core/functions/custom_error_snake_bar.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_buttons.dart';
 import '../../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';

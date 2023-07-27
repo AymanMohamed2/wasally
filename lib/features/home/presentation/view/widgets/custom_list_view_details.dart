@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/widgets/custom_loading_indicator.dart';
 import 'package:wasally/features/home/presentation/manager/category_details_cubit/category_details_cubit.dart';
 import '../../../../../core/constants.dart';
+import '../../../../../core/functions/custom_error_snake_bar.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../data/models/category_details_model/document.dart';
 import 'category_details_list_view.dart';
@@ -18,14 +19,17 @@ class CustomListViewDetailsBlocBuilder extends StatefulWidget {
 
 class _CustomListViewDetailsBlocBuilderState
     extends State<CustomListViewDetailsBlocBuilder> {
+  List<Document> shopsList = [];
+
   @override
   Widget build(BuildContext context) {
-    List<Document> shopsList = [];
-
     return BlocConsumer<CategoryDetailsCubit, CategoryDetailsState>(
       listener: (context, state) {
         if (state is CategoryDetailsStateSuccess) {
           shopsList.addAll(state.shopsList);
+        }
+        if (state is CategoryDetailsStatePaginationFailure) {
+          showSnakeBar(context, message: state.errMessage);
         }
       },
       builder: (context, state) {

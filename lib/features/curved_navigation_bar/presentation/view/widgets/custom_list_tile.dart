@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/constants.dart';
 import '../../../../../core/functions/custom_alert_dialog.dart';
+import '../../../../../core/functions/custom_error_snake_bar.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/custom_loading_indicator.dart';

@@ -13,7 +13,11 @@ class CategoryDetailsStateLoading extends CategoryDetailsState {}
 
 class CategoryDetailsStatePaginationLoading extends CategoryDetailsState {}
 
-class CategoryDetailsStatePaginationFailure extends CategoryDetailsState {}
+class CategoryDetailsStatePaginationFailure extends CategoryDetailsState {
+  final String errMessage;
+
+  const CategoryDetailsStatePaginationFailure(this.errMessage);
+}
 
 class CategoryDetailsStateSuccess extends CategoryDetailsState {
   final List<Document> shopsList;

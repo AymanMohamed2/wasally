@@ -8,7 +8,7 @@ import 'package:wasally/features/auth/presentation/manager/verify_cubit/verify_c
 import 'package:wasally/features/auth/presentation/view/widgets/verify_initial_section.dart';
 import 'package:wasally/features/auth/presentation/view/widgets/verify_loading_section.dart';
 import 'package:wasally/features/auth/presentation/view/widgets/verify_section.dart';
-import '../../../../../core/functions/custom_alert_dialog.dart';
+import '../../../../../core/functions/custom_error_snake_bar.dart';
 import '../../../../curved_navigation_bar/presentation/view/curved_navigation_bar.dart';
 import 'custom_edit_phone_number.dart';
 

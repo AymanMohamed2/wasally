@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' hide Trans;
 
-import '../../../../../core/functions/custom_alert_dialog.dart';
+import '../../../../../core/functions/custom_error_snake_bar.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import '../../../../complete_order/presentation/manager/complete_order_button_cubit/complete_order_button_cubit.dart';

@@ -26,12 +26,3 @@ void customAlertDialog(
     text: text,
   );
 }
-
-void showSnakeBar(BuildContext context, {required String message}) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(message),
-      behavior: SnackBarBehavior.floating,
-    ),
-  );
-}

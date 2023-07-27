@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wasally/core/widgets/custom_loading_indicator.dart';
 import 'package:wasally/features/home/presentation/manager/category_details_cubit/category_details_cubit.dart';
-
+import '../../../../../core/constants.dart';
 import '../../../data/models/category_details_model/document.dart';
 import 'custom_item_details.dart';
 
@@ -33,13 +34,13 @@ class _CategoryDetailsListViewState extends State<CategoryDetailsListView> {
   void _scrollListener() async {
     var currentPositions = _scrollController.position.pixels;
     var maxScrollLength = _scrollController.position.maxScrollExtent;
-    if (currentPositions >= 0.7 * maxScrollLength) {
+    if (currentPositions >= 1.2 * maxScrollLength) {
       if (!isLoading) {
         isLoading = true;
         await BlocProvider.of<CategoryDetailsCubit>(context)
             .getCategoryDetails(pageNumber: nextPage++);
-        // ignore: avoid_print
-        print(' done get shops');
+        print('Shops get done');
+
         isLoading = false;
       }
     }
@@ -53,19 +54,39 @@ class _CategoryDetailsListViewState extends State<CategoryDetailsListView> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        child: ListView.builder(
-          controller: _scrollController,
-          itemCount: widget.documentList.length,
-          physics: const BouncingScrollPhysics(),
-          itemBuilder: (context, index) {
-            return CustomItemDetailsView(
-              document: widget.documentList[index],
-            );
-          },
-        ),
-      ),
+    return BlocBuilder<CategoryDetailsCubit, CategoryDetailsState>(
+      builder: (context, state) {
+        return Expanded(
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  controller: _scrollController,
+                  itemCount: widget.documentList.length,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return CustomItemDetailsView(
+                      document: widget.documentList[index],
+                    );
+                  },
+                ),
+              ),
+              Visibility(
+                visible: state is CategoryDetailsStatePaginationLoading
+                    ? true
+                    : false,
+                child: const Center(
+                  child: CustomLoadingIndicator(
+                    color: kPrimaryColor,
+                    height: 30,
+                    width: 30,
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }

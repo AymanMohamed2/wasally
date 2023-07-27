@@ -44,7 +44,6 @@ class CompleteOrderCubit extends Cubit<CompleteOrderState> {
       await createFile(fileName: fileName!, path: path!).then((_) async {
         final String? playerId = await getPlayerId();
         var response = await completeOrderRepo.postOrderAdmin(
-          // ignore: use_build_context_synchronously
           orderImage: imageUrl,
           playerId: playerId,
           phone: phone,

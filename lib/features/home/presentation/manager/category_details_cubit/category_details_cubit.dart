@@ -21,13 +21,15 @@ class CategoryDetailsCubit extends Cubit<CategoryDetailsState> {
     var response = await homeRepo.getCategoryDetails(pageNumber: pageNumber);
     response.fold(
       (failure) {
-        emit(
-          CategoryDetailsStateFailure(failure.errMessage),
-        );
+        if (pageNumber == 0) {
+          emit(
+            CategoryDetailsStateFailure(failure.errMessage),
+          );
+        } else {
+          emit(CategoryDetailsStatePaginationFailure(failure.errMessage));
+        }
       },
       (shopsList) {
-        this.shopsList.addAll(shopsList);
-
         emit(
           CategoryDetailsStateSuccess(shopsList),
         );
