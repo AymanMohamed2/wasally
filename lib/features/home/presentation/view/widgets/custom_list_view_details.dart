@@ -4,6 +4,7 @@ import 'package:wasally/core/widgets/custom_loading_indicator.dart';
 import 'package:wasally/features/home/presentation/manager/category_details_cubit/category_details_cubit.dart';
 import '../../../../../core/constants.dart';
 import '../../../../../core/functions/custom_error_snake_bar.dart';
+import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../data/models/category_details_model/document.dart';
 import 'category_details_list_view.dart';
@@ -46,13 +47,30 @@ class _CustomListViewDetailsBlocBuilderState
                     child: Center(child: Text(AppStrings.noShops.tr()))));
           }
         } else if (state is CategoryDetailsStateFailure) {
-          return Expanded(
-              child: SizedBox(
-                  child: Center(
-                      child: Text(state.errMessage ==
-                              "AppwriteException: null, Failed host lookup: 'cloud.appwrite.io' (0)"
-                          ? 'No Internet Connection 🌐'
-                          : state.errMessage))));
+          return Builder(
+            builder: (context) {
+              if (state.errMessage ==
+                  "AppwriteException: null, Failed host lookup: 'cloud.appwrite.io' (0)") {
+                return Expanded(
+                    child: SizedBox(
+                        child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(AppImages.noInternetImage),
+                    const Text('No Internet Connection 🌐'),
+                  ],
+                )));
+              } else {
+                return Expanded(
+                  child: SizedBox(
+                    child: Center(
+                      child: Text(state.errMessage),
+                    ),
+                  ),
+                );
+              }
+            },
+          );
         } else {
           return const Expanded(
             child: SizedBox(
