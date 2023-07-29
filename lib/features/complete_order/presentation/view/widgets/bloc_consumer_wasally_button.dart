@@ -77,6 +77,8 @@ class BlocConsumerWasallyButton extends StatelessWidget {
           }
         } else if (state is CompleteOrderFailure) {
           showSnakeBar(context, message: '${state.errMessage}  ❌');
+        } else if (state is UploadImageFailure) {
+          showSnakeBar(context, message: AppStrings.errorUploadImage.tr());
         }
       },
     );

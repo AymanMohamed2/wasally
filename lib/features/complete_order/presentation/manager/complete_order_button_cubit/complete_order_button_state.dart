@@ -18,3 +18,5 @@ class CompleteOrderFailure extends CompleteOrderState {
 
   const CompleteOrderFailure(this.errMessage);
 }
+
+class UploadImageFailure extends CompleteOrderState {}

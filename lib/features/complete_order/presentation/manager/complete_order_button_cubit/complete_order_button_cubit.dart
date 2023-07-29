@@ -41,25 +41,15 @@ class CompleteOrderCubit extends Cubit<CompleteOrderState> {
     emit(CompleteOrderLoading());
 
     if (imageFile != null) {
-      await createFile(fileName: fileName!, path: path!).then((_) async {
-        final String? playerId = await getPlayerId();
-        var response = await completeOrderRepo.postOrderAdmin(
-          orderImage: imageUrl,
-          playerId: playerId,
-          phone: phone,
+      await postOrderWithImage(
+          fileName: fileName!,
+          path: path!,
           categoryName: categoryName,
-          shopName: shopName,
-          order: order,
           latitude: latitude,
-          longitude: longtude,
-        );
-
-        response.fold((failure) {
-          emit(CompleteOrderFailure(failure.errMessage));
-        }, (r) {
-          emit(CompleteOrderSuccess());
-        });
-      });
+          longtude: longtude,
+          order: order,
+          phone: phone,
+          shopName: shopName);
     } else {
       final String? playerId = await getPlayerId();
       var response = await completeOrderRepo.postOrderAdmin(
@@ -132,12 +122,38 @@ class CompleteOrderCubit extends Cubit<CompleteOrderState> {
     }
   }
 
-  Future<void> createFile(
-      {required String fileName, required String path}) async {
+  Future<void> postOrderWithImage({
+    required String fileName,
+    required String path,
+    required String categoryName,
+    required String shopName,
+    required String order,
+    required String latitude,
+    required String longtude,
+    required String phone,
+  }) async {
     var result =
         await completeOrderRepo.createFile(fileName: fileName, path: path);
-    result.fold((l) => null, (r) {
-      imageUrl = r;
+    result.fold((failure) {
+      emit(UploadImageFailure());
+    }, (imageUrl) async {
+      final String? playerId = await getPlayerId();
+      var response = await completeOrderRepo.postOrderAdmin(
+        orderImage: imageUrl,
+        playerId: playerId,
+        phone: phone,
+        categoryName: categoryName,
+        shopName: shopName,
+        order: order,
+        latitude: latitude,
+        longitude: longtude,
+      );
+
+      response.fold((failure) {
+        emit(CompleteOrderFailure(failure.errMessage));
+      }, (r) {
+        emit(CompleteOrderSuccess());
+      });
     });
   }
 }

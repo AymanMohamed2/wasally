@@ -17,19 +17,13 @@ class SplashViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return FlutterSplashScreen.fadeIn(
-      backgroundColor: Colors.white,
-      onInit: () {
-        debugPrint("On Init");
-      },
-      onEnd: () {
-        debugPrint("On End");
-      },
+      duration: const Duration(seconds: 3),
+      backgroundColor: const Color(0xffFCFCFF),
       childWidget: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.5,
-        width: MediaQuery.of(context).size.width * 0.5,
-        child: Image.asset("assets/images/splash.png"),
+        height: MediaQuery.of(context).size.height * 0.9,
+        width: MediaQuery.of(context).size.width * 0.9,
+        child: Image.asset("assets/images/new_splash.gif"),
       ),
-      onAnimationEnd: () => debugPrint("On Fade In End"),
       defaultNextScreen:
           isLogin == true ? BottomNavigationBarHome() : const OnBoardingView(),
     );

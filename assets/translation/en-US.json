@@ -89,7 +89,8 @@
   "descreption":"Descreption",
   "choose_a_photo_from_gallery":"Choose a photo from the gallery (optional)",
   "there_was_an_error":"There Was an Error Please Try again",
-  "image":"Image"
+  "image":"Image",
+  "error_upload_image":"There was a problem uploading the image, please try again later!"
 
 
 
