@@ -1,20 +1,20 @@
-part of 'delete_order_cubit.dart';
+// part of 'delete_order_cubit.dart';
 
-abstract class DeleteOrderState extends Equatable {
-  const DeleteOrderState();
+// abstract class DeleteOrderState extends Equatable {
+//   const DeleteOrderState();
 
-  @override
-  List<Object> get props => [];
-}
+//   @override
+//   List<Object> get props => [];
+// }
 
-class DeleteOrderInitial extends DeleteOrderState {}
+// class DeleteOrderInitial extends DeleteOrderState {}
 
-class DeleteOrderLoading extends DeleteOrderState {}
+// class DeleteOrderLoading extends DeleteOrderState {}
 
-class DeleteOrderSuccess extends DeleteOrderState {}
+// class DeleteOrderSuccess extends DeleteOrderState {}
 
-class DeleteOrderFailure extends DeleteOrderState {
-  final String errMessage;
+// class DeleteOrderFailure extends DeleteOrderState {
+//   final String errMessage;
 
- const DeleteOrderFailure(this.errMessage);
-}
+//  const DeleteOrderFailure(this.errMessage);
+// }

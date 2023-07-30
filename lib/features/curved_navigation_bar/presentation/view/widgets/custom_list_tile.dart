@@ -2,16 +2,15 @@ import 'package:cool_alert/cool_alert.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wasally/features/curved_navigation_bar/presentation/manager/get_current_orders_cubit/get_current_orders_cubit.dart';
 
 import '../../../../../core/constants.dart';
 import '../../../../../core/functions/custom_alert_dialog.dart';
 import '../../../../../core/functions/custom_error_snake_bar.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/size_config.dart';
-import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../../../core/widgets/custom_text.dart';
 import '../../../data/models/order_model/document.dart';
-import '../../manager/delete_order_cubit/delete_order_cubit.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile({
@@ -29,7 +28,7 @@ class CustomListTile extends StatelessWidget {
                 document.orderState == 'توصيل'
             ? true
             : false,
-        child: BlocConsumer<DeleteOrderCubit, DeleteOrderState>(
+        child: BlocConsumer<GetCurrentOrdersCubit, GetCurrentOrdersState>(
           listener: (context, state) async {
             if (state is DeleteOrderSuccess) {
               showSnakeBar(context,
@@ -39,29 +38,22 @@ class CustomListTile extends StatelessWidget {
             }
           },
           builder: (context, state) {
-            if (state is DeleteOrderLoading) {
-              return const Padding(
-                padding: EdgeInsets.all(16),
-                child: CustomLoadingIndicator(color: Colors.black),
-              );
-            } else {
-              return IconButton(
-                onPressed: () async {
-                  customAlertDialog(context,
-                      cancelBtnColor: Colors.black,
-                      title: AppStrings.areYouSure.tr(),
-                      text: AppStrings.youWantToDeleteThisOrder.tr(),
-                      type: CoolAlertType.confirm, onConfirmBtnTap: () async {
-                    await BlocProvider.of<DeleteOrderCubit>(context)
-                        .deleteOrder(orderId: document.id);
-                  }, onCancelBtnTap: () {});
-                },
-                icon: const Icon(
-                  Icons.delete,
-                  color: Colors.black,
-                ),
-              );
-            }
+            return IconButton(
+              onPressed: () async {
+                customAlertDialog(context,
+                    cancelBtnColor: Colors.black,
+                    title: AppStrings.areYouSure.tr(),
+                    text: AppStrings.youWantToDeleteThisOrder.tr(),
+                    type: CoolAlertType.confirm, onConfirmBtnTap: () async {
+                  await BlocProvider.of<GetCurrentOrdersCubit>(context)
+                      .deleteOrder(orderId: document.id);
+                }, onCancelBtnTap: () {});
+              },
+              icon: const Icon(
+                Icons.delete,
+                color: Colors.black,
+              ),
+            );
           },
         ),
       ),

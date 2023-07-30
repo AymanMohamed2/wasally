@@ -1,7 +1,6 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../data/models/order_model/document.dart';
 import '../../../data/repositories/curved_navigation_bar_repo/curved_navigation_bar_repo.dart';
@@ -12,10 +11,10 @@ class OldOrdersCubit extends Cubit<OldOrdersState> {
   OldOrdersCubit(this.curvedNavigationBarRepo) : super(OldOrdersInitial());
   final CurvedNavigationBarRepo curvedNavigationBarRepo;
 
-  Future<void> getOldOrders({required String phoneNumber}) async {
+  Future<void> getOldOrders() async {
     emit(OldOrdersLoading());
-    var response =
-        await curvedNavigationBarRepo.getOldOrders(phoneNumber: phoneNumber);
+
+    var response = await curvedNavigationBarRepo.getOldOrders();
     response.fold((failure) {
       emit(OldOrdersFailure(failure.errMessage));
     }, (orderList) {
@@ -26,8 +25,6 @@ class OldOrdersCubit extends Cubit<OldOrdersState> {
   }
 
   void getOldOrdersStream() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-
     final client = Client()
         .setEndpoint('https://cloud.appwrite.io/v1')
         .setProject('6435d5e1a13eff6332c2');
@@ -41,7 +38,7 @@ class OldOrdersCubit extends Cubit<OldOrdersState> {
       ]);
 
       subscription.stream.listen((event) async {
-        getOldOrders(phoneNumber: pref.getString("phoneNumber")!);
+        getOldOrders();
       });
     } on Exception catch (e) {
       // ignore: avoid_print

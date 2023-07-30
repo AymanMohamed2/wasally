@@ -1,24 +1,36 @@
 part of 'get_current_orders_cubit.dart';
 
-abstract class GetUserOrderState extends Equatable {
-  const GetUserOrderState();
+abstract class GetCurrentOrdersState extends Equatable {
+  const GetCurrentOrdersState();
 
   @override
   List<Object> get props => [];
 }
 
-class GetUserOrderInitial extends GetUserOrderState {}
+class GetUserOrderInitial extends GetCurrentOrdersState {}
 
-class GetUserOrderLoading extends GetUserOrderState {}
+class GetUserOrderLoading extends GetCurrentOrdersState {}
 
-class GetUserOrderSuccess extends GetUserOrderState {
+class GetUserOrderSuccess extends GetCurrentOrdersState {
   final List<Document> orderList;
 
   const GetUserOrderSuccess(this.orderList);
 }
 
-class GetUserOrderFailure extends GetUserOrderState {
+class GetUserOrderFailure extends GetCurrentOrdersState {
   final String errMessage;
 
   const GetUserOrderFailure(this.errMessage);
+}
+
+class GetUserOrderPaginationLoading extends GetCurrentOrdersState {}
+
+class GetUserOrderPaginationFailure extends GetCurrentOrdersState {}
+
+class DeleteOrderSuccess extends GetCurrentOrdersState {}
+
+class DeleteOrderFailure extends GetCurrentOrdersState {
+  final String errMessage;
+
+  const DeleteOrderFailure(this.errMessage);
 }

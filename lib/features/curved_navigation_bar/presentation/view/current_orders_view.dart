@@ -5,7 +5,7 @@ import 'package:wasally/features/curved_navigation_bar/presentation/view/widgets
 
 import '../../../../core/utils/api_services.dart';
 import '../../data/repositories/curved_navigation_bar_repo/curved_navigation_bar_repo_impl.dart';
-import '../manager/delete_order_cubit/delete_order_cubit.dart';
+import '../manager/get_current_orders_cubit/get_current_orders_cubit.dart';
 
 class CurrentOrdersView extends StatelessWidget {
   const CurrentOrdersView({super.key, this.phoneNumber});
@@ -15,9 +15,16 @@ class CurrentOrdersView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        // BlocProvider(
+        //     create: (context) => DeleteOrderCubit(
+        //         CurvedNavigationBarRepoImpl(ApiServices(Dio())))),
         BlocProvider(
-            create: (context) => DeleteOrderCubit(
-                CurvedNavigationBarRepoImpl(ApiServices(Dio())))),
+          create: (context) => GetCurrentOrdersCubit(
+            CurvedNavigationBarRepoImpl(ApiServices(Dio())),
+          )
+            ..getCurrentOrders()
+            ..getCurrentOrdersStream(),
+        ),
       ],
       child: const Scaffold(
         body: CurrentOrdersViewBody(),

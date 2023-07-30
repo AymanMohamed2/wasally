@@ -27,7 +27,7 @@ class HomeRepoImpl implements HomeRepo {
       var result = await databases.listDocuments(
           databaseId: '643cc351878dafb57524',
           collectionId: '643fff738de6a968c5ba',
-          queries: [Query.limit(25), Query.offset(pageNumber * 25)]);
+          queries: [Query.limit(10), Query.offset(pageNumber * 10)]);
 
       List<Document> shopsList = [];
       for (var element in result.documents) {

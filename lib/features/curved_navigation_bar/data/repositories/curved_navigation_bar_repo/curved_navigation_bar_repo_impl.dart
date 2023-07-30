@@ -1,5 +1,6 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/core/utils/api_services.dart';
 import 'package:wasally/features/auth/data/models/user_info_model/user_info_model.dart';
 
@@ -82,7 +83,10 @@ class CurvedNavigationBarRepoImpl implements CurvedNavigationBarRepo {
 
   @override
   Future<Either<Failure, List<Document>>> getCurrentOrders(
-      {required String phoneNumber}) async {
+      {int pageNumber = 0}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String phoneNumber = prefs.getString("phoneNumber")!;
+
     final client = Client()
         .setEndpoint('https://cloud.appwrite.io/v1')
         .setProject('6435d5e1a13eff6332c2');
@@ -93,7 +97,11 @@ class CurvedNavigationBarRepoImpl implements CurvedNavigationBarRepo {
       final documents = await databases.listDocuments(
           databaseId: '64439ac773343115d92a',
           collectionId: '64439af01110334cae23',
-          queries: [Query.equal('phone', phoneNumber)]);
+          queries: [
+            Query.equal('phone', phoneNumber),
+            Query.limit(10),
+            Query.offset(pageNumber * 10)
+          ]);
 
       final List<Document> orderList = [];
       for (var element in documents.documents) {
@@ -133,8 +141,10 @@ class CurvedNavigationBarRepoImpl implements CurvedNavigationBarRepo {
   }
 
   @override
-  Future<Either<Failure, List<Document>>> getOldOrders(
-      {required String phoneNumber}) async {
+  Future<Either<Failure, List<Document>>> getOldOrders() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String phoneNumber = pref.getString("phoneNumber")!;
+
     final client = Client()
         .setEndpoint('https://cloud.appwrite.io/v1')
         .setProject('6435d5e1a13eff6332c2');
@@ -146,20 +156,27 @@ class CurvedNavigationBarRepoImpl implements CurvedNavigationBarRepo {
           databaseId: '64439ac773343115d92a',
           collectionId: '64439af01110334cae23',
           queries: [
-            Query.equal('phone', phoneNumber),
-            Query.equal('orderState', 'تم التوصيل')
+            Query.equal(
+              'phone',
+              phoneNumber,
+            ),
+            Query.equal('orderState', 'تم التوصيل'),
           ]);
 
       final List<Document> orderList = [];
       for (var element in documents.documents) {
         orderList.add(Document.fromJson(element.data));
       }
+      print('SUCCESSSSSSSSSSSSSSSSS');
 
       return right(orderList);
     } catch (e) {
       if (e is DioError) {
+        print('FAILUREEEEEEEEEEEEEE');
         return left(ServerFailure.fromDioError(e));
       } else {
+        print('UNKNOWN FAILUREEEEEEEEEEEEEE$e');
+
         return left(ServerFailure(e.toString()));
       }
     }

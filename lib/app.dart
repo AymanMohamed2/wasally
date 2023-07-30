@@ -9,8 +9,6 @@ import 'config/themes/app_theme.dart';
 import 'core/utils/app_strings.dart';
 import 'features/auth/data/repositories/auth_repo_impl.dart';
 import 'features/auth/presentation/manager/verify_cubit/verify_cubit.dart';
-import 'features/curved_navigation_bar/data/repositories/curved_navigation_bar_repo/curved_navigation_bar_repo_impl.dart';
-import 'features/curved_navigation_bar/presentation/manager/get_user_order_cubit/get_user_order_cubit.dart';
 import 'features/splash/presentation/view/splash_view.dart';
 
 class Wasally extends StatelessWidget {
@@ -32,11 +30,6 @@ class Wasally extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => VerifyCubit(AuthRepoImpl(ApiServices(Dio()))),
-        ),
-        BlocProvider(
-          create: (context) => GetUserOrderCubit(
-            CurvedNavigationBarRepoImpl(ApiServices(Dio())),
-          ),
         ),
       ],
       child: GetMaterialApp(
