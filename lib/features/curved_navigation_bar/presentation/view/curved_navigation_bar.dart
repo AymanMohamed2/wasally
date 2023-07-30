@@ -3,10 +3,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wasally/core/constants.dart';
 import 'package:wasally/core/utils/size_config.dart';
+import 'package:wasally/features/curved_navigation_bar/presentation/view/old_orders_view.dart';
 import 'package:wasally/features/home/presentation/view/home_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/person_info_view.dart';
-import 'package:wasally/features/curved_navigation_bar/presentation/view/talbat_view.dart';
+import 'package:wasally/features/curved_navigation_bar/presentation/view/current_orders_view.dart';
 
 import '../../../../core/utils/api_services.dart';
 import '../../../home/data/repositories/home_repo_impl.dart';
@@ -39,7 +41,8 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
 
   List<Widget> pages = [
     const HomeView(),
-    const TalbatView(),
+    const CurrentOrdersView(),
+    const OldOrdersView(),
     const Person(),
   ];
 
@@ -65,17 +68,22 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
               Icon(
                 Icons.home,
                 size: 30,
-                color: Colors.orange,
+                color: kPrimaryColor,
               ),
               Icon(
                 Icons.beenhere,
                 size: 30,
-                color: Colors.orange,
+                color: kPrimaryColor,
+              ),
+              Icon(
+                Icons.shopping_cart,
+                size: 30,
+                color: kPrimaryColor,
               ),
               Icon(
                 Icons.person,
                 size: 30,
-                color: Colors.orange,
+                color: kPrimaryColor,
               ),
             ],
             onTap: (index) async {

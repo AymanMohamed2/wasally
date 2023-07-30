@@ -1,33 +1,31 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../data/models/order_model/document.dart';
 import '../../../data/repositories/curved_navigation_bar_repo/curved_navigation_bar_repo.dart';
 
-part 'get_user_order_state.dart';
+part 'old_orders_state.dart';
 
-class GetUserOrderCubit extends Cubit<GetUserOrderState> {
-  GetUserOrderCubit(this.curvedNavigationBarRepo)
-      : super(GetUserOrderInitial());
+class OldOrdersCubit extends Cubit<OldOrdersState> {
+  OldOrdersCubit(this.curvedNavigationBarRepo) : super(OldOrdersInitial());
   final CurvedNavigationBarRepo curvedNavigationBarRepo;
-  String? errMessage;
 
-  Future<void> getUserOrder({required String phoneNumber}) async {
-    emit(GetUserOrderLoading());
+  Future<void> getOldOrders({required String phoneNumber}) async {
+    emit(OldOrdersLoading());
     var response =
-        await curvedNavigationBarRepo.getUserOrder(phoneNumber: phoneNumber);
+        await curvedNavigationBarRepo.getOldOrders(phoneNumber: phoneNumber);
     response.fold((failure) {
-      errMessage = failure.errMessage;
-      emit(GetUserOrderFailure(failure.errMessage));
+      emit(OldOrdersFailure(failure.errMessage));
     }, (orderList) {
-      emit(GetUserOrderSuccess(orderList));
+      getOldOrdersStream();
+
+      emit(OldOrdersSuccess(orderList));
     });
   }
 
-  void getAllOrderStream() async {
+  void getOldOrdersStream() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
 
     final client = Client()
@@ -43,7 +41,7 @@ class GetUserOrderCubit extends Cubit<GetUserOrderState> {
       ]);
 
       subscription.stream.listen((event) async {
-        getUserOrder(phoneNumber: pref.getString("phoneNumber")!);
+        getOldOrders(phoneNumber: pref.getString("phoneNumber")!);
       });
     } on Exception catch (e) {
       // ignore: avoid_print

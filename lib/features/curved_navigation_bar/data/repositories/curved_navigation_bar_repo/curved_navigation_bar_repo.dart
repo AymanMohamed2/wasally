@@ -14,7 +14,9 @@ abstract class CurvedNavigationBarRepo {
     required String categoryName,
     required String shopId,
   });
-  Future<Either<Failure, List<Document>>> getUserOrder(
+  Future<Either<Failure, List<Document>>> getCurrentOrders(
+      {required String phoneNumber});
+  Future<Either<Failure, List<Document>>> getOldOrders(
       {required String phoneNumber});
   Future<Either<Failure, void>> deleteOrder({required String orderId});
 }

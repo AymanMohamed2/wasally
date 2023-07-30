@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wasally/features/curved_navigation_bar/presentation/manager/get_user_order_cubit/get_user_order_cubit.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/widgets/custom_app_bar.dart';
 import '../../../../../core/constants.dart';
 import '../../../../../core/utils/app_images.dart';
@@ -9,17 +8,18 @@ import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../../../core/widgets/custom_text.dart';
 import '../../../../../core/widgets/space_widget.dart';
+import '../../manager/get_current_orders_cubit/get_current_orders_cubit.dart';
 import 'custom_item_order.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class TalbatViewBody extends StatefulWidget {
-  const TalbatViewBody({super.key});
+class CurrentOrdersViewBody extends StatefulWidget {
+  const CurrentOrdersViewBody({super.key});
 
   @override
-  State<TalbatViewBody> createState() => _TalbatViewBodyState();
+  State<CurrentOrdersViewBody> createState() => _CurrentOrdersViewBodyState();
 }
 
-class _TalbatViewBodyState extends State<TalbatViewBody> {
+class _CurrentOrdersViewBodyState extends State<CurrentOrdersViewBody> {
   Future<String> nameRetriever() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -30,10 +30,10 @@ class _TalbatViewBodyState extends State<TalbatViewBody> {
   void initState() {
     nameRetriever().then((value) {
       BlocProvider.of<GetUserOrderCubit>(context)
-          .getUserOrder(phoneNumber: value);
+          .getCurrentOrders(phoneNumber: value);
     });
 
-    BlocProvider.of<GetUserOrderCubit>(context).getAllOrderStream();
+    BlocProvider.of<GetUserOrderCubit>(context).getCurrentOrdersStream();
     super.initState();
   }
 

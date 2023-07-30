@@ -1,4 +1,4 @@
-part of 'get_user_order_cubit.dart';
+part of 'get_current_orders_cubit.dart';
 
 abstract class GetUserOrderState extends Equatable {
   const GetUserOrderState();
