@@ -1,14 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wasally/features/complete_order/presentation/view/widgets/custom_product_list_view.dart';
 
 import '../../../../../core/constants.dart';
 import '../../../../../core/utils/app_strings.dart';
-import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../../../core/widgets/custom_text.dart';
 import '../../../../complete_order/presentation/manager/fetch_products_cubit/fetch_products_cubit.dart';
-import 'custom_product_item.dart';
 
 class ProductsListViewBlocBuilder extends StatelessWidget {
   const ProductsListViewBlocBuilder({
@@ -17,35 +16,25 @@ class ProductsListViewBlocBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FetchProductsCubit, FetchProductsState>(
-      builder: (context, state) {
+    return BlocConsumer<FetchProductsCubit, FetchProductsState>(
+      listener: (context, state) {
         if (state is FetchProductsSuccess) {
+          BlocProvider.of<FetchProductsCubit>(context)
+              .productsList
+              .addAll(state.productsList);
+        }
+      },
+      builder: (context, state) {
+        if (state is FetchProductsSuccess ||
+            state is FetchProductsPaginationLoading ||
+            state is FetchProductsPaginationFailure) {
           // ignore: prefer_is_empty
           if (BlocProvider.of<FetchProductsCubit>(context)
-              .productsList!
+              .productsList
               .isNotEmpty) {
-            // ignore: avoid_unnecessary_containers
-            return Container(
-              child: Expanded(
-                child: GridView.builder(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: SizeConfig.defaultSize! * 1),
-                  physics: const BouncingScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: SizeConfig.defaultSize! * 1,
-                      crossAxisSpacing: SizeConfig.defaultSize! * 1),
-                  itemCount: BlocProvider.of<FetchProductsCubit>(context)
-                      .productsList!
-                      .length,
-                  itemBuilder: (context, index) {
-                    return CustomProductItem(
-                      document: BlocProvider.of<FetchProductsCubit>(context)
-                          .productsList![index],
-                    );
-                  },
-                ),
-              ),
+            return CustomProductListView(
+              productsList:
+                  BlocProvider.of<FetchProductsCubit>(context).productsList,
             );
           } else {
             return Expanded(

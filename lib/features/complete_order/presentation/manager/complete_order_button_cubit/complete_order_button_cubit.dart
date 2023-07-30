@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
+import '../../../../home/data/models/category_details_model/document.dart';
 import '../../../data/repositories/complete_order_repo.dart';
 
 part 'complete_order_button_state.dart';
@@ -16,6 +17,7 @@ class CompleteOrderCubit extends Cubit<CompleteOrderState> {
   String? order;
   double? lat, long;
   String? imageUrl;
+  Document? document;
 
   Future<Position> getUserCurrentLocation() async {
     await Geolocator.requestPermission()

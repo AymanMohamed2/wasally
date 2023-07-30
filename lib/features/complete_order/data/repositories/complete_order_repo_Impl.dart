@@ -14,7 +14,7 @@ class CompleteOrderRepoImpl implements CompleteOrderRepo {
   CompleteOrderRepoImpl(this.apiServices);
   @override
   Future<Either<Failure, List<Document>>> fetchShopProducts(
-      {required String shopId}) async {
+      {required String shopId, int pageNumber = 0}) async {
     final client = Client()
         .setEndpoint('https://cloud.appwrite.io/v1')
         .setProject('6435d5e1a13eff6332c2');
@@ -25,7 +25,11 @@ class CompleteOrderRepoImpl implements CompleteOrderRepo {
       final documents = await databases.listDocuments(
           databaseId: '64b8f36cd21320ef3067',
           collectionId: '64b8f37e63bb24f50384',
-          queries: [Query.equal('shopid', shopId)]);
+          queries: [
+            Query.equal('shopid', shopId),
+            Query.limit(25),
+            Query.offset(pageNumber * 25)
+          ]);
 
       final List<Document> productsList = [];
       for (var element in documents.documents) {

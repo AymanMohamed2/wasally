@@ -6,7 +6,7 @@ import '../models/product_model/document.dart';
 
 abstract class CompleteOrderRepo {
   Future<Either<Failure, List<Document>>> fetchShopProducts(
-      {required String shopId});
+      {required String shopId, int pageNumber = 0});
   Future<Either<Failure, CategoryDetailsModel>> postOrderAdmin({
     required String phone,
     required String categoryName,

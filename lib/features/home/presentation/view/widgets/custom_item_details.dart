@@ -42,7 +42,7 @@ class CustomItemDetailsView extends StatelessWidget {
                 BlocProvider(
                   create: (context) => CompleteOrderCubit(
                     getIt.get<CompleteOrderRepoImpl>(),
-                  ),
+                  )..document = document,
                 ),
                 BlocProvider(
                   create: (context) => FetchProductsCubit(

@@ -9,21 +9,30 @@ part 'fetch_products_state.dart';
 class FetchProductsCubit extends Cubit<FetchProductsState> {
   FetchProductsCubit(this.completeOrderRepo) : super(FetchProductsInitial());
   final CompleteOrderRepo completeOrderRepo;
-  List<Document>? productsList;
+  List<Document> productsList = [];
 
-  Future<void> fetchShopProducts({required String shopId}) async {
-    emit(FetchProductsLoading());
-    var response = await completeOrderRepo.fetchShopProducts(shopId: shopId);
+  Future<void> fetchShopProducts(
+      {required String shopId, int pageNumber = 0}) async {
+    if (pageNumber == 0) {
+      emit(FetchProductsLoading());
+    } else {
+      emit(FetchProductsPaginationLoading());
+    }
+    var response = await completeOrderRepo.fetchShopProducts(
+        shopId: shopId, pageNumber: pageNumber);
 
     response.fold(
       (failure) {
-        emit(
-          FetchProductsFailure(failure.errMessage),
-        );
+        if (pageNumber == 0) {
+          emit(
+            FetchProductsFailure(failure.errMessage),
+          );
+        } else {
+          emit(FetchProductsPaginationFailure(failure.errMessage));
+        }
       },
       (products) {
-        productsList = products;
-        emit(FetchProductsSuccess());
+        emit(FetchProductsSuccess(products));
       },
     );
   }

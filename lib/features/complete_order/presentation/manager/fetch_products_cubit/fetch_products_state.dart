@@ -11,7 +11,19 @@ class FetchProductsInitial extends FetchProductsState {}
 
 class FetchProductsLoading extends FetchProductsState {}
 
-class FetchProductsSuccess extends FetchProductsState {}
+class FetchProductsSuccess extends FetchProductsState {
+  final List<Document> productsList;
+
+  const FetchProductsSuccess(this.productsList);
+}
+
+class FetchProductsPaginationLoading extends FetchProductsState {}
+
+class FetchProductsPaginationFailure extends FetchProductsState {
+  final String errMessage;
+
+  const FetchProductsPaginationFailure(this.errMessage);
+}
 
 class FetchProductsFailure extends FetchProductsState {
   final String errMessage;
