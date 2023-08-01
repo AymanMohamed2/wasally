@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' hide Trans;
+import 'package:wasally/features/curved_navigation_bar/presentation/manager/get_current_orders_cubit/get_current_orders_cubit.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/widgets/custom_elevated_button.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/widgets/custom_google_map.dart';
 import '../../../../../core/constants.dart';
@@ -46,6 +48,10 @@ class CustomItemOrder extends StatelessWidget {
                 Visibility(
                   visible: document.deliveryPhone == null ? false : true,
                   child: CustomRow(
+                    onTap: () {
+                      BlocProvider.of<GetCurrentOrdersCubit>(context)
+                          .makingPhoneCall(phone: document.deliveryPhone!);
+                    },
                     icon: Icons.phone_android,
                     title: AppStrings.deliveryPhone.tr(),
                     value: document.deliveryPhone ?? '',

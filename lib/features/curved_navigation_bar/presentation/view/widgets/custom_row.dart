@@ -11,10 +11,12 @@ class CustomRow extends StatelessWidget {
     required this.title,
     required this.value,
     required this.icon,
+    this.onTap,
   });
   final String title;
   final String value;
   final IconData icon;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +35,12 @@ class CustomRow extends StatelessWidget {
               fontSize: SizeConfig.defaultSize! * 2,
             ),
             Flexible(
-                child: CustomText(
-              text: value,
-              fontSize: SizeConfig.defaultSize! * 2,
+                child: InkWell(
+              onTap: onTap,
+              child: CustomText(
+                text: value,
+                fontSize: SizeConfig.defaultSize! * 2,
+              ),
             )),
           ],
         ),

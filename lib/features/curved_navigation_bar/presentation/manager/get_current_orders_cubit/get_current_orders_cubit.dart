@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../data/models/order_model/document.dart';
 import '../../../data/repositories/curved_navigation_bar_repo/curved_navigation_bar_repo.dart';
 
@@ -98,5 +99,10 @@ class GetCurrentOrdersCubit extends Cubit<GetCurrentOrdersState> {
     }, (success) {
       emit(DeleteOrderSuccess());
     });
+  }
+
+  makingPhoneCall({required String phone}) async {
+    var url = Uri.parse("tel:$phone");
+    await launchUrl(url, mode: LaunchMode.externalNonBrowserApplication);
   }
 }
