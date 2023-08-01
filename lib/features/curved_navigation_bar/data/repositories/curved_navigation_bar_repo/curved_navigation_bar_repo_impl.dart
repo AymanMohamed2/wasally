@@ -167,16 +167,12 @@ class CurvedNavigationBarRepoImpl implements CurvedNavigationBarRepo {
       for (var element in documents.documents) {
         orderList.add(Document.fromJson(element.data));
       }
-      print('SUCCESSSSSSSSSSSSSSSSS');
 
       return right(orderList);
     } catch (e) {
       if (e is DioError) {
-        print('FAILUREEEEEEEEEEEEEE');
         return left(ServerFailure.fromDioError(e));
       } else {
-        print('UNKNOWN FAILUREEEEEEEEEEEEEE$e');
-
         return left(ServerFailure(e.toString()));
       }
     }

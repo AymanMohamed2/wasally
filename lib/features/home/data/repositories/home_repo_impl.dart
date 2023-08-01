@@ -27,7 +27,7 @@ class HomeRepoImpl implements HomeRepo {
       var result = await databases.listDocuments(
           databaseId: '643cc351878dafb57524',
           collectionId: '643fff738de6a968c5ba',
-          queries: [Query.limit(10), Query.offset(pageNumber * 10)]);
+          queries: [Query.limit(25), Query.offset(pageNumber * 25)]);
 
       List<Document> shopsList = [];
       for (var element in result.documents) {
@@ -41,34 +41,6 @@ class HomeRepoImpl implements HomeRepo {
         return left(ServerFailure(e.toString()));
       }
     }
-
-    // try {
-    //   var response = await apiServices.get(
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       "X-Appwrite-Project": "6435d5e1a13eff6332c2",
-    //       "X-Appwrite-Key":
-    //           "0de0fe8c91c9c980d16bb39a2e1a579c29048e74ef33b879b4d2e11dbbeec648e6ceb198a7dc7b26898d2c990f33225d045ae64a70381449d33984abcb18714d8ad96f49e30cb4dd9e07b0402743bb52214bb3a0f8f18c780ce186f9ee9e7d84b33ea63a24844a2271e780046c3593fd02c8d1c6202c267c9d92439beb815940"
-    //     },
-    //     endPoint:
-    //         'databases/643cc351878dafb57524/collections/643fff738de6a968c5ba/documents?limit=10&offset=${pageNumber * 10}',
-    //   );
-    //   print(pageNumber);
-    //   List<Document> shopsList = [];
-    //   for (var element in response['documents']) {
-    //     shopsList.add(Document.fromJson(element));
-    //   }
-    //   print(shopsList.length);
-    //   return right(
-    //     shopsList,
-    //   );
-    // } on Exception catch (e) {
-    //   if (e is DioError) {
-    //     return left(ServerFailure.fromDioError(e));
-    //   } else {
-    //     return left(ServerFailure(e.toString()));
-    //   }
-    // }
   }
 
   @override
