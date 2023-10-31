@@ -96,4 +96,6 @@ class AppStrings {
   static const String thereWasAnError = 'there_was_an_error';
   static const String image = 'image';
   static const String errorUploadImage = 'error_upload_image';
+  static const String update = 'update';
+  static const String thereWasANewUpdate = 'there_was_a_new_update';
 }

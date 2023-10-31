@@ -7,6 +7,7 @@ void customAlertDialog(
   BuildContext context, {
   required String title,
   required String text,
+  String confirmText = 'Ok',
   required CoolAlertType type,
   void Function()? onConfirmBtnTap,
   void Function()? onCancelBtnTap,
@@ -14,6 +15,7 @@ void customAlertDialog(
   bool showCancelBtn = true,
 }) {
   CoolAlert.show(
+    confirmBtnText: confirmText,
     cancelBtnTextStyle: TextStyle(color: cancelBtnColor),
     showCancelBtn: showCancelBtn,
     onCancelBtnTap: onCancelBtnTap,

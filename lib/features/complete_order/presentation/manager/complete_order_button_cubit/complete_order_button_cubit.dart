@@ -134,10 +134,12 @@ class CompleteOrderCubit extends Cubit<CompleteOrderState> {
     required String longtude,
     required String phone,
   }) async {
-    var result =
-        await completeOrderRepo.createFile(fileName: fileName, path: path);
+    var result = await completeOrderRepo.createFile(
+      fileName: fileName,
+      path: path,
+    );
     result.fold((failure) {
-      emit(UploadImageFailure());
+      emit(UploadImageFailure(failure.errMessage));
     }, (imageUrl) async {
       final String? playerId = await getPlayerId();
       var response = await completeOrderRepo.postOrderAdmin(

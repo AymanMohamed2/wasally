@@ -90,7 +90,9 @@
   "choose_a_photo_from_gallery":"Choose a photo from the gallery (optional)",
   "there_was_an_error":"There Was an Error Please Try again",
   "image":"Image",
-  "error_upload_image":"There was a problem uploading the image, please try again later!"
+  "error_upload_image":"There was a problem uploading the image, please try again later!",
+  "update":"Update",
+  "there_was_a_new_update":"There Was A new Update"
 
 
 

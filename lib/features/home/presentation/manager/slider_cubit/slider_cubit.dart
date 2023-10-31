@@ -11,6 +11,7 @@ class SliderCubit extends Cubit<SliderState> {
   final HomeRepo homeRepo;
   List<dynamic>? items;
   String? userId;
+  String? newVersion;
 
   Future<void> getSliderList() async {
     emit(SliderStateLoading());
@@ -43,5 +44,13 @@ class SliderCubit extends Cubit<SliderState> {
       // ignore: avoid_print
       print('exception = ${e.toString()}');
     }
+  }
+
+  Future<void> getNewVersion() async {
+    var response = await homeRepo.getNewVersion();
+
+    response.fold((l) => null, (r) {
+      newVersion = r;
+    });
   }
 }

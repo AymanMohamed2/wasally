@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../data/repositories/complete_order_repo.dart';
 
@@ -20,28 +21,88 @@ class PickImageCubit extends Cubit<PickImageState> {
 
   Future<void> pickImage() async {
     final picker = ImagePicker();
+    var status = await Permission.storage.status;
 
-    try {
-      emit(PickImageLoading());
-      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-      if (pickedFile != null) {
-        File imageFile = File(pickedFile.path);
-        path = imageFile.path;
-        this.imageFile = imageFile;
+    if (status.isGranted) {
+      try {
+        emit(PickImageLoading());
 
-        String fileName = basename(imageFile.path);
-        this.fileName = fileName;
+        final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+        if (pickedFile != null) {
+          File imageFile = File(pickedFile.path);
+          path = imageFile.path;
+          this.imageFile = imageFile;
 
+          String fileName = basename(imageFile.path);
+          this.fileName = fileName;
+
+          // ignore: avoid_print
+          print('File Name: $fileName');
+          emit(PickImageSuccess());
+        } else {
+          emit(PickImageInitial());
+        }
+      } catch (e) {
         // ignore: avoid_print
-        print('File Name: $fileName');
-        emit(PickImageSuccess());
-      } else {
-        emit(PickImageInitial());
+        print('ERRORRRRRR');
+        emit(PickImageFailure(e.toString()));
       }
-    } catch (e) {
-      // ignore: avoid_print
-      print('ERRORRRRRR');
-      emit(PickImageFailure(e.toString()));
+    } else if (status.isDenied) {
+      var status = await Permission.storage.request();
+      if (status.isGranted) {
+        try {
+          emit(PickImageLoading());
+
+          final pickedFile =
+              await picker.pickImage(source: ImageSource.gallery);
+          if (pickedFile != null) {
+            File imageFile = File(pickedFile.path);
+            path = imageFile.path;
+            this.imageFile = imageFile;
+
+            String fileName = basename(imageFile.path);
+            this.fileName = fileName;
+
+            // ignore: avoid_print
+            print('File Name: $fileName');
+            emit(PickImageSuccess());
+          } else {
+            emit(PickImageInitial());
+          }
+        } catch (e) {
+          // ignore: avoid_print
+          print('ERRORRRRRR');
+          emit(PickImageFailure(e.toString()));
+        }
+      }
+    } else if (status.isPermanentlyDenied) {
+      var status = await Permission.storage.request();
+      if (status.isGranted) {
+        try {
+          emit(PickImageLoading());
+
+          final pickedFile =
+              await picker.pickImage(source: ImageSource.gallery);
+          if (pickedFile != null) {
+            File imageFile = File(pickedFile.path);
+            path = imageFile.path;
+            this.imageFile = imageFile;
+
+            String fileName = basename(imageFile.path);
+            this.fileName = fileName;
+
+            // ignore: avoid_print
+            print('File Name: $fileName');
+            emit(PickImageSuccess());
+          } else {
+            emit(PickImageInitial());
+          }
+        } catch (e) {
+          // ignore: avoid_print
+          print('ERRORRRRRR');
+          emit(PickImageFailure(e.toString()));
+        }
+      }
     }
   }
 }

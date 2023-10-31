@@ -37,7 +37,7 @@ class CompleteOrderFailureSection extends StatelessWidget {
         onTap: () async {
           if (_formKey.currentState!.validate()) {
             if (BlocProvider.of<CompleteOrderGetLocationCubit>(context)
-                    .position !=
+                    .currentLocation !=
                 null) {
               if (BlocProvider.of<CompleteOrderCubit>(context)
                   .isWithinWorkingHours()) {
@@ -51,12 +51,12 @@ class CompleteOrderFailureSection extends StatelessWidget {
                     order: accessCubit.order!,
                     latitude:
                         BlocProvider.of<CompleteOrderGetLocationCubit>(context)
-                            .position!
+                            .currentLocation!
                             .latitude
                             .toString(),
                     longtude:
                         BlocProvider.of<CompleteOrderGetLocationCubit>(context)
-                            .position!
+                            .currentLocation!
                             .longitude
                             .toString(),
                   );

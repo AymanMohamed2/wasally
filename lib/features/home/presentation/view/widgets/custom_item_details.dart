@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:wasally/core/utils/service_locator.dart';
-import 'package:wasally/features/complete_order/data/repositories/complete_order_repo_Impl.dart';
+import 'package:wasally/features/complete_order/data/repositories/complete_order_repo_impl.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../complete_order/presentation/manager/complete_order_button_cubit/complete_order_button_cubit.dart';

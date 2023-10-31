@@ -10,9 +10,9 @@ abstract class CompleteOrderGetLocationState extends Equatable {
 class CompleteOrderGetLocationInitial extends CompleteOrderGetLocationState {}
 
 class CompleteOrderGetLocationSuccess extends CompleteOrderGetLocationState {
-  final Position position;
+  final LocationData locationData;
 
-  const CompleteOrderGetLocationSuccess(this.position);
+  const CompleteOrderGetLocationSuccess(this.locationData);
 }
 
 class CompleteOrderGetLocationFailure extends CompleteOrderGetLocationState {

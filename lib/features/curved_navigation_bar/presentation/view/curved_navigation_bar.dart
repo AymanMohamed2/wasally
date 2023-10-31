@@ -29,6 +29,10 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
     // const OldOrdersView(),
     const Person(),
   ];
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,4 +78,21 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
           body: pages.elementAt(widget.selectedindex)),
     );
   }
+
+  // void advancedStatusCheck(NewVersion newVersion) async {
+  //   final status = await newVersion.getVersionStatus();
+  //   if (status != null) {
+  //     debugPrint(status.releaseNotes);
+  //     debugPrint(status.appStoreLink);
+  //     debugPrint(status.localVersion);
+  //     debugPrint(status.storeVersion);
+  //     debugPrint(status.canUpdate.toString());
+  //     newVersion.showUpdateDialog(
+  //       context: context,
+  //       versionStatus: status,
+  //       dialogTitle: 'Custom Title',
+  //       dialogText: 'Custom Text',
+  //     );
+  //   }
+  // }
 }

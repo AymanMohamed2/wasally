@@ -145,9 +145,8 @@ class CompleteOrderRepoImpl implements CompleteOrderRepo {
     Storage storage = Storage(client);
 
     client
-            .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
-            .setProject('6435d5e1a13eff6332c2') // Your project ID
-        ;
+        .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
+        .setProject('6435d5e1a13eff6332c2');
     try {
       var result = await storage.createFile(
         bucketId: '64bd4831c088d8d855c5',

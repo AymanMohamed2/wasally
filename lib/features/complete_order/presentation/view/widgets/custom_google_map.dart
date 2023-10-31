@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 import 'package:wasally/core/constants.dart';
 import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/core/widgets/custom_elevated_button.dart';
@@ -14,9 +14,9 @@ import 'custom_google_map_body.dart';
 class CustomGoogleMap extends StatefulWidget {
   const CustomGoogleMap({
     Key? key,
-    required this.position,
+    required this.locationData,
   }) : super(key: key);
-  final Position position;
+  final LocationData locationData;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -33,14 +33,16 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   Future<void> getLocation() async {
     _markers.add(Marker(
       markerId: const MarkerId("2"),
-      position: LatLng(widget.position.latitude, widget.position.longitude),
+      position:
+          LatLng(widget.locationData.latitude!, widget.locationData.longitude!),
       infoWindow: const InfoWindow(
         title: 'My Current Location',
       ),
     ));
 
     CameraPosition cameraPosition = CameraPosition(
-      target: LatLng(widget.position.latitude, widget.position.longitude),
+      target:
+          LatLng(widget.locationData.latitude!, widget.locationData.longitude!),
       zoom: 14,
     );
 

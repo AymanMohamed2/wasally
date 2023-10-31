@@ -6,6 +6,7 @@ import '../models/category_details_model/document.dart';
 abstract class HomeRepo {
   Future<Either<Failure, List<Document>>> getCategoryDetails(
       {int pageNumber = 0});
+  Future<Either<Failure, String>> getNewVersion();
 
   Future<Either<Failure, List<dynamic>>> getSliderList();
 }

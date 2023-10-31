@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasally/app.dart';
+import 'core/functions/check_for_update.dart';
 import 'core/utils/language_manager.dart';
 import 'core/utils/service_locator.dart';
 import 'features/splash/presentation/manager/splash_cubit/splash_cubit.dart';
@@ -13,6 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await EasyLocalization.ensureInitialized();
+  await checkForUpdate();
   OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
   OneSignal.shared.setAppId('d3c7d9c5-9e70-48f0-891e-9d13208e8cba');
   OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
@@ -34,8 +37,10 @@ void main() async {
           providers: [
             BlocProvider(create: (context) => SplashCubit()),
           ],
-          child: Wasally(
-            isLogin: isLogin,
+          child: DevicePreview(
+            builder: (context) => Wasally(
+              isLogin: isLogin,
+            ),
           ),
         ),
       ),
