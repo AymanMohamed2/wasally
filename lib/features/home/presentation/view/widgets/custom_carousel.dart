@@ -1,8 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wasally/core/utils/app_colors.dart';
+import 'package:wasally/core/utils/app_strings.dart';
 import 'package:wasally/features/home/presentation/manager/slider_cubit/slider_cubit.dart';
+import 'package:wasally/features/home/presentation/view/widgets/custom_slider.dart';
 
 import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/custom_loading_indicator.dart';
@@ -15,96 +17,30 @@ class CustomCarousel extends StatelessWidget {
     return BlocBuilder<SliderCubit, SliderState>(
       builder: (context, state) {
         if (state is SliderStateLoading) {
-          return CarouselSlider(
-            options: CarouselOptions(
-              height: SizeConfig.defaultSize! * 20,
-              autoPlay: true,
-              enlargeCenterPage: true,
+          return SizedBox(
+            height: SizeConfig.screenHeight! * 0.13,
+            child: Center(
+              child: CustomLoadingIndicator(
+                height: SizeConfig.screenHeight! * 0.04,
+                width: SizeConfig.screenWidth! * 0.04,
+                color: AppColors.primaryColor,
+              ),
             ),
-            items: [
-              const CustomLoadingIndicator(),
-            ].map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: const Center(
-                        child: CustomLoadingIndicator(
-                          height: 20,
-                          width: 20,
-                          color: Colors.orange,
-                        ),
-                      ));
-                },
-              );
-            }).toList(),
           );
         } else if (state is SliderStateSuccess) {
-          return CarouselSlider(
-            options: CarouselOptions(
-              height: SizeConfig.defaultSize! * 20,
-              autoPlay: true,
-              enlargeCenterPage: true,
-            ),
-            items: state.sliderList.map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: CachedNetworkImage(
-                        imageUrl: i,
-                      ));
-                },
-              );
-            }).toList(),
+          return CustomSlider(
+            images: state.sliderList,
           );
         } else if (state is SliderStateFailure) {
-          return CarouselSlider(
-            options: CarouselOptions(
-              height: SizeConfig.defaultSize! * 20,
-              autoPlay: true,
-              enlargeCenterPage: true,
-            ),
-            items: [
-              state.errMessage,
-              state.errMessage,
-              state.errMessage,
-            ].map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Center(
-                      child: Text(i),
-                    ),
-                  );
-                },
-              );
-            }).toList(),
+          return Center(
+            child: SizedBox(
+                height: SizeConfig.screenHeight! * 0.13,
+                child: Text(state.errMessage)),
           );
         } else {
-          return CarouselSlider(
-            options: CarouselOptions(
-              height: SizeConfig.defaultSize! * 20,
-              autoPlay: true,
-              enlargeCenterPage: true,
-            ),
-            items: [
-              'Something went wrong'
-                  'Something went wrong'
-                  'Something went wrong'
-            ].map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Center(
-                      child: Text(i),
-                    ),
-                  );
-                },
-              );
-            }).toList(),
+          return SizedBox(
+            height: SizeConfig.screenHeight! * 0.13,
+            child: Text(AppStrings.someThingWentWrong.tr()),
           );
         }
       },

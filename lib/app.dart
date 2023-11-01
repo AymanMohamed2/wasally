@@ -1,10 +1,9 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:wasally/core/utils/api_services.dart';
+import 'package:wasally/core/utils/service_locator.dart';
 import 'package:wasally/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'config/themes/app_theme.dart';
 import 'core/utils/app_strings.dart';
@@ -25,12 +24,10 @@ class Wasally extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => LoginCubit(
-            AuthRepoImpl(ApiServices(Dio())),
-          ),
+          create: (context) => LoginCubit(getIt.get<AuthRepoImpl>()),
         ),
         BlocProvider(
-          create: (context) => VerifyCubit(AuthRepoImpl(ApiServices(Dio()))),
+          create: (context) => VerifyCubit(getIt.get<AuthRepoImpl>()),
         ),
       ],
       child: GetMaterialApp(

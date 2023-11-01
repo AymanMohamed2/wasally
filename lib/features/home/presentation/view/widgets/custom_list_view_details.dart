@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/core/widgets/custom_loading_indicator.dart';
 import 'package:wasally/features/home/presentation/manager/category_details_cubit/category_details_cubit.dart';
 import '../../../../../core/constants.dart';
@@ -72,13 +73,13 @@ class _CustomListViewDetailsBlocBuilderState
             },
           );
         } else {
-          return const Expanded(
+          return Expanded(
             child: SizedBox(
               child: Center(
                 child: CustomLoadingIndicator(
                   color: kPrimaryColor,
-                  height: 30,
-                  width: 30,
+                  height: SizeConfig.screenHeight! * 0.04,
+                  width: SizeConfig.screenWidth! * 0.04,
                 ),
               ),
             ),

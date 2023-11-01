@@ -92,7 +92,8 @@
   "image":"Image",
   "error_upload_image":"There was a problem uploading the image, please try again later!",
   "update":"Update",
-  "there_was_a_new_update":"There Was A new Update"
+  "there_was_a_new_update":"There Was A new Update",
+  "thome_thing_went_wrong":"Something Went wrong"
 
 
 

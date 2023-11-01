@@ -5,6 +5,7 @@ class SizeConfig {
   static double? screenHeight;
   static double? defaultSize;
   static Orientation? orientation;
+  static double? area;
 
   void init(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
@@ -14,5 +15,6 @@ class SizeConfig {
     defaultSize = orientation == Orientation.landscape
         ? screenHeight! * .024
         : screenWidth! * .024;
+    area = screenHeight! * screenWidth!;
   }
 }

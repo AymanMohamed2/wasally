@@ -95,7 +95,8 @@
   "image":"الصوره",
   "error_upload_image":"حدثت مشكلة اثناء رفع الصوره الرجاء المحاوله لاحقا",
   "update":"تحديث",
-  "there_was_a_new_update":"هناك تحديث جديد"
+  "there_was_a_new_update":"هناك تحديث جديد",
+  "thome_thing_went_wrong":"حدث خطأ اثناء التحميل"
 
 
 }

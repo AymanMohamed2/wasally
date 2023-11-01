@@ -6,13 +6,13 @@ class CustomText extends StatelessWidget {
       required this.text,
       this.fontWeight,
       this.color = Colors.black,
-      this.fontSize = 22,
+      this.fontSize,
       this.textAlign,
       this.textOverflow});
   final String text;
   final FontWeight? fontWeight;
   final Color color;
-  final double fontSize;
+  final double? fontSize;
   final TextAlign? textAlign;
   final TextOverflow? textOverflow;
 

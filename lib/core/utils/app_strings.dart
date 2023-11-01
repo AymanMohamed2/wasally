@@ -98,4 +98,5 @@ class AppStrings {
   static const String errorUploadImage = 'error_upload_image';
   static const String update = 'update';
   static const String thereWasANewUpdate = 'there_was_a_new_update';
+  static const String someThingWentWrong = 'thome_thing_went_wrong';
 }

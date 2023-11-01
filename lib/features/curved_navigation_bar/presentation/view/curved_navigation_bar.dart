@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/constants.dart';
-import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/features/home/presentation/view/home_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/person_info_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/current_orders_view.dart';
@@ -48,7 +47,7 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
           bottomNavigationBar: CurvedNavigationBar(
             index: widget.selectedindex,
             animationDuration: const Duration(milliseconds: 400),
-            height: SizeConfig.defaultSize! * 5.5,
+            height: 50,
             color: Colors.white,
             backgroundColor: Colors.orangeAccent,
             buttonBackgroundColor: Colors.black,
@@ -78,21 +77,4 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
           body: pages.elementAt(widget.selectedindex)),
     );
   }
-
-  // void advancedStatusCheck(NewVersion newVersion) async {
-  //   final status = await newVersion.getVersionStatus();
-  //   if (status != null) {
-  //     debugPrint(status.releaseNotes);
-  //     debugPrint(status.appStoreLink);
-  //     debugPrint(status.localVersion);
-  //     debugPrint(status.storeVersion);
-  //     debugPrint(status.canUpdate.toString());
-  //     newVersion.showUpdateDialog(
-  //       context: context,
-  //       versionStatus: status,
-  //       dialogTitle: 'Custom Title',
-  //       dialogText: 'Custom Text',
-  //     );
-  //   }
-  // }
 }

@@ -21,7 +21,7 @@ class CustomGrideView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: GridView(
-        padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultSize! * 2),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         physics: const BouncingScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,

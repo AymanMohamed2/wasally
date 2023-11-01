@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' hide Trans;
-import 'package:wasally/core/utils/service_locator.dart';
+import 'package:wasally/core/utils/api_services.dart';
 import 'package:wasally/features/complete_order/data/repositories/complete_order_repo_impl.dart';
 
 import '../../../../../core/utils/app_strings.dart';
@@ -41,13 +42,13 @@ class CustomItemDetailsView extends StatelessWidget {
               providers: [
                 BlocProvider(
                   create: (context) => CompleteOrderCubit(
-                    getIt.get<CompleteOrderRepoImpl>(),
+                    CompleteOrderRepoImpl(ApiServices(Dio())),
                   )..document = document,
                 ),
                 BlocProvider(
                   create: (context) => FetchProductsCubit(
-                    getIt.get<CompleteOrderRepoImpl>(),
-                  )..fetchShopProducts(shopId: document!.id!),
+                      CompleteOrderRepoImpl(ApiServices(Dio())))
+                    ..fetchShopProducts(shopId: document!.id!),
                 ),
               ],
               child: CompleteOrderView(

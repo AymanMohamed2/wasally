@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/features/complete_order/presentation/view/widgets/custom_product_list_view.dart';
 
 import '../../../../../core/constants.dart';
@@ -39,9 +40,20 @@ class ProductsListViewBlocBuilder extends StatelessWidget {
           } else {
             return Expanded(
               // ignore: avoid_unnecessary_containers
-              child: Container(
-                child:
-                    Center(child: CustomText(text: AppStrings.noProducts.tr())),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.shopping_cart_outlined,
+                    size: SizeConfig.area! * 0.0002,
+                  ),
+                  SizedBox(
+                    child: CustomText(
+                      text: AppStrings.noProducts.tr(),
+                      fontSize: SizeConfig.area! * 0.00003,
+                    ),
+                  ),
+                ],
               ),
             );
           }
@@ -61,10 +73,10 @@ class ProductsListViewBlocBuilder extends StatelessWidget {
           return Expanded(
             // ignore: avoid_unnecessary_containers
             child: Container(
-              child: const Center(
+              child: Center(
                   child: CustomLoadingIndicator(
-                height: 30,
-                width: 30,
+                height: SizeConfig.screenHeight! * 0.04,
+                width: SizeConfig.screenWidth! * 0.04,
                 color: kPrimaryColor,
               )),
             ),

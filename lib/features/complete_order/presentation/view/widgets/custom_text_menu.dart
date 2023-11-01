@@ -11,10 +11,11 @@ class CustomTextMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultSize! * 2),
-      child: const CustomText(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: CustomText(
         text: 'Menu',
         fontWeight: FontWeight.bold,
+        fontSize: SizeConfig.area! * 0.00004,
       ),
     );
   }
