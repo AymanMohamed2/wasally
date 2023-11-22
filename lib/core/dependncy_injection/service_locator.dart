@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:wasally/core/utils/api_services.dart';
+import 'package:wasally/core/networking/api_services.dart';
 import 'package:wasally/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:wasally/features/complete_order/data/repositories/complete_order_repo_Impl.dart';
 import 'package:wasally/features/curved_navigation_bar/data/repositories/curved_navigation_bar_repo/curved_navigation_bar_repo_impl.dart';

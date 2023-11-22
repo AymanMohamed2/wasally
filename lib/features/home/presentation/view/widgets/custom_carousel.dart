@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wasally/core/utils/app_colors.dart';
+import 'package:wasally/core/themes/app_colors.dart';
 import 'package:wasally/core/utils/app_strings.dart';
 import 'package:wasally/features/home/presentation/manager/slider_cubit/slider_cubit.dart';
 import 'package:wasally/features/home/presentation/view/widgets/custom_slider.dart';

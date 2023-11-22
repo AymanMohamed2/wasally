@@ -1,7 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:wasally/core/utils/api_services.dart';
+import 'package:wasally/core/networking/api_services.dart';
 import 'package:wasally/features/complete_order/data/repositories/complete_order_repo.dart';
 
 import '../../../../core/errors/failures.dart';

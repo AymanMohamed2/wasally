@@ -7,7 +7,7 @@ import 'package:wasally/features/home/presentation/view/home_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/person_info_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/current_orders_view.dart';
 
-import '../../../../core/utils/api_services.dart';
+import '../../../../core/networking/api_services.dart';
 import '../../../home/data/repositories/home_repo_impl.dart';
 import '../../../home/presentation/manager/slider_cubit/slider_cubit.dart';
 

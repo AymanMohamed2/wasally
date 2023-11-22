@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:wasally/core/constants.dart';
-import 'package:wasally/core/utils/service_locator.dart';
+import 'package:wasally/core/dependncy_injection/service_locator.dart';
 import 'package:wasally/features/complete_order/data/repositories/complete_order_repo_Impl.dart';
 import 'package:wasally/features/home/presentation/view/category_details_view.dart';
 import 'package:wasally/features/complete_order/presentation/view/complete_order_view.dart';

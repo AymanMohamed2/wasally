@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wasally/core/constants.dart';
-import 'package:wasally/core/utils/api_services.dart';
+import 'package:wasally/core/networking/api_services.dart';
 import 'package:wasally/core/utils/size_config.dart';
 import 'package:wasally/core/widgets/space_widget.dart';
 import 'package:wasally/features/home/data/repositories/home_repo.dart';

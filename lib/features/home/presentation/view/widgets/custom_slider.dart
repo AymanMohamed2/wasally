@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:scroll_page_view/pager/page_controller.dart';
 import 'package:scroll_page_view/pager/scroll_page_view.dart';
-import 'package:wasally/core/utils/app_colors.dart';
+import 'package:wasally/core/themes/app_colors.dart';
 import 'package:wasally/core/utils/size_config.dart';
 
 class CustomSlider extends StatefulWidget {

@@ -1,10 +1,10 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:dio/dio.dart';
-import 'package:wasally/core/utils/api_services.dart';
 
 import 'package:wasally/core/errors/failures.dart';
 
 import 'package:dartz/dartz.dart';
+import 'package:wasally/core/networking/api_services.dart';
 
 import '../models/category_details_model/document.dart';
 import 'home_repo.dart';

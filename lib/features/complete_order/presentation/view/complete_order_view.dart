@@ -5,7 +5,7 @@ import 'package:wasally/features/complete_order/data/repositories/complete_order
 import 'package:wasally/features/complete_order/presentation/manager/pick_image_cubit/pick_image_cubit.dart';
 import 'package:wasally/features/complete_order/presentation/view/widgets/bloc_consumer_wasally_button.dart';
 import 'package:wasally/features/complete_order/presentation/view/widgets/complete_order_view_body.dart';
-import '../../../../core/utils/service_locator.dart';
+import '../../../../core/dependncy_injection/service_locator.dart';
 import '../../../auth/presentation/manager/verify_cubit/verify_cubit.dart';
 import '../manager/complete_order_button_cubit/complete_order_button_cubit.dart';
 import '../manager/complete_order_get_location_cubit/complete_order_get_location_cubit.dart';
