@@ -6,7 +6,6 @@ import '../../../../complete_order/presentation/manager/complete_order_button_cu
 import '../../../../complete_order/presentation/manager/complete_order_get_location_cubit/complete_order_get_location_cubit.dart';
 import 'bloc_builder_location_button.dart';
 import 'complete_order_write_order_section.dart';
-import 'menu_and_image_picker_builder.dart';
 
 // ignore: must_be_immutable
 class CompleteOrderViewBody extends StatelessWidget {
@@ -36,7 +35,7 @@ class CompleteOrderViewBody extends StatelessWidget {
         ),
         BlocBuilderLocationButton(accessLocationCubit: accessLocationCubit),
         const VirticalSpace(2),
-        MenuAndImagePickerBuilder(catigoryName: catigoryName),
+        // MenuAndImagePickerBuilder(catigoryName: catigoryName),
       ],
     );
   }

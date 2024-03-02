@@ -9,7 +9,9 @@ class CategoryDetailsListView extends StatefulWidget {
   const CategoryDetailsListView({
     super.key,
     required this.documentList,
+    required this.image,
   });
+  final String image;
 
   final List<Document> documentList;
 
@@ -60,6 +62,7 @@ class _CategoryDetailsListViewState extends State<CategoryDetailsListView> {
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) {
             return CustomItemDetailsView(
+              image: widget.image,
               document: widget.documentList[index],
             );
           },

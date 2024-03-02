@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:intro_screen_onboarding_flutter/introduction.dart';
 import 'package:wasally/core/utils/app_strings.dart';
@@ -16,20 +17,20 @@ class OnBoardingViewBody extends StatelessWidget {
     final List<Introduction> list = [
       Introduction(
           imageUrl: 'assets/images/onboarding1.png',
-          titleTextStyle: TextStyle(fontSize: SizeConfig.defaultSize! * 3),
-          subTitleTextStyle: TextStyle(fontSize: SizeConfig.defaultSize! * 2),
+          titleTextStyle: TextStyle(fontSize: 30.sp),
+          subTitleTextStyle: TextStyle(fontSize: 20.sp),
           title: AppStrings.onBoardingTitle1.tr(),
           subTitle: AppStrings.onBoardingbody1.tr()),
       Introduction(
           imageUrl: 'assets/images/onboarding2.png',
-          titleTextStyle: TextStyle(fontSize: SizeConfig.defaultSize! * 3),
-          subTitleTextStyle: TextStyle(fontSize: SizeConfig.defaultSize! * 2),
+          titleTextStyle: TextStyle(fontSize: 25.sp),
+          subTitleTextStyle: TextStyle(fontSize: 20.sp),
           title: AppStrings.onBoardingTitle2.tr(),
           subTitle: AppStrings.onBoardingbody2.tr()),
       Introduction(
           imageUrl: 'assets/images/onboarding3.png',
-          subTitleTextStyle: TextStyle(fontSize: SizeConfig.defaultSize! * 2),
-          titleTextStyle: TextStyle(fontSize: SizeConfig.defaultSize! * 3),
+          titleTextStyle: TextStyle(fontSize: 25.sp),
+          subTitleTextStyle: TextStyle(fontSize: 20.sp),
           title: AppStrings.onBoardingTitle3.tr(),
           subTitle: AppStrings.onBoardingbody3.tr()),
     ];

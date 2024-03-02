@@ -27,13 +27,13 @@ class OldOrdersCubit extends Cubit<OldOrdersState> {
   void getOldOrdersStream() async {
     final client = Client()
         .setEndpoint('https://cloud.appwrite.io/v1')
-        .setProject('6435d5e1a13eff6332c2');
+        .setProject('645ac8903beada8a7d13');
 
     final realtime = Realtime(client);
 
     try {
       final subscription = realtime.subscribe([
-        'databases.64439ac773343115d92a.collections.64439af01110334cae23.documents',
+        'databases.658b3929673605997672.collections.658b3935095bff845277.documents',
         'files'
       ]);
 

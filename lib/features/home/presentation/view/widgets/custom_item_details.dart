@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,9 @@ class CustomItemDetailsView extends StatelessWidget {
   const CustomItemDetailsView({
     Key? key,
     this.document,
+    required this.image,
   }) : super(key: key);
+  final String image;
 
   final Document? document;
 
@@ -28,10 +29,7 @@ class CustomItemDetailsView extends StatelessWidget {
       child: ListTile(
         title: Text(document!.name!),
         subtitle: Text(document!.address!),
-        leading: SizedBox(
-            height: 40,
-            width: 40,
-            child: CachedNetworkImage(imageUrl: document!.image!)),
+        leading: SizedBox(height: 40, width: 40, child: Image.asset(image)),
         trailing: const Icon(
           Icons.shopping_cart_outlined,
           color: Colors.black,
@@ -54,7 +52,7 @@ class CustomItemDetailsView extends StatelessWidget {
               child: CompleteOrderView(
                 categoryName: AppStrings.restaurant.tr(),
                 title: document!.name!,
-                imageUrl: document!.image!,
+                imageUrl: image,
               ),
             ),
           );

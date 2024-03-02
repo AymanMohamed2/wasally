@@ -34,22 +34,28 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   @override
   void initState() {
-    BlocProvider.of<SliderCubit>(context).getNewVersion().then((_) {
-      getAppVersion().then((currentVersion) {
-        if (BlocProvider.of<SliderCubit>(context).newVersion !=
-            currentVersion) {
-          customAlertDialog(context, onConfirmBtnTap: () async {
-            String url =
-                "https://play.google.com/store/apps/details?id=com.darknaya.wasally";
-            await launchUrl(Uri.parse(url),
-                mode: LaunchMode.externalNonBrowserApplication);
-          },
-              confirmText: AppStrings.update.tr(),
-              title: AppStrings.update.tr(),
-              text: AppStrings.thereWasANewUpdate.tr(),
-              type: CoolAlertType.info);
-        }
-      });
+    BlocProvider.of<SliderCubit>(context).getNewVersion().then((_) async {
+      BlocProvider.of<SliderCubit>(context).currentVersion =
+          await getAppVersion();
+      if (BlocProvider.of<SliderCubit>(context)
+                  .newVersionModel!
+                  .documents![0]
+                  .newVersion !=
+              BlocProvider.of<SliderCubit>(context).currentVersion &&
+          BlocProvider.of<SliderCubit>(context).newVersionModel != null) {
+        customAlertDialog(context, onConfirmBtnTap: () async {
+          String url = BlocProvider.of<SliderCubit>(context)
+              .newVersionModel!
+              .documents![0]
+              .appUrl;
+          await launchUrl(Uri.parse(url),
+              mode: LaunchMode.externalNonBrowserApplication);
+        },
+            confirmText: AppStrings.update.tr(),
+            title: AppStrings.update.tr(),
+            text: AppStrings.thereWasANewUpdate.tr(),
+            type: CoolAlertType.info);
+      }
     });
 
     super.initState();

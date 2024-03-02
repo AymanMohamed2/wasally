@@ -82,7 +82,7 @@
   "delivery_phone":"Delivery Phone",
   "price":"Price",
   "order_delete_successfuly":"Order has been successfully deleted   ✅",
-  "working_time":"Sorry , outside working hours from 8 am to 12 pm",
+  "working_time":"Sorry , outside working hours from 8 am to 4 am",
   "you_want_to_delete_this_order":"You Want To Delete This Order ?",
   "no_products":"There are no products for this Shop",
   "product_name":"Product Name",
@@ -92,8 +92,9 @@
   "image":"Image",
   "error_upload_image":"There was a problem uploading the image, please try again later!",
   "update":"Update",
-  "there_was_a_new_update":"There Was A new Update",
-  "thome_thing_went_wrong":"Something Went wrong"
+  "there_was_a_new_update":"There is a new Update",
+  "thome_thing_went_wrong":"Something Went wrong",
+  "delivery_name":"Delivery Name"
 
 
 

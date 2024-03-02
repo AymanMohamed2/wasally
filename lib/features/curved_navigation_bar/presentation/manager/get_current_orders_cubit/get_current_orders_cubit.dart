@@ -38,26 +38,26 @@ class GetCurrentOrdersCubit extends Cubit<GetCurrentOrdersState> {
     String phoneNumber = prefs.getString("phoneNumber")!;
     final client = Client()
         .setEndpoint('https://cloud.appwrite.io/v1')
-        .setProject('6435d5e1a13eff6332c2');
+        .setProject('645ac8903beada8a7d13');
 
     final realtime = Realtime(client);
 
     try {
       final subscription = realtime.subscribe([
-        'databases.64439ac773343115d92a.collections.64439af01110334cae23.documents',
+        'databases.658b3929673605997672.collections.658b3935095bff845277.documents',
         'files'
       ]);
 
       subscription.stream.listen((event) async {
         if (event.events.contains(
-            'databases.64439ac773343115d92a.collections.64439af01110334cae23.documents.*.update')) {
+            'databases.658b3929673605997672.collections.658b3935095bff845277.documents.*.update')) {
           Document order = Document.fromJson(event.payload);
           if (order.phone == phoneNumber) {
             updateObjectById(id: order.id!, updateOrder: order);
             updateUi!();
           }
         } else if (event.events.contains(
-            'databases.64439ac773343115d92a.collections.64439af01110334cae23.documents.*.create')) {
+            'databases.658b3929673605997672.collections.658b3935095bff845277.documents.*.create')) {
           Document order = Document.fromJson(event.payload);
 
           if (order.phone == phoneNumber) {
@@ -65,7 +65,7 @@ class GetCurrentOrdersCubit extends Cubit<GetCurrentOrdersState> {
             updateUi!();
           }
         } else if (event.events.contains(
-            'databases.64439ac773343115d92a.collections.64439af01110334cae23.documents.*.delete')) {
+            'databases.658b3929673605997672.collections.658b3935095bff845277.documents.*.delete')) {
           Document order = Document.fromJson(event.payload);
 
           if (order.phone == phoneNumber) {

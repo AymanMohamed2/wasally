@@ -33,6 +33,7 @@ class AppStrings {
   static const String shopName = 'shop_name';
   static const String name = 'name';
   static const String shopCreated = 'account_created';
+  static const String deliveryName = 'delivery_name';
 
   static const String categories = 'categories';
   static const String other = 'other';

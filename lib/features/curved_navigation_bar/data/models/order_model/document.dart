@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 class Document extends Equatable {
   final String? phone;
   final String? categoryName;
+  final String? deliveryName;
   final String? shopName;
   final String? order;
   final String? price;
@@ -19,6 +20,7 @@ class Document extends Equatable {
   final String? databaseId;
 
   const Document({
+    this.deliveryName,
     this.orderImage,
     this.phone,
     this.categoryName,
@@ -51,6 +53,9 @@ class Document extends Equatable {
         deliveryPhone: json['deliveryPhone'] == null
             ? null
             : json['deliveryPhone'] as String,
+        deliveryName: json['delivery_name'] == null
+            ? null
+            : json['delivery_name'] as String,
         id: json['\$id'] as String?,
         createdAt: json['\$createdAt'] == null
             ? null

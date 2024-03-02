@@ -16,7 +16,7 @@ class CustomLoadingIndicator extends StatelessWidget {
     return SizedBox(
       height: height,
       width: width,
-      child: LoadingAnimationWidget.fourRotatingDots(
+      child: LoadingAnimationWidget.inkDrop(
         color: color,
         size: height,
       ),

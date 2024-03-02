@@ -84,7 +84,7 @@
   "delivery_phone":"رقم الطيار",
   "price":"السعر",
   "order_delete_successfuly":"تم حذف الطلب بنجاح   ✅",
-  "working_time":"آسف خارج مواعيد العمل من 8ص حتى 12م",
+  "working_time":"آسف خارج مواعيد العمل من 8ص حتى 4ص",
   "you_want_to_delete_this_order":"من انك تريد حذف هذا الطلب ؟",
   "There are no products for this store":"لا توجد منتجات لهذا المتجر",
   "product_name":"اسم المنتج",
@@ -96,7 +96,8 @@
   "error_upload_image":"حدثت مشكلة اثناء رفع الصوره الرجاء المحاوله لاحقا",
   "update":"تحديث",
   "there_was_a_new_update":"هناك تحديث جديد",
-  "thome_thing_went_wrong":"حدث خطأ اثناء التحميل"
+  "thome_thing_went_wrong":"حدث خطأ اثناء التحميل",
+  "delivery_name":"اسم الطيار"
 
 
 }

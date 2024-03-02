@@ -1,6 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:wasally/features/complete_order/data/models/new_version_model/new_version_model.dart';
 
 import '../../../data/repositories/home_repo.dart';
 
@@ -11,7 +12,8 @@ class SliderCubit extends Cubit<SliderState> {
   final HomeRepo homeRepo;
   List<dynamic>? items;
   String? userId;
-  String? newVersion;
+  NewVersionModel? newVersionModel;
+  String? currentVersion;
 
   Future<void> getSliderList() async {
     emit(SliderStateLoading());
@@ -27,13 +29,13 @@ class SliderCubit extends Cubit<SliderState> {
   void getSliderListStream() {
     final client = Client()
         .setEndpoint('https://cloud.appwrite.io/v1')
-        .setProject('6435d5e1a13eff6332c2');
+        .setProject('645ac8903beada8a7d13');
 
     final realtime = Realtime(client);
 
     try {
       final subscription = realtime.subscribe([
-        'databases.643ede0e57f9b9961866.collections.643eeaf57cb1ebbbeaa1.documents',
+        'databases.658b3929673605997672.collections.658b48fc5f7ee0525aa2.documents',
         'files'
       ]);
 
@@ -50,7 +52,7 @@ class SliderCubit extends Cubit<SliderState> {
     var response = await homeRepo.getNewVersion();
 
     response.fold((l) => null, (r) {
-      newVersion = r;
+      newVersionModel = r;
     });
   }
 }

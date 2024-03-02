@@ -1,15 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/core/constants.dart';
 import 'package:wasally/features/home/presentation/view/home_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/person_info_view.dart';
 import 'package:wasally/features/curved_navigation_bar/presentation/view/current_orders_view.dart';
 
-import '../../../../core/networking/api_services.dart';
-import '../../../home/data/repositories/home_repo_impl.dart';
-import '../../../home/presentation/manager/slider_cubit/slider_cubit.dart';
+
 
 // ignore: must_be_immutable
 class BottomNavigationBarHome extends StatefulWidget {
@@ -35,46 +31,37 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => SliderCubit(
-            HomeRepoImpl(ApiServices(Dio())),
-          ),
+    return Scaffold(
+        bottomNavigationBar: CurvedNavigationBar(
+          index: widget.selectedindex,
+          animationDuration: const Duration(milliseconds: 400),
+          height: 50,
+          color: Colors.white,
+          backgroundColor: Colors.orangeAccent,
+          buttonBackgroundColor: Colors.black,
+          items: const [
+            Icon(
+              Icons.home,
+              size: 30,
+              color: kPrimaryColor,
+            ),
+            Icon(
+              Icons.beenhere,
+              size: 30,
+              color: kPrimaryColor,
+            ),
+            Icon(
+              Icons.person,
+              size: 30,
+              color: kPrimaryColor,
+            ),
+          ],
+          onTap: (index) async {
+            setState(() {
+              widget.selectedindex = index;
+            });
+          },
         ),
-      ],
-      child: Scaffold(
-          bottomNavigationBar: CurvedNavigationBar(
-            index: widget.selectedindex,
-            animationDuration: const Duration(milliseconds: 400),
-            height: 50,
-            color: Colors.white,
-            backgroundColor: Colors.orangeAccent,
-            buttonBackgroundColor: Colors.black,
-            items: const [
-              Icon(
-                Icons.home,
-                size: 30,
-                color: kPrimaryColor,
-              ),
-              Icon(
-                Icons.beenhere,
-                size: 30,
-                color: kPrimaryColor,
-              ),
-              Icon(
-                Icons.person,
-                size: 30,
-                color: kPrimaryColor,
-              ),
-            ],
-            onTap: (index) async {
-              setState(() {
-                widget.selectedindex = index;
-              });
-            },
-          ),
-          body: pages.elementAt(widget.selectedindex)),
-    );
+        body: pages.elementAt(widget.selectedindex));
   }
 }

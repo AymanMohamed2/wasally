@@ -34,7 +34,7 @@ class CustomGrideView extends StatelessWidget {
                 () => CategoryDetailsView(
                   image: kServiceRestaurant,
                   title: AppStrings.restaurant.tr(),
-                  collectionId: '643fff738de6a968c5ba',
+                  collectionId: '658b4860ee0bd88f61ab',
                 ),
               );
             },
@@ -50,8 +50,7 @@ class CustomGrideView extends StatelessWidget {
                   child: CompleteOrderView(
                     categoryName: AppStrings.superMarket.tr(),
                     title: AppStrings.superMarket.tr(),
-                    imageUrl:
-                        'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/64bee1266fe6d70589ae/view?project=6435d5e1a13eff6332c2&mode=admin',
+                    imageUrl: kServiceSuperMarket,
                   ),
                 ),
               );
@@ -67,8 +66,7 @@ class CustomGrideView extends StatelessWidget {
                     child: CompleteOrderView(
                         categoryName: AppStrings.pharmacy.tr(),
                         title: AppStrings.pharmacy.tr(),
-                        imageUrl:
-                            'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/64bee1346e6172246763/view?project=6435d5e1a13eff6332c2&mode=admin'),
+                        imageUrl: kServicePharmacy),
                   ));
             },
             name: AppStrings.pharmacy.tr(),
@@ -82,8 +80,7 @@ class CustomGrideView extends StatelessWidget {
                     child: CompleteOrderView(
                         categoryName: AppStrings.bakery.tr(),
                         title: AppStrings.bakery.tr(),
-                        imageUrl:
-                            'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/64bee0ef388bb152b890/view?project=6435d5e1a13eff6332c2&mode=admin'),
+                        imageUrl: kServiceBakery),
                   ));
             },
             name: AppStrings.bakery.tr(),
@@ -97,8 +94,7 @@ class CustomGrideView extends StatelessWidget {
                     child: CompleteOrderView(
                         categoryName: AppStrings.vegetables.tr(),
                         title: AppStrings.vegetables.tr(),
-                        imageUrl:
-                            'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/64bee14d87725dc9889c/view?project=6435d5e1a13eff6332c2&mode=admin'),
+                        imageUrl: kServiceVegetables),
                   ));
             },
             name: AppStrings.vegetables.tr(),
@@ -112,8 +108,7 @@ class CustomGrideView extends StatelessWidget {
                     child: CompleteOrderView(
                         categoryName: AppStrings.library.tr(),
                         title: AppStrings.library.tr(),
-                        imageUrl:
-                            'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/64bee17fb20e34fa5957/view?project=6435d5e1a13eff6332c2&mode=admin'),
+                        imageUrl: kServiceLibrary),
                   ));
             },
             name: AppStrings.library.tr(),
@@ -127,8 +122,7 @@ class CustomGrideView extends StatelessWidget {
                       CompleteOrderCubit(getIt.get<CompleteOrderRepoImpl>()),
                   child: CompleteOrderView(
                     categoryName: AppStrings.other.tr(),
-                    imageUrl:
-                        'https://cloud.appwrite.io/v1/storage/buckets/643e9b5eab2bf91195ff/files/64bee168ac03aab36929/view?project=6435d5e1a13eff6332c2&mode=admin',
+                    imageUrl: kServiceOther,
                     title: AppStrings.other.tr(),
                   ),
                 ),

@@ -35,7 +35,10 @@ class CustomItemOrder extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomListTile(document: document),
+                CustomRow(
+                    icon: Icons.category,
+                    title: AppStrings.category.tr(),
+                    value: document.categoryName!),
                 CustomRow(
                   icon: Icons.storefront,
                   title: AppStrings.shop.tr(),
@@ -45,6 +48,14 @@ class CustomItemOrder extends StatelessWidget {
                     icon: Icons.shopping_cart,
                     title: AppStrings.order.tr(),
                     value: document.order!),
+                Visibility(
+                  visible: document.deliveryPhone == null ? false : true,
+                  child: CustomRow(
+                    icon: Icons.person,
+                    title: AppStrings.deliveryName.tr(),
+                    value: document.deliveryName ?? '',
+                  ),
+                ),
                 Visibility(
                   visible: document.deliveryPhone == null ? false : true,
                   child: CustomRow(

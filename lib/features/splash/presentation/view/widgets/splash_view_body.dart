@@ -1,6 +1,6 @@
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:wasally/features/on_boarding/presentation/view/on_boarding_view.dart';
+import 'package:wasally/features/on_boarding/presentation/view/onboarding_view.dart';
 
 import '../../../../../core/utils/size_config.dart';
 import '../../../../curved_navigation_bar/presentation/view/curved_navigation_bar.dart';
@@ -24,8 +24,9 @@ class SplashViewBody extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.9,
         child: Image.asset("assets/images/new_splash.gif"),
       ),
-      defaultNextScreen:
-          isLogin == true ? BottomNavigationBarHome() : const OnBoardingView(),
+      defaultNextScreen: isLogin == true
+          ? BottomNavigationBarHome()
+          : const OnboardingScreen(),
     );
   }
 }

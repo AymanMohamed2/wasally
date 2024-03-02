@@ -5,7 +5,6 @@ import 'package:wasally/core/networking/api_services.dart';
 import 'package:wasally/features/complete_order/data/repositories/complete_order_repo.dart';
 
 import '../../../../core/errors/failures.dart';
-import '../../../home/data/models/category_details_model/category_details_model.dart';
 import '../models/product_model/document.dart';
 
 class CompleteOrderRepoImpl implements CompleteOrderRepo {
@@ -17,7 +16,7 @@ class CompleteOrderRepoImpl implements CompleteOrderRepo {
       {required String shopId, int pageNumber = 0}) async {
     final client = Client()
         .setEndpoint('https://cloud.appwrite.io/v1')
-        .setProject('6435d5e1a13eff6332c2');
+        .setProject('645ac8903beada8a7d13');
 
     final databases = Databases(client);
 
@@ -47,7 +46,7 @@ class CompleteOrderRepoImpl implements CompleteOrderRepo {
   }
 
   @override
-  Future<Either<Failure, CategoryDetailsModel>> postOrderAdmin({
+  Future<Either<Failure, void>> postOrderAdmin({
     required String phone,
     required String categoryName,
     required String shopName,
@@ -59,19 +58,18 @@ class CompleteOrderRepoImpl implements CompleteOrderRepo {
   }) async {
     DateTime? dateTime = await getCurrentTimeInEgypt();
     try {
-      var response = await apiServices.post(
+      await apiServices.post(
           headers: {
             "Content-Type": "application/json",
-            "X-Appwrite-Project": "6435d5e1a13eff6332c2",
+            "X-Appwrite-Project": "645ac8903beada8a7d13",
             "X-Appwrite-Key":
-                "0de0fe8c91c9c980d16bb39a2e1a579c29048e74ef33b879b4d2e11dbbeec648e6ceb198a7dc7b26898d2c990f33225d045ae64a70381449d33984abcb18714d8ad96f49e30cb4dd9e07b0402743bb52214bb3a0f8f18c780ce186f9ee9e7d84b33ea63a24844a2271e780046c3593fd02c8d1c6202c267c9d92439beb815940"
+                "8e6ec60f1c9eaea2c034d4ebaf6b918d6836d5167dbcb91aadc61f444a44ca94a147772bafc646f664add4703ab80aee612495c524dfbad4edc3388496bf359e0f78c3f8f27d67e2277bcfc1d8c93a88e0b28c34db25acf869691cd66aaa11e995fea9e4e82a4bb9cede9a88592999968630dd6848f032b93a9ca5697a9515ac"
           },
           endPoint:
-              'databases/64439ac773343115d92a/collections/64439af01110334cae23/documents',
+              'databases/658b3929673605997672/collections/658b3935095bff845277/documents',
           data: {
             'documentId': ID.unique(),
             'data': {
-              'orderImage': orderImage,
               'playerId': playerId,
               'dateTime': dateTime.toString(),
               'phone': phone,
@@ -83,9 +81,7 @@ class CompleteOrderRepoImpl implements CompleteOrderRepo {
             }
           });
 
-      return right(
-        CategoryDetailsModel.fromJson(response),
-      );
+      return right(null);
     } on Exception catch (e) {
       if (e is DioError) {
         return left(ServerFailure.fromDioError(e));
@@ -98,7 +94,7 @@ class CompleteOrderRepoImpl implements CompleteOrderRepo {
   Future<DateTime> getCurrentTimeInEgypt() async {
     final currentTime = DateTime.now().toUtc().add(const Duration(hours: 2));
 
-    final newTime = currentTime.add(const Duration(hours: 1));
+    final newTime = currentTime;
 
     return newTime;
   }
@@ -108,11 +104,11 @@ class CompleteOrderRepoImpl implements CompleteOrderRepo {
     try {
       var response = await apiServices.get(
         endPoint:
-            'databases/64b45ce405ef64a49062/collections/64b45cf807b06effce07/documents',
+            'databases/658b3929673605997672/collections/658b494f96054174ff9e/documents',
         headers: {
           'Content-Type': 'application/json',
           'X-Appwrite-Response-Format': '1.0.0',
-          'X-Appwrite-Project': '6435d5e1a13eff6332c2',
+          'X-Appwrite-Project': '645ac8903beada8a7d13',
           'X-Appwrite-Key':
               '0de0fe8c91c9c980d16bb39a2e1a579c29048e74ef33b879b4d2e11dbbeec648e6ceb198a7dc7b26898d2c990f33225d045ae64a70381449d33984abcb18714d8ad96f49e30cb4dd9e07b0402743bb52214bb3a0f8f18c780ce186f9ee9e7d84b33ea63a24844a2271e780046c3593fd02c8d1c6202c267c9d92439beb815940',
         },

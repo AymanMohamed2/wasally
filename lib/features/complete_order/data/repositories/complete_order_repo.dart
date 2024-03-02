@@ -1,13 +1,12 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../../core/errors/failures.dart';
-import '../../../home/data/models/category_details_model/category_details_model.dart';
 import '../models/product_model/document.dart';
 
 abstract class CompleteOrderRepo {
   Future<Either<Failure, List<Document>>> fetchShopProducts(
       {required String shopId, int pageNumber = 0});
-  Future<Either<Failure, CategoryDetailsModel>> postOrderAdmin({
+  Future<Either<Failure, void>> postOrderAdmin({
     required String phone,
     required String categoryName,
     required String shopName,

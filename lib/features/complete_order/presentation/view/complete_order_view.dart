@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasally/features/complete_order/data/repositories/complete_order_repo_Impl.dart';
@@ -42,7 +41,7 @@ class CompleteOrderView extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            actions: [CachedNetworkImage(imageUrl: imageUrl)],
+            actions: [Image.asset(imageUrl)],
             title: Text(
               title,
               style: const TextStyle(color: Colors.black),

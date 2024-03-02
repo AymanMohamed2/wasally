@@ -35,7 +35,9 @@ class CategoryDetailsBody extends StatelessWidget {
               ),
             ),
           ),
-          const CustomListViewDetailsBlocBuilder()
+          CustomListViewDetailsBlocBuilder(
+            image: image,
+          )
         ],
       ),
     );

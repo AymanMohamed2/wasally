@@ -12,8 +12,8 @@ import 'category_details_list_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class CustomListViewDetailsBlocBuilder extends StatefulWidget {
-  const CustomListViewDetailsBlocBuilder({super.key});
-
+  const CustomListViewDetailsBlocBuilder({super.key, required this.image});
+  final String image;
   @override
   State<CustomListViewDetailsBlocBuilder> createState() =>
       _CustomListViewDetailsBlocBuilderState();
@@ -40,6 +40,7 @@ class _CustomListViewDetailsBlocBuilderState
             state is CategoryDetailsStatePaginationFailure) {
           if (shopsList.isNotEmpty) {
             return CategoryDetailsListView(
+              image: widget.image,
               documentList: shopsList,
             );
           } else {
