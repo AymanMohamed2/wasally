@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:wasally/core/widgets/space_widget.dart';
+import 'package:wasally/features/complete_order/presentation/view/widgets/menu_and_image_picker_builder.dart';
 import '../../../../complete_order/presentation/manager/complete_order_button_cubit/complete_order_button_cubit.dart';
 import '../../../../complete_order/presentation/manager/complete_order_get_location_cubit/complete_order_get_location_cubit.dart';
 import 'bloc_builder_location_button.dart';
@@ -35,7 +36,7 @@ class CompleteOrderViewBody extends StatelessWidget {
         ),
         BlocBuilderLocationButton(accessLocationCubit: accessLocationCubit),
         const VirticalSpace(2),
-        // MenuAndImagePickerBuilder(catigoryName: catigoryName),
+        MenuAndImagePickerBuilder(catigoryName: catigoryName),
       ],
     );
   }

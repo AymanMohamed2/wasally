@@ -8,7 +8,6 @@ import 'package:wasally/features/complete_order/data/repositories/complete_order
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../complete_order/presentation/manager/complete_order_button_cubit/complete_order_button_cubit.dart';
-import '../../../../complete_order/presentation/manager/fetch_products_cubit/fetch_products_cubit.dart';
 import '../../../data/models/category_details_model/document.dart';
 import '../../../../complete_order/presentation/view/complete_order_view.dart';
 
@@ -42,11 +41,6 @@ class CustomItemDetailsView extends StatelessWidget {
                   create: (context) => CompleteOrderCubit(
                     CompleteOrderRepoImpl(ApiServices(Dio())),
                   )..document = document,
-                ),
-                BlocProvider(
-                  create: (context) => FetchProductsCubit(
-                      CompleteOrderRepoImpl(ApiServices(Dio())))
-                    ..fetchShopProducts(shopId: document!.id!),
                 ),
               ],
               child: CompleteOrderView(

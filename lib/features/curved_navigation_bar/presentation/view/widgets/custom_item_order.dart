@@ -11,7 +11,6 @@ import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/custom_text.dart';
 import '../../../data/models/order_model/document.dart';
 import 'custom_image_viewer.dart';
-import 'custom_list_tile.dart';
 import 'custom_row.dart';
 import 'order_state_delivery_section.dart';
 import 'order_state_done_section.dart';

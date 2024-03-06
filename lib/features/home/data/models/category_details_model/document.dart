@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:wasally/features/home/data/models/category_details_model/shop_category.dart';
 
 class Document extends Equatable {
   final String? name;
@@ -9,12 +10,14 @@ class Document extends Equatable {
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final List<dynamic>? permissions;
+  final List<dynamic>? shopCategories;
   final String? collectionId;
   final String? databaseId;
 
   const Document({
     this.name,
     this.address,
+    this.shopCategories,
     this.image,
     this.categoryName,
     this.id,
@@ -37,6 +40,9 @@ class Document extends Equatable {
         updatedAt: json['\$updatedAt'] == null
             ? null
             : DateTime.parse(json['\$updatedAt'] as String),
+        shopCategories: (json['shopCategories'] as List<dynamic>?)
+            ?.map((e) => ShopCategory.fromJson(e as Map<String, dynamic>))
+            .toList(),
         permissions: json['\$permissions'] as List<dynamic>?,
         collectionId: json['\$collectionId'] as String?,
         databaseId: json['\$databaseId'] as String?,
