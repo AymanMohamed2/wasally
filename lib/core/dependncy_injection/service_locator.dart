@@ -10,6 +10,8 @@ import '../../features/complete_order/presentation/manager/complete_order_get_lo
 
 final getIt = GetIt.instance;
 void setup() {
+  getIt.registerSingleton<Dio>(Dio());
+
   getIt.registerSingleton<ApiServices>(ApiServices(Dio()));
   getIt.registerSingleton<CurvedNavigationBarRepoImpl>(
       CurvedNavigationBarRepoImpl(getIt.get<ApiServices>()));

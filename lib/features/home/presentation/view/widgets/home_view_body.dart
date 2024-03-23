@@ -1,4 +1,5 @@
-import 'package:cool_alert/cool_alert.dart';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +12,6 @@ import 'package:wasally/core/widgets/space_widget.dart';
 import 'package:wasally/features/home/data/repositories/home_repo.dart';
 import 'package:wasally/features/home/data/repositories/home_repo_impl.dart';
 import 'package:wasally/features/home/presentation/manager/slider_cubit/slider_cubit.dart';
-import '../../../../../core/functions/custom_alert_dialog.dart';
 import '../../../../../core/utils/app_strings.dart';
 import 'custom_app_bar.dart';
 import 'custom_carousel.dart';
@@ -37,24 +37,48 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     BlocProvider.of<SliderCubit>(context).getNewVersion().then((_) async {
       BlocProvider.of<SliderCubit>(context).currentVersion =
           await getAppVersion();
+      // ignore: use_build_context_synchronously
       if (BlocProvider.of<SliderCubit>(context)
                   .newVersionModel!
                   .documents![0]
                   .newVersion !=
+              // ignore: use_build_context_synchronously
               BlocProvider.of<SliderCubit>(context).currentVersion &&
+          // ignore: use_build_context_synchronously
           BlocProvider.of<SliderCubit>(context).newVersionModel != null) {
-        customAlertDialog(context, onConfirmBtnTap: () async {
-          String url = BlocProvider.of<SliderCubit>(context)
-              .newVersionModel!
-              .documents![0]
-              .appUrl;
-          await launchUrl(Uri.parse(url),
-              mode: LaunchMode.externalNonBrowserApplication);
-        },
-            confirmText: AppStrings.update.tr(),
-            title: AppStrings.update.tr(),
-            text: AppStrings.thereWasANewUpdate.tr(),
-            type: CoolAlertType.info);
+        // ignore: use_build_context_synchronously
+        showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: Text(AppStrings.update.tr()),
+            content: Text(AppStrings.thereWasANewUpdate.tr()),
+            actions: [
+              TextButton(
+                child: const Text('OK'),
+                onPressed: () async {
+                  String url = BlocProvider.of<SliderCubit>(context)
+                      .newVersionModel!
+                      .documents![0]
+                      .appUrl;
+                  await launchUrl(Uri.parse(url),
+                      mode: LaunchMode.externalNonBrowserApplication);
+                  exit(0);
+                },
+              ),
+            ],
+          ),
+        );
+        // customAlertDialog(context, onConfirmBtnTap: () async {
+        //   String url = BlocProvider.of<SliderCubit>(context)
+        //       .newVersionModel!
+        //       .documents![0]
+        //       .appUrl;
+        // },
+        //     confirmText: AppStrings.update.tr(),
+        //     title: AppStrings.update.tr(),
+        //     text: AppStrings.thereWasANewUpdate.tr(),
+        //     type: CoolAlertType.info);
       }
     });
 

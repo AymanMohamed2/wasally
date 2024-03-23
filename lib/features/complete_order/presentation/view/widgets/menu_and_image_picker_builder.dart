@@ -16,6 +16,7 @@ class MenuAndImagePickerBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
       if ((catigoryName == 'Restaurant' || catigoryName == 'مطعم') &&
+          // ignore: prefer_is_empty
           BlocProvider.of<CompleteOrderCubit>(context)
                   .document!
                   .shopCategories!
